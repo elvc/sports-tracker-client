@@ -1,7 +1,17 @@
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import sportsApp from './reducers/index';
+import App from './components/App';
+
 require('../styles/application.scss');
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App.jsx';
+let store = createStore(sportsApp, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
-ReactDOM.render(<App />, document.getElementById('react-root'));
+render(
+  <Provider store={ store }>
+    <App />
+  </Provider>,
+  document.getElementById('react-root')
+);
