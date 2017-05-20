@@ -6,10 +6,10 @@ import ChatBar from '../containers/ChatBar';
 
 const App = () => (
   <div>
-    <Header />
+    {/* <Header />
     <GameSelector />
     <Dashboard />
-    <ChatBar />
+    <ChatBar />*/}
   </div>
 );
 

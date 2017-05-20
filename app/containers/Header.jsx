@@ -1,18 +1,18 @@
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => {
-  return {
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//   }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-  }
-}
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//   }
+// }
 
-const Header = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)();
+// const Header = connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )();
 
-export default VisibleTodoList;
+// export default Header;
