@@ -10,7 +10,6 @@
 
 <body>
 
-  <div id="react-root"></div>
 
   <!--Top nav bar-->
   <nav>
@@ -45,8 +44,8 @@
             <i class="fa fa-users fa-lg"></i> Register
           </a>
         </li>
-        <li data-toggle="collapse" data-target="#nhl" class="collapsed active">
-          <a href="#"><i class="fa fa-gift fa-lg"></i> NHL <span class="arrow"></span></a>
+        <li data-toggle="collapse" data-target="#nhl" class="collapsed">
+          <a href="#"><img src="/img/hockey.png"> NHL <span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="nhl">
           <li class="active"><a href="#">Game 1</a></li>
@@ -54,7 +53,7 @@
           <li><a href="#">Game 3</a></li>
         </ul>
         <li data-toggle="collapse" data-target="#nfl" class="collapsed">
-          <a href="#"><i class="fa fa-globe fa-lg"></i> NFL <span class="arrow"></span></a>
+          <a href="#"><img src="/img/sport_football.png"> NFL <span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="nfl">
           <li>Game 1</li>
@@ -63,7 +62,7 @@
         </ul>
 
         <li data-toggle="collapse" data-target="#mlb" class="collapsed">
-          <a href="#"><i class="fa fa-car fa-lg"></i> MLB <span class="arrow"></span></a>
+          <a href="#"><img src="/img/baseball-icon.png"> MLB <span class="arrow"></span></a>
         </li>
         <ul class="sub-menu collapse" id="mlb">
           <li>Game 1</li>
@@ -87,7 +86,7 @@
     <div class="row">
       <div class="card-container col-xs-12 col-md-9">
         <div class="row">
-          <div class="card col-xs-12 col-sm-6 col-md-4">
+          <div class="card col-xs-12 col-sm-6">
             <img class="card-img-top" src="..." alt="Card image cap">
             <div class="card-block">
               <h4 class="card-title">Card title</h4>
@@ -96,7 +95,7 @@
             </div>
           </div>
 
-          <div class="card col-xs-12 col-sm-6 col-md-4">
+          <div class="card col-xs-12 col-sm-6">
             <img class="card-img-top" src="..." alt="Card image cap">
             <div class="card-block">
               <h4 class="card-title">Card title</h4>
@@ -105,7 +104,7 @@
             </div>
           </div>
 
-          <div class="card col-xs-12 col-sm-6 col-md-4">
+          <div class="card col-xs-12 col-sm-6">
             <img class="card-img-top" src="..." alt="Card image cap">
             <div class="card-block">
               <h4 class="card-title">Card title</h4>
@@ -114,7 +113,7 @@
             </div>
           </div>
 
-          <div class="card col-xs-12 col-sm-6 col-md-4">
+          <div class="card col-xs-12 col-sm-6">
             <img class="card-img-top" src="..." alt="Card image cap">
             <div class="card-block">
               <h4 class="card-title">Card title</h4>
@@ -130,11 +129,22 @@
       <div class="chat-container hidden-md-down col-md-3">
         <p>chatroom here</p>
       </div>
-
     </div>
 
   </div>
+    <!--Footer-->
+    <nav>
+      <ul class="nav justify-content-end navbar-light bg-faded">
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-facebook fa-lg"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"><i class="fa fa-instagram fa-lg"></i></a>
+        </li>
+      </ul>
+    </nav>
 
+  <div id="react-root"></div>
   <script src="bundle.js"></script>
 
   <!--Bootstrap stuff-->
