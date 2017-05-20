@@ -1,4 +1,6 @@
 import React from 'react';
+import Register from './register.jsx';
+import Login from './login.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -7,7 +9,10 @@ class App extends React.Component {
   }
 
   render() {
-    return <p>{ this.state.someKey }</p>;
+    return <div>
+      <p>{ this.state.someKey }</p>
+    </div>;
+
   }
 
   componentDidMount() {
