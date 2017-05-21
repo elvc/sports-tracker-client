@@ -4,10 +4,13 @@ import GameSelector from '../containers/GameSelector';
 import Dashboard from '../containers/Dashboard';
 import ChatBar from '../containers/ChatBar';
 import CardBox from './CardBox';
+import state from '../../state_structure.js';
 
 const App = () => (
   <div>
-    { <CardBox />
+    {
+      <CardBox allCards={ state.cards } />
+
     /* <Header />
     <GameSelector />
     <Dashboard />

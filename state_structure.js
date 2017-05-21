@@ -21,6 +21,7 @@ const state = {
   },
   cards: [
     {
+      gameId: 1,
       league: 'nba',
       homeTeam: 'SAS',
       awayTeam: 'GSW',
@@ -31,11 +32,12 @@ const state = {
       display: 'BASIC' // 'STATS', 'PLAY_BY_PLAY' other options
     },
     {
+      gameId: 2,
       league: 'nhl',
-      homeTeam: '?',
-      awayTeam: '?',
-      homeScore: 3,
-      awayScore: 1
+      homeTeam: 'Senators',
+      awayTeam: 'Penguins',
+      homeScore: 10,
+      awayScore: 3
     }
   ],
   gameSelector: {
@@ -50,3 +52,5 @@ const state = {
     name: 'George'
   }
 };
+
+export default state;
