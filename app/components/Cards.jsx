@@ -93,9 +93,9 @@ export default class Cards extends Component {
             </div>
           <div className="card-footer d-flex justify-content-end">
             <button className="btn btn-info mr-auto p-2">Play-by-Play</button>
-            <i className="p-2 fa fa-share-alt" aria-hidden="true"></i>
-            <i className="p-2 fa fa-rss" aria-hidden="true"></i>
-            <i className="p-2 fa fa-commenting" aria-hidden="true"></i>
+            <i className="p-2 fa fa-share-alt" aria-hidden="true" />
+            <i className="p-2 fa fa-rss" aria-hidden="true" />
+            <i className="p-2 fa fa-commenting" aria-hidden="true" />
           </div>
         </div>
       </div>
