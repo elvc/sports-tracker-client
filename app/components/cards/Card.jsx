@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'; // for React v15.5
-import React, { Component } from 'react';
+import React from 'react';
 
 export default function Card( {...props}) {
   return (
