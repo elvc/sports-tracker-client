@@ -1,5 +1,11 @@
 nav {
   line-height: 33px;
+  a {
+    color: #fff;
+    &:hover {
+      color: red;
+    }
+  }
 }
 
 .chat-container {

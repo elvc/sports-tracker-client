@@ -23,13 +23,13 @@ const state = {
     {
       gameId: 1,
       league: 'nba',
+      display: 'BASIC', // 'STATS', 'PLAY_BY_PLAY' other options
       homeTeam: 'SAS',
       awayTeam: 'GSW',
       homeScore: 150,
       awayScore: 85,
       quarter: 4,
-      timeRemaining: 70,
-      display: 'BASIC' // 'STATS', 'PLAY_BY_PLAY' other options
+      timeRemaining: 70
     },
     {
       gameId: 2,
@@ -76,9 +76,20 @@ const state = {
     visible: [
       'NBA', 'MLB', 'MLB_TODAY'
     ],
-    games: [
-      // all game data here
-    ]
+    games: {
+      NBA: [
+      // NBA games
+      ],
+      MLB: {
+        MLB_TODAY: [
+          // todays games
+        ]
+      },
+      NHL: [
+        // NHL games
+      ]
+
+    }
   },
   user: {
     name: 'George'
