@@ -1,12 +1,12 @@
+import PropTypes from 'prop-types'; // for React v15.5
 import React, { Component } from 'react';
-import Card from './card.jsx';
+import Card from './Card';
 
 export default class CardBox extends Component {
-  // skeleton to be updated
-  
   render() {
     // cards container rendering all cards
     const { allCards } = this.props;
+
     return (
       <div className="container" id="main">
         <div className="row">
@@ -21,3 +21,6 @@ export default class CardBox extends Component {
   }
 }
 
+CardBox.propTypes = {
+  allCards: PropTypes.array.isRequired
+};

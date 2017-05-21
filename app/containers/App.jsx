@@ -3,7 +3,7 @@ import Header from './Header';
 import GameSelector from './GameSelector';
 import Dashboard from './Dashboard';
 import ChatBar from './ChatBar';
-import CardBox from '../components/CardBox';
+import CardBox from '../components/cards/CardBox';
 import state from '../../state_structure.js';
 
 const App = () => (
