@@ -1,11 +1,13 @@
-p {
-  font-size: 2em;
+nav {
+  line-height: 33px;
 }
 
 .chat-container {
   border: 1px solid grey;
 }
-
+.card-container, .card{
+  padding: 15px;
+}
 .nav-side-menu {
   overflow: auto;
   font-family: verdana;
@@ -14,7 +16,7 @@ p {
   background-color: #2e353d;
   position: fixed;
   top: 0px;
-  width: 300px;
+  width: 200px;
   height: 100%;
   color: #e1ffff;
 }
@@ -146,8 +148,8 @@ p {
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
-  #main {
-  	width:calc(100% - 300px);
+  #main, nav {
+  	width: calc( 100% - 200px);
   	float: right;
   }
 }
