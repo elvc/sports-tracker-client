@@ -7,11 +7,13 @@ const state = {
         messages: [
           {
             user: 'somebody',
-            content: 'steph is the best'
+            content: 'steph is the best',
+            id: '99'
           },
           {
             user: 'somebody else',
-            content: 'lebron though'
+            content: 'lebron though',
+            id: '109'
           }
         ],
         onlineUsers: 12,
@@ -39,7 +41,7 @@ const state = {
       homeScore: 10,
       awayScore: 3,
       quarter: 4,
-      timeRemaining: 50,
+      timeRemaining: 50
     },
     {
       gameId: 3,
@@ -49,7 +51,7 @@ const state = {
       homeScore: 9,
       awayScore: 5,
       quarter: 4,
-      timeRemaining: 30,
+      timeRemaining: 30
     },
     {
       gameId: 4,
@@ -59,7 +61,7 @@ const state = {
       homeScore: 35,
       awayScore: 25,
       quarter: 2,
-      timeRemaining: 36,
+      timeRemaining: 36
     },
     {
       gameId: 5,
@@ -69,7 +71,7 @@ const state = {
       homeScore: 3,
       awayScore: 4,
       quarter: 2,
-      timeRemaining: 100,
+      timeRemaining: 100
     }
   ],
   gameSelector: {

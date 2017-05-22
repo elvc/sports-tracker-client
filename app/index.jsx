@@ -9,27 +9,67 @@ require('../styles/application.scss');
 
 const initialState = {
   chat: {
-    active: 0, // array index
+    active: 17, // room id unless you hate yourself
     rooms: [
       {
         game: 'test', // unique id for room
+        name: 2,
+        id: 17,
         messages: [
           {
             user: 'somebody',
             content: 'steph is the best',
-            id: 99
+            id: '99'
           },
           {
             user: 'somebody else',
             content: 'lebron though',
-            id: 109
+            id: '109'
           }
         ],
         onlineUsers: 12,
-        input: 'this is a gr'
+        input: ''
+      },
+      {
+        game: 'tefdsfdsfst', // unique id for room
+        name: 1,
+        id: 172,
+        messages: [
+          {
+            user: 'somebody',
+            content: 'steph is the best',
+            id: '99'
+          },
+          {
+            user: 'somebody else',
+            content: 'lebron though',
+            id: '109'
+          }
+        ],
+        onlineUsers: 12,
+        input: ''
+      },
+      {
+        game: 'not test', // unique id for room
+        name: 3,
+        id: 27,
+        messages: [
+          {
+            user: 'person',
+            content: 'MJ!',
+            id: '99'
+          },
+          {
+            user: 'person2',
+            content: 'yup.',
+            id: '109'
+          }
+        ],
+        onlineUsers: 12,
+        input: ''
       }
     ]
-  }
+  },
   // cards: [
   //   {
   //     league: 'nba',
@@ -57,9 +97,9 @@ const initialState = {
   //     // all game data here
   //   ]
   // },
-  // user: {
-  //   name: 'George'
-  // }
+  user: {
+    name: 'George'
+  }
 };
 
 const store = createStore(sportsApp, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());

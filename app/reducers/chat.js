@@ -14,38 +14,49 @@ function chat(state = defaultState, action) {
         ]
       };
     case 'RECEIVE_MESSAGE': {
-      const roomForPost = state.rooms.filter(room => room.game === action.message.room);
-      const otherRooms = state.rooms.filter(room => room.game !== action.message.room);
-      roomForPost[0].messages.push(action.message);
+      const roomForPost = state.rooms.find(room => room.id === action.message.room);
+      const otherRooms = state.rooms.filter(room => room.id !== action.message.room);
+      roomForPost.messages.push(action.message);
       const newState = {
         ...state,
         rooms: [
           ...otherRooms,
-          ...roomForPost
+          roomForPost
         ]
       };
       return newState;
     }
     case 'SEND_MESSAGE': {
-      const roomToUpdate = state.rooms[state.active];
+      const roomToUpdate = state.rooms.find(room => room.id === state.active);
+      // const roomToUpdate = state.rooms[state.active];
+      const otherRooms = state.rooms.filter(room => room !== roomToUpdate);
       roomToUpdate.input = '';
       return {
         ...state,
         rooms: [
-          ...state.rooms,
+          ...otherRooms,
           roomToUpdate
         ]
       };
     }
     case 'INPUT_CHANGE': {
-      const roomToUpdate = state.rooms[state.active];
+      const roomToUpdate = state.rooms.find(room => room.id === state.active);
+
+      // const roomToUpdate = state.rooms[state.active];
+      const otherRooms = state.rooms.filter(room => room !== roomToUpdate);
       roomToUpdate.input = action.input;
       return {
         ...state,
         rooms: [
-          ...state.rooms,
+          ...otherRooms,
           roomToUpdate
         ]
+      };
+    }
+    case 'CHANGE_ROOM': {
+      return {
+        ...state,
+        active: action.roomId
       };
     }
     default:
