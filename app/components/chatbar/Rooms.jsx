@@ -18,6 +18,7 @@ class Rooms extends React.Component {
 
     return (
       <section>
+        <ul className='nav nav-tabs'>
         { sortedRooms.map(room =>
           (
             <RoomTab
@@ -31,6 +32,7 @@ class Rooms extends React.Component {
             />
           )
         )}
+      </ul>
       </section>
     );
   }

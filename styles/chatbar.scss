@@ -1,4 +1,4 @@
-$active-color: #ff5722;
+$active-color: #2196f3;
 
 .chat-container {
   position: fixed;
@@ -8,23 +8,55 @@ $active-color: #ff5722;
   border-left: 1px solid grey;
   width: 250px;
 
+  .exit-room {
+    color: #e2000f;
+  }
+  .user-count {
+    padding: 5px 0;
+  }
+  .room {
+    padding: 8px 5px 8px 10px;
+  }
+
+  .chat-input {
+    position: fixed;
+    bottom: 55px;
+  }
+
   .input-group {
     height: 30px;
 
-    .chat-input {
-      position: fixed;
-      bottom: 60px;
-    }
     #chat-input {
       font-size: 13px;
     }
+
     .btn {
       line-height: 0.9;
     }
   }
 
+  .nav.nav-tabs {
+    line-height: 0.5;
+    overflow: scroll;
+  }
+
+  .nav-link {
+    padding-left: 0;
+  }
+  .nav-link.active {
+    background: #5bc0de;
+
+    a {
+      color: #fff;
+    }
+  }
+
   .message-container {
-    .chat-user {}
+    margin-bottom: 0;
+
+    .message {
+      max-width: 25px;
+    }
 
     .chat-user,
     .message {

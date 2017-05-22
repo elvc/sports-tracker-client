@@ -134,7 +134,7 @@ class Chat extends Component {
             onChange={ this.onChange }
             handleSubmit={ this.handleSubmit }
           />
-
+        
         </div>
       );
     } else {
