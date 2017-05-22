@@ -96,14 +96,14 @@ class Chat extends Component {
         </div>
 
         <div className="message-list" id='messageList'>
-          <ul>
+          <div>
             { messages.map(message =>
               <Message
                 key={ message.id }
                 message={ message }
               />
             )}
-          </ul>
+          </div>
         </div>
 
         <MessageBox

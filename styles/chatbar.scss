@@ -1,8 +1,38 @@
+$active-color: #ff5722;
+
 .chat-container {
-  position: relative;
+  position: fixed;
   top: 50px;
+  right: 0;
+  height: 100vh;
   border-left: 1px solid grey;
+  width: 300px;
+
+  .chat-input {
+    position: fixed;
+    bottom: 0;
+    bottom: 60px;
+  }
+
+  .message-container {
+    .chat-user {
+    }
+
+    .message, .chat-user {
+      overflow-wrap: break-word;
+    }
+    .chat-user {
+      width: 20px;
+    }
+  }
+
+  .message-list {
+    height: calc(100% - 240px);
+    overflow: scroll;
+    font-size: 0.9em;
+  }
+
   .active {
-    color: black;
+    color: $active-color;
   }
 }
