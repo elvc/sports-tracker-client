@@ -4,30 +4,33 @@ import PropTypes from 'prop-types';
 const RoomTab = (props) => {
   let roomClass = '';
   if (props.active) {
-    roomClass = 'active chat-tabs';
+    roomClass = 'nav-link active';
   } else if (props.unread) {
-    roomClass = 'unread chat-tabs';
+    roomClass = 'nav-link unread chat-tabs';
   } else {
-    roomClass = 'chat-tabs';
+    roomClass = 'nav-link chat-tabs';
   }
   return (
-    <div className={ roomClass }>
-      <a
-        onClick={ () => props.onTabClick(props.id) }
-        role="button"
-        tabIndex={ 0 }
-      >
-        { props.name }
-      </a>
-      <a
-        onClick={ () => props.closeChat(props.id) }
-        role="button"
-        tabIndex={ 0 }
-      >
-        <i className="fa fa-times" />
-      </a>
-    </div>
-  );
+    <li className='nav-item'>
+      <div className={ roomClass }>
+        <a
+          className="room"
+          onClick={ () => props.onTabClick(props.id) }
+          role='button'
+          tabIndex={ 0 }
+        >
+          { props.name }
+        </a>
+        <a
+          onClick={ () => props.closeChat(props.id) }
+          role='button'
+          tabIndex={ 0 }
+        >
+          <i className='fa fa-times exit-room' />
+        </a>
+      </div>
+    </li>
+);
 };
 
 RoomTab.propTypes = {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Message = ({ message }) => (
-  <table className="message-container table table-sm mb-3">
+  <table className="message-container table table-sm">
     <tbody>
       <tr>
         <th scope="row" className="chat-user">{ message.user.name }</th>
