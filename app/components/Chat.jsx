@@ -16,6 +16,7 @@ class Chat extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onTabClick = this.onTabClick.bind(this);
 
   }
 
@@ -24,8 +25,16 @@ class Chat extends Component {
     socket.on('news', msg => console.log(msg));
 
     socket.emit('join', {
-      room: 'test',
+      room: 172,
       user: 'jeff'
+    });
+    socket.emit('join', {
+      room: 27,
+      user: 'jeff'
+    });
+    socket.emit('join', {
+      room: 17,
+      user: 'jeffrey'
     });
     socket.on('post', msg => {
       return dispatch(actions.receiveMessage(msg))
@@ -36,12 +45,12 @@ class Chat extends Component {
   }
 
   handleSubmit(event, data) {
-    const { socket, user, dispatch, input } = this.props;
+    const { socket, user, dispatch, input, active } = this.props;
     event.preventDefault();
     if (input != '') {
       dispatch(actions.sendMessage());
       const message = {
-        room: 'test',
+        room: active,
         message: {
           user: 'Jeff',
           content: input
@@ -52,15 +61,25 @@ class Chat extends Component {
   }
 
   onChange(event) {
-    const { socket, user, dispatch } = this.props;
-    dispatch(actions.inputChange(event.target.value))
+    const { dispatch, active } = this.props;
+    dispatch(actions.inputChange(event.target.value, active))
+  }
+
+  onTabClick(roomId) {
+    const { dispatch } = this.props;
+    dispatch(actions.changeRoom(roomId));
   }
 
   render() {
-    const messages = this.props.rooms[this.props.active].messages;
+    const activeRoom = this.props.rooms.find(room => room.id === this.props.active);
+    const messages = activeRoom.messages;
     return (
-      <div>
-        <Rooms />
+      <div  className="chat-container hidden-md-down col-md-3">
+        <Rooms
+          rooms={ this.props.rooms }
+          active={ this.props.active }
+          onTabClick={ this.onTabClick }
+        />
         <div className="message-list">
           <ul>
             { messages.map(message =>

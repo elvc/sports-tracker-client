@@ -1,9 +1,17 @@
 nav {
   line-height: 33px;
+  a {
+    color: #fff;
+    &:hover {
+      color: red;
+    }
+  }
 }
 
 .chat-container {
-  border: 1px solid grey;
+  position: relative;
+  top: 50px;
+  border-left: 1px solid grey;
 }
 .card-container, .card{
   padding: 15px;

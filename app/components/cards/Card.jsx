@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import PropTypes from 'prop-types'; // for React v15.5
+import React from 'react';
 
 export default function Card( {...props}) {
   return (
@@ -39,3 +40,13 @@ export default function Card( {...props}) {
     </div>
   );
 }
+
+Card.propTypes = {
+  league: PropTypes.string.isRequired,
+  homeTeam: PropTypes.string.isRequired,
+  awayTeam: PropTypes.string.isRequired,
+  homeScore: PropTypes.number.isRequired,
+  awayScore: PropTypes.number.isRequired,
+  quarter: PropTypes.number.isRequired,
+  timeRemaining: PropTypes.number.isRequired
+};
