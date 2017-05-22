@@ -12,12 +12,11 @@ class Chat extends Component {
   };
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onTabClick = this.onTabClick.bind(this);
-
   }
 
   componentDidMount() {
@@ -45,6 +44,12 @@ class Chat extends Component {
       console.log('user count', msg);
       dispatch(actions.updateUserCount(msg));
     })
+  }
+
+  componentDidUpdate() {
+    // autoscroll to the latest message in message list
+    const msgList = document.getElementById('messageList');
+    msgList.scrollTop = msgList.scrollHeight;
   }
 
   handleSubmit(event, data) {
@@ -90,7 +95,7 @@ class Chat extends Component {
           { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } chatting
         </div>
 
-        <div className="message-list">
+        <div className="message-list" id='messageList'>
           <ul>
             { messages.map(message =>
               <Message
