@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const MessageBox = ({ input, onChange, handleSubmit }) => (
   <div>
-    <form className="d-flex justify-content-center chat-input mr-3" onSubmit={ handleSubmit }>
+    <form className="d-flex justify-content-center chat-input" onSubmit={ handleSubmit }>
       <div className="input-group">
         <input type="text" className="form-control" id="chat-input" value={ input } onChange={ onChange } autoComplete="off" placeholder="Type something..." />
         <span className="input-group-btn">

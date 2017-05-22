@@ -48,7 +48,7 @@ class Chat extends Component {
   componentDidUpdate() {
     // autoscroll to the latest message in message list
     const msgList = document.getElementById('messageList');
-    if (msgList) {
+    if (msgList && msgList.scrollTop === msgList.scrollHeight - 30 - msgList.clientHeight) {
       msgList.scrollTop = msgList.scrollHeight;
     }
   }
@@ -134,7 +134,7 @@ class Chat extends Component {
             onChange={ this.onChange }
             handleSubmit={ this.handleSubmit }
           />
-        
+
         </div>
       );
     } else {
