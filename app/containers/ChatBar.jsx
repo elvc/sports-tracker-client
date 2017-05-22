@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import Chat from '../components/chatbar/Chat';
 
-const socketHost = process.env.SOCKET_HOST || 'http://localhost:8080';
+const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
 
-const socket = io.connect(socketHost);
+const socket = io.connect(SOCKET_HOST);
 
 class ChatBar extends React.Component {
 
@@ -22,10 +22,11 @@ class ChatBar extends React.Component {
 
 function mapStateToProps(state) {
   const activeRoom = state.chat.rooms.find(room => room.id === state.chat.active);
+  const input = activeRoom ? activeRoom.input : '';
   return {
     rooms: state.chat.rooms,
     active: state.chat.active,
-    input: activeRoom.input,
+    input,
     user: state.user
   };
 }

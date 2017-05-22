@@ -68,6 +68,15 @@ function chat(state = defaultState, action) {
         ]
       };
     }
+    case 'LEAVE_ROOM': {
+      const otherRooms = state.rooms.filter(room => room.id !== action.roomId);
+      const activeRoom = otherRooms.length ? otherRooms[0].id : 0;
+      return {
+        ...state,
+        rooms: otherRooms,
+        active: activeRoom
+      };
+    }
     default:
       return state;
   }

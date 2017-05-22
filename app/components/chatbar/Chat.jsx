@@ -17,11 +17,11 @@ class Chat extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onTabClick = this.onTabClick.bind(this);
+    this.closeChat = this.closeChat.bind(this);
   }
 
   componentDidMount() {
     const { socket, user, dispatch } = this.props;
-    socket.on('news', msg => console.log(msg));
 
     // test code to join manually created rooms
     socket.emit('join', {
@@ -41,7 +41,6 @@ class Chat extends Component {
       return dispatch(actions.receiveMessage(msg))
     });
     socket.on('user count', msg => {
-      console.log('user count', msg);
       dispatch(actions.updateUserCount(msg));
     })
   }
@@ -49,7 +48,9 @@ class Chat extends Component {
   componentDidUpdate() {
     // autoscroll to the latest message in message list
     const msgList = document.getElementById('messageList');
-    msgList.scrollTop = msgList.scrollHeight;
+    if (msgList) {
+      msgList.scrollTop = msgList.scrollHeight;
+    }
   }
 
   handleSubmit(event, data) {
@@ -79,21 +80,46 @@ class Chat extends Component {
     document.getElementById('chat-input').focus();
   }
 
+  closeChat(roomId) {
+    const { dispatch, socket } = this.props;
+    dispatch(actions.leaveRoom(roomId));
+    socket.emit('leave', { room: roomId })
+  }
+
   render() {
     const activeRoom = this.props.rooms.find(room => room.id === this.props.active);
-    const messages = activeRoom.messages;
-    return (
-      <div  className="chat-container hidden-md-down col-md-3">
+    if (activeRoom) {
+      const messages = activeRoom.messages;
+      return (
+        <div  className="chat-container hidden-md-down col-md-3">
 
-        <Rooms
-          rooms={ this.props.rooms }
-          active={ this.props.active }
-          onTabClick={ this.onTabClick }
-        />
+          <Rooms
+            rooms={ this.props.rooms }
+            active={ this.props.active }
+            onTabClick={ this.onTabClick }
+            closeChat={ this.closeChat }
+          />
 
-        <div className="user-count">
-          { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } chatting
-        </div>
+          <div className="user-count">
+            { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } chatting
+          </div>
+
+          <div className="message-list" id='messageList'>
+            <ul>
+              { messages.map(message =>
+                <Message
+                  key={ message.id }
+                  message={ message }
+                />
+              )}
+            </ul>
+          </div>
+
+          <MessageBox
+            input={ this.props.input }
+            onChange={ this.onChange }
+            handleSubmit={ this.handleSubmit }
+          />
 
         <div className="message-list" id='messageList'>
           <div>
@@ -105,15 +131,10 @@ class Chat extends Component {
             )}
           </div>
         </div>
-
-        <MessageBox
-          input={ this.props.input }
-          onChange={ this.onChange }
-          handleSubmit={ this.handleSubmit }
-        />
-
-      </div>
-    );
+      );
+    } else {
+      return null;
+    }
   }
 }
 

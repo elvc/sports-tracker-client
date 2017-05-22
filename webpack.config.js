@@ -2,6 +2,7 @@ const path = require('path');
 
 module.exports = {
   devServer: { host: '0.0.0.0' },
+  devtool: 'eval',
   entry: path.resolve(__dirname, 'app/index.jsx'),
   output: {
     filename: 'bundle.js',

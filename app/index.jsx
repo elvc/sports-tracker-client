@@ -16,21 +16,24 @@ const initialState = {
         id: 17,
         messages: [],
         onlineUsers: 0,
-        input: ''
+        input: '',
+        unread: false
       },
       {
         name: 'two',
         id: 172,
         messages: [],
         onlineUsers: 0,
-        input: ''
+        input: '',
+        unread: false
       },
       {
         name: 'three',
         id: 27,
         messages: [],
         onlineUsers: 0,
-        input: ''
+        input: '',
+        unread: false
       }
     ]
   },
