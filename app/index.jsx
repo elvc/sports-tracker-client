@@ -9,7 +9,7 @@ require('../styles/application.scss');
 
 const initialState = {
   chat: {
-    active: 17, // room id unless you hate yourself
+    active: 17,
     rooms: [
       {
         name: 'one',
