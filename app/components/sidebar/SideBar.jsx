@@ -14,6 +14,17 @@ export default class Sidebar extends Component {
 
         </div>
 
+      <div className="nav-side-menu">
+        <div className="brand">Sports Scoreboard</div>
+        <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content" />
+        <div className="menu-list">
+          <ul id="menu-content" className="menu-content collapse out">
+            <li><a href="#"><i className="fa fa-dashboard fa-lg" /> Dashboard</a></li>
+            <li><a href="#"><i className="fa fa-user fa-lg" /> Login</a></li>
+            <li><a href="#"><i className="fa fa-users fa-lg" /> Register</a></li>
+          </ul>
+        </div>
+        
         <li data-toggle="collapse" data-target="#nhl" className="collapsed">
           <a href=""><img src="/img/hockey.png" alt="nhl" /> NHL <span className="arrow" /></a>
         </li>

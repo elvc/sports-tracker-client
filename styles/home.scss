@@ -34,10 +34,12 @@ nav {
     bottom: 0;
     bottom: 60px;
   }
-  .message{
+
+  .message {
     overflow-wrap: break-word;
   }
-  .message-list{
+
+  .message-list {
     height: calc(100% - 240px);
     overflow: scroll;
   }
