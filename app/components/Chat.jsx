@@ -12,12 +12,17 @@ class Chat extends Component {
   };
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onTabClick = this.onTabClick.bind(this);
+  }
 
+  componentDidUpdate() {
+    // autoscroll to the latest message in message list
+    const objDiv = document.getElementById('messageList');
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
 
   componentDidMount() {
@@ -80,7 +85,7 @@ class Chat extends Component {
           active={ this.props.active }
           onTabClick={ this.onTabClick }
         />
-        <div className="message-list">
+        <div className="message-list" id='messageList'>
           <ul>
             { messages.map(message =>
               <Message
