@@ -11,7 +11,8 @@ function chat(state = defaultState, action) {
         rooms: [
           ...state.rooms,
           action.room
-        ]
+        ],
+        active: action.roomId
       };
     case 'RECEIVE_MESSAGE': {
       const roomForPost = state.rooms.find(room => room.id === action.message.room);

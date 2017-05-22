@@ -53,6 +53,20 @@ class Chat extends Component {
     }
   }
 
+  joinChat(id, name) {
+    const { socket, dispatch } = this.props;
+    const room = {
+      name,
+      id,
+      messages: [],
+      onlineUsers: 0,
+      input: '',
+      unread: false
+    };
+    socket.emit('join', { room: id });
+    dispatch(actions.joinRoom(room));
+  }
+
   handleSubmit(event, data) {
     const { socket, user, dispatch, input, active } = this.props;
     event.preventDefault();
@@ -105,14 +119,14 @@ class Chat extends Component {
           </div>
 
           <div className="message-list" id='messageList'>
-            <ul>
+            <div>
               { messages.map(message =>
                 <Message
                   key={ message.id }
                   message={ message }
                 />
               )}
-            </ul>
+            </div>
           </div>
 
           <MessageBox
@@ -121,15 +135,6 @@ class Chat extends Component {
             handleSubmit={ this.handleSubmit }
           />
 
-        <div className="message-list" id='messageList'>
-          <div>
-            { messages.map(message =>
-              <Message
-                key={ message.id }
-                message={ message }
-              />
-            )}
-          </div>
         </div>
       );
     } else {
