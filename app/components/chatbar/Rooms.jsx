@@ -24,8 +24,10 @@ class Rooms extends React.Component {
               key={ room.id }
               name={ room.name }
               id={ room.id }
+              unread={ room.unread }
               active={ this.props.active === room.id }
               onTabClick={ this.props.onTabClick }
+              closeChat={ this.props.closeChat }
             />
           )
         )}

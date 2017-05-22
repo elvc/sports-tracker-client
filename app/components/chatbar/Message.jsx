@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Message = ({ message }) => (
   <div className="message mb-3">
-    <span className="chat-user">{ message.user.name }</span> ${ message.content }
+    <span className="chat-user">{ message.user.name }</span> { message.content }
   </div>
 );
 
