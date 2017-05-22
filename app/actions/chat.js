@@ -8,12 +8,18 @@ export const sendMessage = message => ({
   message
 });
 
-export const inputChange = input => ({
+export const inputChange = (input, roomId) => ({
   type: 'INPUT_CHANGE',
-  input
+  input,
+  roomId
 });
 
 export const joinRoom = room => ({
   type: 'JOIN_ROOM',
   room
+});
+
+export const changeRoom = roomId => ({
+  type: 'CHANGE_ROOM',
+  roomId
 });

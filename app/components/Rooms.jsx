@@ -1,33 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RoomTab from './RoomTab';
+import * as validations from '../prop_validations/chat';
 
 class Rooms extends React.Component {
 
   render() {
-    const rooms = [{
-      game: 1905, // unique id for room
-      name: 'GSW @ SAS',
-      active: true,
-      messages: [
-        {
-          user: 'somebody',
-          content: 'steph is the best',
-          id: 99
-        }
-      ]
-    }];
     return (
       <section>
-        { rooms.map(room =>
-          <RoomTab
-            key={ room.game }
-            room={ room }
-          />
+        { this.props.rooms.map((room, index) =>
+          (
+            <RoomTab
+              key={ room.id }
+              room={ room }
+              active={ this.props.active === index }
+              onTabClick={ this.props.onTabClick }
+            />
+          )
         )}
       </section>
     );
   }
 }
+
+Rooms.propTypes = validations.rooms;
 
 export default Rooms;
