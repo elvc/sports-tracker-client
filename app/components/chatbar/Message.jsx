@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Message = ({ message }) => (
-  <li>
+  <div className="message mb-3">
     <span className="chat-user">{ message.user.name }</span> ${ message.content }
-  </li>
+  </div>
 );
 
 Message.propTypes = {
