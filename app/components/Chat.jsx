@@ -19,12 +19,6 @@ class Chat extends Component {
     this.onTabClick = this.onTabClick.bind(this);
   }
 
-  componentDidUpdate() {
-    // autoscroll to the latest message in message list
-    const objDiv = document.getElementById('messageList');
-    objDiv.scrollTop = objDiv.scrollHeight;
-  }
-
   componentDidMount() {
     const { socket, user, dispatch } = this.props;
     socket.on('news', msg => console.log(msg));
@@ -47,6 +41,12 @@ class Chat extends Component {
     socket.on('new user', msg => {
       console.log('new user', msg);
     })
+  }
+
+  componentDidUpdate() {
+    // autoscroll to the latest message in message list
+    const msgList = document.getElementById('messageList');
+    msgList.scrollTop = msgList.scrollHeight;
   }
 
   handleSubmit(event, data) {
