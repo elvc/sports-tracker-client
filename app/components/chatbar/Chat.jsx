@@ -134,17 +134,7 @@ class Chat extends Component {
             onChange={ this.onChange }
             handleSubmit={ this.handleSubmit }
           />
-
-          <div className="message-list" id='messageList'>
-            <div>
-              { messages.map(message =>
-                <Message
-                  key={ message.id }
-                  message={ message }
-                />
-              )}
-            </div>
-          </div>
+        
         </div>
       );
     } else {
