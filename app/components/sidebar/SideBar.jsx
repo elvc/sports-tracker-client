@@ -19,7 +19,7 @@ export default class Sidebar extends Component {
 
         <ul>
           <li data-toggle="collapse" data-target="#nhl" className="collapsed">
-            <a href=""><img src="/img/hockey.png" alt="nhl" /> NHL <span className="arrow" /></a>
+            <a href=""><img className="league-icon" src="/img/nhl.png" alt="nhl" /> NHL <span className="arrow" /></a>
           </li>
         </ul>
         <ul className="sub-menu collapse" id="nhl">
@@ -28,7 +28,7 @@ export default class Sidebar extends Component {
 
         <ul>
           <li data-toggle="collapse" data-target="#nfl" className="collapsed">
-            <a href=""><img src="/img/sport_football.png" alt="nfl" /> NFL <span className="arrow" /></a>
+            <a href=""><img className="league-icon" src="/img/nfl.png" alt="nfl" /> NFL <span className="arrow" /></a>
           </li>
         </ul>
         <ul className="sub-menu collapse" id="nfl">
@@ -37,7 +37,7 @@ export default class Sidebar extends Component {
 
         <ul>
           <li data-toggle="collapse" data-target="#mlb" className="collapsed">
-            <a href=""><img src="/img/baseball-icon.png" alt="mlb" /> MLB <span className="arrow" /></a>
+            <a href=""><img className="league-icon" src="/img/mlb.png" alt="mlb" /> MLB <span className="arrow" /></a>
           </li>
         </ul>
         <ul className="sub-menu collapse" id="mlb">
@@ -46,7 +46,7 @@ export default class Sidebar extends Component {
 
         <ul>
           <li data-toggle="collapse" data-target="#nba" className="collapsed">
-            <a href=""><img src="/img/Basketball-48.png" alt="nba" /> NBA <span className="arrow" /></a>
+            <a href=""><img className="league-icon" src="/img/nba.png" alt="nba" /> NBA <span className="arrow" /></a>
           </li>
         </ul>
         <ul className="sub-menu collapse" id="nba">

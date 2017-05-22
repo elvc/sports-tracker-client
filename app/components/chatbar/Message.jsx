@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Message = ({ message }) => (
-  <div className="message mb-3">
-    <span className="chat-user">{ message.user.name }</span> { message.content }
-  </div>
+  <table className="message-container table table-sm mb-3">
+    <tbody>
+      <tr>
+        <th scope="row" className="chat-user">{ message.user.name }</th>
+        <td className="message text-left">{ message.content }</td>
+      </tr>
+    </tbody>
+  </table>
 );
 
 Message.propTypes = {

@@ -1,8 +1,48 @@
+$active-color: #ff5722;
+
 .chat-container {
-  position: relative;
+  position: fixed;
   top: 50px;
+  right: 0;
+  height: 100vh;
   border-left: 1px solid grey;
+  width: 250px;
+
+  .input-group {
+    height: 30px;
+
+    .chat-input {
+      position: fixed;
+      bottom: 60px;
+    }
+    #chat-input {
+      font-size: 13px;
+    }
+    .btn {
+      line-height: 0.9;
+    }
+  }
+
+  .message-container {
+    .chat-user {}
+
+    .chat-user,
+    .message {
+      overflow-wrap: break-word;
+    }
+
+    .chat-user {
+      width: 20px;
+    }
+  }
+
+  .message-list {
+    height: calc(100% - 240px);
+    overflow: scroll;
+    font-size: 0.9em;
+  }
+
   .active {
-    color: black;
+    color: $active-color;
   }
 }
