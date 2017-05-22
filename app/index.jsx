@@ -12,60 +12,24 @@ const initialState = {
     active: 17, // room id unless you hate yourself
     rooms: [
       {
-        game: 'test', // unique id for room
-        name: 2,
+        name: 'one',
         id: 17,
-        messages: [
-          {
-            user: 'somebody',
-            content: 'steph is the best',
-            id: '99'
-          },
-          {
-            user: 'somebody else',
-            content: 'lebron though',
-            id: '109'
-          }
-        ],
-        onlineUsers: 12,
+        messages: [],
+        onlineUsers: 0,
         input: ''
       },
       {
-        game: 'tefdsfdsfst', // unique id for room
-        name: 1,
+        name: 'two',
         id: 172,
-        messages: [
-          {
-            user: 'somebody',
-            content: 'steph is the best',
-            id: '99'
-          },
-          {
-            user: 'somebody else',
-            content: 'lebron though',
-            id: '109'
-          }
-        ],
-        onlineUsers: 12,
+        messages: [],
+        onlineUsers: 0,
         input: ''
       },
       {
-        game: 'not test', // unique id for room
-        name: 3,
+        name: 'three',
         id: 27,
-        messages: [
-          {
-            user: 'person',
-            content: 'MJ!',
-            id: '99'
-          },
-          {
-            user: 'person2',
-            content: 'yup.',
-            id: '109'
-          }
-        ],
-        onlineUsers: 12,
+        messages: [],
+        onlineUsers: 0,
         input: ''
       }
     ]

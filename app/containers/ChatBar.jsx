@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
-import Chat from '../components/Chat';
+import Chat from '../components/chatbar/Chat';
 
 const socketHost = process.env.SOCKET_HOST || 'http://localhost:8080';
 
@@ -25,7 +25,8 @@ function mapStateToProps(state) {
   return {
     rooms: state.chat.rooms,
     active: state.chat.active,
-    input: activeRoom.input
+    input: activeRoom.input,
+    user: state.user
   };
 }
 

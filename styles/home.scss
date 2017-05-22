@@ -8,11 +8,6 @@ nav {
   }
 }
 
-.chat-container {
-  position: relative;
-  top: 50px;
-  border-left: 1px solid grey;
-}
 .card-container, .card{
   padding: 15px;
 }
@@ -45,7 +40,7 @@ nav {
   margin: 0px;
   line-height: 35px;
   cursor: pointer;
-  /*    
+  /*
     .collapsed{
        .arrow:before{
                  font-family: FontAwesome;

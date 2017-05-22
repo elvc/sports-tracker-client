@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Message from './Message';
 import MessageBox from './MessageBox';
 import Rooms from './Rooms';
-import * as actions from '../actions/chat';
+import * as actions from '../../actions/chat';
 
 class Chat extends Component {
   static propTypes = {
@@ -24,35 +24,38 @@ class Chat extends Component {
     const { socket, user, dispatch } = this.props;
     socket.on('news', msg => console.log(msg));
 
+    // test code to join manually created rooms
     socket.emit('join', {
       room: 172,
-      user: 'jeff'
+      user: user
     });
     socket.emit('join', {
       room: 27,
-      user: 'jeff'
+      user: user
     });
     socket.emit('join', {
       room: 17,
-      user: 'jeffrey'
+      user: user
     });
+
     socket.on('post', msg => {
       return dispatch(actions.receiveMessage(msg))
     });
-    socket.on('new user', msg => {
-      console.log('new user', msg);
+    socket.on('user count', msg => {
+      console.log('user count', msg);
+      dispatch(actions.updateUserCount(msg));
     })
   }
 
   handleSubmit(event, data) {
     const { socket, user, dispatch, input, active } = this.props;
     event.preventDefault();
-    if (input != '') {
+    if (input !== '') {
       dispatch(actions.sendMessage());
       const message = {
         room: active,
         message: {
-          user: 'Jeff',
+          user: user,
           content: input
         }
       }
@@ -68,6 +71,7 @@ class Chat extends Component {
   onTabClick(roomId) {
     const { dispatch } = this.props;
     dispatch(actions.changeRoom(roomId));
+    document.getElementById('chat-input').focus();
   }
 
   render() {
@@ -75,11 +79,17 @@ class Chat extends Component {
     const messages = activeRoom.messages;
     return (
       <div  className="chat-container hidden-md-down col-md-3">
+
         <Rooms
           rooms={ this.props.rooms }
           active={ this.props.active }
           onTabClick={ this.onTabClick }
         />
+
+        <div className="user-count">
+          { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } chatting
+        </div>
+
         <div className="message-list">
           <ul>
             { messages.map(message =>
@@ -90,11 +100,13 @@ class Chat extends Component {
             )}
           </ul>
         </div>
+
         <MessageBox
           input={ this.props.input }
           onChange={ this.onChange }
           handleSubmit={ this.handleSubmit }
         />
+
       </div>
     );
   }

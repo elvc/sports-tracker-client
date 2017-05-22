@@ -23,3 +23,9 @@ export const changeRoom = roomId => ({
   type: 'CHANGE_ROOM',
   roomId
 });
+
+export const updateUserCount = ({ room, userCount }) => ({
+  type: 'UPDATE_USER_COUNT',
+  room,
+  userCount
+});

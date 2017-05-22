@@ -28,7 +28,6 @@ function chat(state = defaultState, action) {
     }
     case 'SEND_MESSAGE': {
       const roomToUpdate = state.rooms.find(room => room.id === state.active);
-      // const roomToUpdate = state.rooms[state.active];
       const otherRooms = state.rooms.filter(room => room !== roomToUpdate);
       roomToUpdate.input = '';
       return {
@@ -41,8 +40,6 @@ function chat(state = defaultState, action) {
     }
     case 'INPUT_CHANGE': {
       const roomToUpdate = state.rooms.find(room => room.id === state.active);
-
-      // const roomToUpdate = state.rooms[state.active];
       const otherRooms = state.rooms.filter(room => room !== roomToUpdate);
       roomToUpdate.input = action.input;
       return {
@@ -57,6 +54,18 @@ function chat(state = defaultState, action) {
       return {
         ...state,
         active: action.roomId
+      };
+    }
+    case 'UPDATE_USER_COUNT': {
+      const roomToUpdate = state.rooms.find(room => room.id === action.room);
+      const otherRooms = state.rooms.filter(room => room !== roomToUpdate);
+      roomToUpdate.onlineUsers = action.userCount;
+      return {
+        ...state,
+        rooms: [
+          ...otherRooms,
+          roomToUpdate
+        ]
       };
     }
     default:

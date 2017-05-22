@@ -1,0 +1,8 @@
+.chat-container {
+  position: relative;
+  top: 50px;
+  border-left: 1px solid grey;
+  .active {
+    color: black;
+  }
+}
