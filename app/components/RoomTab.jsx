@@ -5,7 +5,7 @@ const RoomTab = props => (
   <div className="chat-tabs">
     <a
       className={ props.active ? 'active room-tab' : 'room-tab' }
-      onClick={ () => props.onTabClick(props.room.game) }
+      onClick={ () => props.onTabClick(props.room.id) }
       role="button"
       tabIndex={ 0 }
     >
@@ -15,11 +15,9 @@ const RoomTab = props => (
 );
 
 RoomTab.propTypes = {
-  room: PropTypes.arrayOf(PropTypes.shape({
-    game: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired
-  }).isRequired).isRequired,
-  onTabClick: PropTypes.func.isRequired
+  room: PropTypes.object.isRequired,
+  onTabClick: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired
 };
 
 export default RoomTab;

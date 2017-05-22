@@ -21,10 +21,11 @@ class ChatBar extends React.Component {
 }
 
 function mapStateToProps(state) {
+  const activeRoom = state.chat.rooms.find(room => room.id === state.chat.active);
   return {
     rooms: state.chat.rooms,
     active: state.chat.active,
-    input: state.chat.rooms[state.chat.active].input
+    input: activeRoom.input
   };
 }
 

@@ -7,7 +7,7 @@ import TopNav from '../components/navbar/TopNav';
 import Footer from '../components/navbar/Footer';
 import SideBar from '../components/sidebar/SideBar';
 import CardBox from '../components/cards/CardBox';
-import state from '../../state_structure.js';
+import state from '../../state_structure';
 
 const App = () => (
   <div>
@@ -17,13 +17,13 @@ const App = () => (
     <div className="container" id="main">
       <div className="row">
         <CardBox allCards={ state.cards } />
+        <ChatBar />
       </div>
     </div>
 
     {/* <Header />
     <GameSelector />
     <Dashboard />*/}
-    <ChatBar />
     <Footer />
   </div>
 );
