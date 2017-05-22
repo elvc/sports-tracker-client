@@ -29,6 +29,10 @@
     cursor: pointer;
   }
 
+  img.league-icon {
+    height: 30px;
+  }
+
   li:not(collapsed) .arrow:before,
   ul:not(collapsed) .arrow:before {
     font-family: FontAwesome;
