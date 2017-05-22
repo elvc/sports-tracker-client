@@ -8,19 +8,26 @@ $active-color: #ff5722;
   border-left: 1px solid grey;
   width: 300px;
 
-  .chat-input {
-    position: fixed;
-    bottom: 0;
-    bottom: 60px;
+  .input-group {
+    height: 30px;
+
+    .chat-input {
+      position: fixed;
+      bottom: 60px;
+    }
+    .btn {
+      line-height: 0.9;
+    }
   }
 
   .message-container {
-    .chat-user {
-    }
+    .chat-user {}
 
-    .message, .chat-user {
+    .chat-user,
+    .message {
       overflow-wrap: break-word;
     }
+
     .chat-user {
       width: 20px;
     }
