@@ -34,3 +34,8 @@ export const leaveRoom = roomId => ({
   type: 'LEAVE_ROOM',
   roomId
 });
+
+export const getSocket = socket => ({
+  type: 'GET_SOCKET',
+  socket
+});

@@ -88,6 +88,12 @@ function chat(state = defaultState, action) {
         active: activeRoom
       };
     }
+    case 'GET_SOCKET': {
+      return {
+        ...state,
+        socket: action.socket
+      };
+    }
     default:
       return state;
   }

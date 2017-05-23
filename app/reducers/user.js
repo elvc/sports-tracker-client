@@ -1,9 +1,8 @@
 const defaultState = {
-  active: -1,
-  rooms: []
+  name: 'anonymous'
 };
 
-function chat(state = defaultState, action) {
+function user(state = defaultState, action) {
   switch (action.type) {
 
     default:
@@ -11,4 +10,4 @@ function chat(state = defaultState, action) {
   }
 }
 
-export default chat;
+export default user;
