@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import sportsApp from './reducers/index';
 import App from './containers/App';
 
@@ -100,10 +101,21 @@ const initialState = {
   // },
   user: {
     name: 'George'
+  },
+  sidebar: {
+    gamesNHL: [],
+    gamesNFL: [],
+    gamesMLB: [],
+    gamesNBA: [],
+    receivedAt: Date.now()
   }
 };
 
-const store = createStore(sportsApp, initialState, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(
+  sportsApp,
+  initialState,
+  applyMiddleware(thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 render(
   <Provider store={ store }>

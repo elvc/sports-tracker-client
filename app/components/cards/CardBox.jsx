@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Card from './Card';
 
 export default class CardBox extends Component {
+
   render() {
     // cards container rendering all cards
     const { allCards, joinRoom, socket } = this.props;
