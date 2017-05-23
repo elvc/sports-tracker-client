@@ -6,13 +6,19 @@ const defaultState = {
 function chat(state = defaultState, action) {
   switch (action.type) {
     case 'JOIN_ROOM':
+      if (state.rooms.find(room => room.id === action.room.id)) {
+        return {
+          ...state,
+          active: action.room.id
+        };
+      }
       return {
         ...state,
         rooms: [
           ...state.rooms,
           action.room
         ],
-        active: action.roomId
+        active: action.room.id
       };
     case 'RECEIVE_MESSAGE': {
       const roomForPost = state.rooms.find(room => room.id === action.message.room);
@@ -86,6 +92,12 @@ function chat(state = defaultState, action) {
         ...state,
         rooms: otherRooms,
         active: activeRoom
+      };
+    }
+    case 'GET_SOCKET': {
+      return {
+        ...state,
+        socket: action.socket
       };
     }
     default:

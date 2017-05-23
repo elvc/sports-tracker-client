@@ -1,25 +1,47 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import io from 'socket.io-client';
 import Chat from '../components/chatbar/Chat';
+import * as actions from '../actions/chat';
 
-const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
-
-const socket = io.connect(SOCKET_HOST);
 
 const ChatBar = props => (
-  <Chat { ...props } socket={ socket } />
+  <Chat { ...props } />
 );
 
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
   const activeRoom = state.chat.rooms.find(room => room.id === state.chat.active);
   const input = activeRoom ? activeRoom.input : '';
   return {
     rooms: state.chat.rooms,
     active: state.chat.active,
     input,
-    user: state.user
+    user: state.user,
+    socket: state.chat.socket
   };
-}
+};
 
-export default connect(mapStateToProps)(ChatBar);
+const mapDispatchToProps = dispatch => ({
+  connectToSocket: (socket) => {
+    dispatch(actions.getSocket(socket));
+  },
+  receiveMessage: (msg) => {
+    dispatch(actions.receiveMessage(msg));
+  },
+  updateUserCount: (msg) => {
+    dispatch(actions.updateUserCount(msg));
+  },
+  sendMessage: () => {
+    dispatch(actions.sendMessage());
+  },
+  inputChange: (value, room) => {
+    dispatch(actions.inputChange(value, room));
+  },
+  changeRoom: (roomId) => {
+    dispatch(actions.changeRoom(roomId));
+  },
+  leaveRoom: (roomId) => {
+    dispatch(actions.leaveRoom(roomId));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatBar);
