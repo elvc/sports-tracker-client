@@ -10,33 +10,8 @@ require('../styles/application.scss');
 
 const initialState = {
   chat: {
-    active: 17,
-    rooms: [
-      {
-        name: 'one',
-        id: 17,
-        messages: [],
-        onlineUsers: 0,
-        input: '',
-        unread: false
-      },
-      {
-        name: 'two',
-        id: 172,
-        messages: [],
-        onlineUsers: 0,
-        input: '',
-        unread: false
-      },
-      {
-        name: 'three',
-        id: 27,
-        messages: [],
-        onlineUsers: 0,
-        input: '',
-        unread: false
-      }
-    ]
+    active: 0,
+    rooms: []
   },
   cards: [
     {

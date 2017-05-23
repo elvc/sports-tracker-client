@@ -23,7 +23,16 @@ const CardFooter = ({ ...props }) => {
       >Play-by-Play</button>
       <i className="p-2 fa fa-share-alt" aria-hidden="true" />
       <i className="p-2 fa fa-rss" aria-hidden="true" />
-      <a onClick={ () => joinChat(props.name, props.gameId) } role="button" tabIndex={ 0 }>
+      <a
+        onClick={ () => {
+          joinChat(props.name, props.gameId);
+          setTimeout(() => {
+            document.getElementById('chat-input').focus();
+          }, 0);
+        } }
+        role="button"
+        tabIndex={ 0 }
+      >
         <i className="p-2 fa fa-commenting" aria-hidden="true" />
       </a>
     </div>
