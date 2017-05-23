@@ -26,6 +26,21 @@ $border-style: 1px solid grey;
     padding: 0 10px;
   }
 
+  .exit-room {
+    color: #e2000f;
+  }
+  .user-count {
+    padding: 5px 0;
+  }
+  .room {
+    padding: 8px 5px 8px 10px;
+  }
+
+  .chat-input {
+    position: fixed;
+    bottom: 55px;
+  }
+
   .input-group {
     height: 30px;
 
@@ -44,7 +59,7 @@ $border-style: 1px solid grey;
     overflow-y: hidden;
 
     .unread {
-      background: gainsboro;
+      background: #bdbdbd;
     }
   }
 
