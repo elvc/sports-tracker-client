@@ -11,26 +11,26 @@ const RoomTab = (props) => {
     roomClass = 'nav-link chat-tabs';
   }
   return (
-    <li className='nav-item'>
+    <li className="nav-item">
       <div className={ roomClass }>
         <a
           className="room"
           onClick={ () => props.onTabClick(props.id) }
-          role='button'
+          role="button"
           tabIndex={ 0 }
         >
           { props.name }
         </a>
         <a
           onClick={ () => props.closeChat(props.id) }
-          role='button'
+          role="button"
           tabIndex={ 0 }
         >
-          <i className='fa fa-times exit-room' />
+          <i className="fa fa-times exit-room" />
         </a>
       </div>
     </li>
-);
+  );
 };
 
 RoomTab.propTypes = {

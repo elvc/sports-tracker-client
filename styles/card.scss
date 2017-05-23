@@ -2,8 +2,30 @@
   margin: 50px auto 50px 15px;
   padding-right: 250px;
 
+  .card-block {
+    padding: 1rem;
+  }
+
   .card-deck {
     margin: 15px;
     width: 300px;
+  }
+
+  .play-by-play {
+    border-top: $border-style;
+
+    h4 {
+      font-size: 1rem;
+      font-style: italic;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    ul {
+      font-size: 0.9em;
+      list-style: none;
+      line-height: 1.2;
+      padding: 0;
+    }
   }
 }

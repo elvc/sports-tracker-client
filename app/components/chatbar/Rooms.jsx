@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import RoomTab from './RoomTab';
-import * as validations from '../../prop_validations/chat';
+import roomsProps from '../../prop_validations/chat';
 
 class Rooms extends React.Component {
 
@@ -18,8 +17,8 @@ class Rooms extends React.Component {
 
     return (
       <section>
-        <ul className='nav nav-tabs'>
-        { sortedRooms.map(room =>
+        <ul className="nav nav-tabs">
+          { sortedRooms.map(room =>
           (
             <RoomTab
               key={ room.id }
@@ -32,12 +31,12 @@ class Rooms extends React.Component {
             />
           )
         )}
-      </ul>
+        </ul>
       </section>
     );
   }
 }
 
-Rooms.propTypes = validations.rooms;
+Rooms.propTypes = roomsProps;
 
 export default Rooms;

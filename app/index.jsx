@@ -48,7 +48,13 @@ const initialState = {
       homeScore: 150,
       awayScore: 85,
       quarter: 4,
-      timeRemaining: 70
+      timeRemaining: 70,
+      plays: [
+        { id: 1, content: 'Steph scores a 3' },
+        { id: 2, content: 'Steph scores a 3' },
+        { id: 3, content: 'Steph scores a FG' },
+        { id: 4, content: 'Someone else scores?' }
+      ]
     },
     {
       gameId: 2,
@@ -58,7 +64,8 @@ const initialState = {
       homeScore: 10,
       awayScore: 3,
       quarter: 4,
-      timeRemaining: 50
+      timeRemaining: 50,
+      plays: []
     },
     {
       gameId: 3,
@@ -68,7 +75,8 @@ const initialState = {
       homeScore: 9,
       awayScore: 5,
       quarter: 4,
-      timeRemaining: 30
+      timeRemaining: 30,
+      plays: []
     },
     {
       gameId: 4,
@@ -78,7 +86,8 @@ const initialState = {
       homeScore: 35,
       awayScore: 25,
       quarter: 2,
-      timeRemaining: 36
+      timeRemaining: 36,
+      plays: []
     },
     {
       gameId: 5,
@@ -88,7 +97,8 @@ const initialState = {
       homeScore: 3,
       awayScore: 4,
       quarter: 2,
-      timeRemaining: 100
+      timeRemaining: 100,
+      plays: []
     }
   ],
   // gameSelector: {
