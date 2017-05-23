@@ -11,10 +11,10 @@ const mapStateToProps = state =>
     // const something
   ({
     allCards: state.cards,
-    socket: state.socket
+    socket: state.chat.socket
   });
 const mapDispatchToProps = dispatch => ({
-  joinChat: (room) => {
+  joinRoom: (room) => {
     dispatch(joinRoom(room));
   }
 });
