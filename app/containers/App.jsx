@@ -16,14 +16,14 @@ const App = () => (
 
     <div className="container" id="main">
       <div className="row">
-        <CardBox allCards={ state.cards } />
+        {/* <CardBox allCards={ state.cards } />*/}
+        <Dashboard />
         <ChatBar />
       </div>
     </div>
 
     {/* <Header />
-    <GameSelector />
-    <Dashboard />*/}
+    <GameSelector />*/}
     <Footer />
   </div>
 );
