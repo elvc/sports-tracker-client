@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
+import io from 'socket.io-client';
 import PropTypes from 'prop-types';
 import Message from './Message';
 import MessageBox from './MessageBox';
 import Rooms from './Rooms';
 import * as actions from '../../actions/chat';
 
+const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
+const socket = io.connect(SOCKET_HOST);
+
 class Chat extends Component {
   static propTypes = {
     rooms: PropTypes.array.isRequired,
-    socket: PropTypes.object.isRequired
   };
 
   constructor(props) {
     super(props);
+
+    socket.on('post', msg => {
+      props.receiveMessage(msg);
+    });
+    socket.on('user count', msg => {
+      props.updateUserCount(msg);
+    })
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -20,32 +30,31 @@ class Chat extends Component {
     this.closeChat = this.closeChat.bind(this);
   }
 
-  componentDidMount() {
-    const { socket, user, dispatch } = this.props;
+  componentWillMount() {
 
-    // test code to join manually created rooms
+    this.props.connectToSocket(socket);
+  }
+
+  componentDidMount() {
+    console.log(socket);
     socket.emit('join', {
       room: 172,
-      user: user
     });
     socket.emit('join', {
       room: 27,
-      user: user
     });
     socket.emit('join', {
       room: 17,
-      user: user
     });
 
-    socket.on('post', msg => {
-      return dispatch(actions.receiveMessage(msg))
-    });
-    socket.on('user count', msg => {
-      dispatch(actions.updateUserCount(msg));
-    })
+
   }
 
   componentDidUpdate() {
+    const { socket, user, receiveMessage, updateUserCount } = this.props;
+
+    // test code to join manually created rooms
+
     // autoscroll to the latest message in message list
     const msgList = document.getElementById('messageList');
     if (msgList && msgList.scrollTop === msgList.scrollHeight - 30 - msgList.clientHeight) {
@@ -53,25 +62,11 @@ class Chat extends Component {
     }
   }
 
-  joinChat(id, name) {
-    const { socket, dispatch } = this.props;
-    const room = {
-      name,
-      id,
-      messages: [],
-      onlineUsers: 0,
-      input: '',
-      unread: false
-    };
-    socket.emit('join', { room: id });
-    dispatch(actions.joinRoom(room));
-  }
-
   handleSubmit(event, data) {
-    const { socket, user, dispatch, input, active } = this.props;
+    const { socket, user, input, active, sendMessage, imputChange, changeRoom } = this.props;
     event.preventDefault();
     if (input !== '') {
-      dispatch(actions.sendMessage());
+      sendMessage();
       const message = {
         room: active,
         message: {
@@ -84,19 +79,19 @@ class Chat extends Component {
   }
 
   onChange(event) {
-    const { dispatch, active } = this.props;
-    dispatch(actions.inputChange(event.target.value, active))
+    const { active, inputChange } = this.props;
+    inputChange(event.target.value, active);
   }
 
   onTabClick(roomId) {
-    const { dispatch } = this.props;
-    dispatch(actions.changeRoom(roomId));
+    const { changeRoom } = this.props;
+    changeRoom(roomId);
     document.getElementById('chat-input').focus();
   }
 
   closeChat(roomId) {
-    const { dispatch, socket } = this.props;
-    dispatch(actions.leaveRoom(roomId));
+    const { socket, leaveRoom } = this.props;
+    leaveRoom(roomId);
     socket.emit('leave', { room: roomId })
   }
 
@@ -105,7 +100,7 @@ class Chat extends Component {
     if (activeRoom) {
       const messages = activeRoom.messages;
       return (
-        <div  className="chat-container hidden-md-down col-md-3">
+        <div className="chat-container hidden-md-down col-md-3">
 
           <Rooms
             rooms={ this.props.rooms }
