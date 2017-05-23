@@ -17,7 +17,10 @@ const CardFooter = ({ ...props }) => {
 
   return (
     <div className="card-footer d-flex justify-content-end">
-      <button className="btn btn-info mr-auto p-2">Play-by-Play</button>
+      <button
+        className="btn btn-info mr-auto p-2"
+        onClick={ () => props.togglePlayByPlay(props.gameId) }
+      >Play-by-Play</button>
       <i className="p-2 fa fa-share-alt" aria-hidden="true" />
       <i className="p-2 fa fa-rss" aria-hidden="true" />
       <a onClick={ () => joinChat(props.name, props.gameId) } role="button" tabIndex={ 0 }>
@@ -30,6 +33,7 @@ const CardFooter = ({ ...props }) => {
 CardFooter.propTypes = {
   name: PropTypes.string.isRequired,
   gameId: PropTypes.number.isRequired,
+  togglePlayByPlay: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object.isRequired
 };

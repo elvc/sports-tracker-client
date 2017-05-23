@@ -5,7 +5,7 @@ import cardProps from '../../prop_validations/card';
 
 export default function CardBox(props) {
     // cards container rendering all cards
-  const { allCards, joinRoom, socket = {} } = props;
+  const { allCards, joinRoom, socket = {}, togglePlayByPlay } = props;
 
   return (
     <div className="card-container col-xs-12 col-s-9">
@@ -15,6 +15,7 @@ export default function CardBox(props) {
             key={ card.gameId }
             joinRoom={ joinRoom }
             socket={ socket }
+            togglePlayByPlay={ togglePlayByPlay }
             { ...card }
           />
         ))}
@@ -26,11 +27,13 @@ export default function CardBox(props) {
 CardBox.propTypes = {
   allCards: PropTypes.arrayOf(PropTypes.shape({
     ...cardProps,
+    displayPlayByPlay: PropTypes.bool.isRequired,
     plays: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       content: PropTypes.string.isRequired
     }).isRequired).isRequired
   }).isRequired).isRequired,
+  togglePlayByPlay: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object
 };

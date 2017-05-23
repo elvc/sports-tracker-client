@@ -49,6 +49,7 @@ const initialState = {
       awayScore: 85,
       quarter: 4,
       timeRemaining: 70,
+      displayPlayByPlay: true,
       plays: [
         { id: 1, content: 'Steph scores a 3' },
         { id: 2, content: 'Steph scores a 3' },
@@ -65,6 +66,7 @@ const initialState = {
       awayScore: 3,
       quarter: 4,
       timeRemaining: 50,
+      displayPlayByPlay: false,
       plays: []
     },
     {
@@ -76,6 +78,7 @@ const initialState = {
       awayScore: 5,
       quarter: 4,
       timeRemaining: 30,
+      displayPlayByPlay: false,
       plays: []
     },
     {
@@ -87,6 +90,7 @@ const initialState = {
       awayScore: 25,
       quarter: 2,
       timeRemaining: 36,
+      displayPlayByPlay: false,
       plays: []
     },
     {
@@ -98,6 +102,7 @@ const initialState = {
       awayScore: 4,
       quarter: 2,
       timeRemaining: 100,
+      displayPlayByPlay: false,
       plays: []
     }
   ],
