@@ -1,4 +1,4 @@
-import ordinalize from './ordinalize';
+import ordinalize from '../helpers/ordinalize';
 
 const getPlayInfo = plays => plays.reduce((acc, atBat, i) => {
   const item = [];

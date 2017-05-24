@@ -16,54 +16,58 @@ const CardFooter = ({ ...props }) => {
   };
 
   return (
-    <div className="card-footer d-flex justify-content-end">
-      <button
-        className="btn btn-info mr-auto p-2"
+    <div className="card-footer d-flex">
+      <a
+        className="card-pbp-btn"
         onClick={ () => props.togglePlayByPlay(props.gameId) }
-      >Play-by-Play</button>
-      <a
-        onClick={ () => {
-          joinChat(props.name, props.gameId);
-          setTimeout(() => {
-            document.getElementById('chat-input').focus();
-          }, 0);
-        } }
         role="button"
         tabIndex={ 0 }
-        className="card-tooltip"
-      >
-        <i className="p-2 fa fa-share-alt" aria-hidden="true" />
-        <span className="card-tooltip-text">Share</span>
-      </a>
-      { props.gameStarted || <a
-        onClick={ () => {
-          joinChat(props.name, props.gameId);
-          setTimeout(() => {
-            document.getElementById('chat-input').focus();
-          }, 0);
-        } }
-        role="button"
-        tabIndex={ 0 }
-        className="card-tooltip"
-      >
-        <i className="p-2 fa fa-rss" aria-hidden="true" />
-        <span className="card-tooltip-text">Notify me</span>
-      </a> }
-      <a
-        onClick={ () => {
-          joinChat(props.name, props.gameId);
-          setTimeout(() => {
-            document.getElementById('chat-input').focus();
-          }, 0);
-        } }
-        role="button"
-        tabIndex={ 0 }
-        className="card-tooltip"
-      >
-        <i className="p-2 fa fa-commenting" aria-hidden="true" />
-        <span className="card-tooltip-text">Join chat</span>
-      </a>
+      >Play-by-Play</a>
 
+      <div className="d-flex card-social">
+        <a
+          onClick={ () => {
+            joinChat(props.name, props.gameId);
+            setTimeout(() => {
+              document.getElementById('chat-input').focus();
+            }, 0);
+          } }
+          role="button"
+          tabIndex={ 0 }
+          className="card-tooltip"
+        >
+          <i className="p-2 fa fa-share-alt" aria-hidden="true" />
+          <span className="card-tooltip-text">Share</span>
+        </a>
+        { props.gameStarted || <a
+          onClick={ () => {
+            joinChat(props.name, props.gameId);
+            setTimeout(() => {
+              document.getElementById('chat-input').focus();
+            }, 0);
+          } }
+          role="button"
+          tabIndex={ 0 }
+          className="card-tooltip"
+        >
+          <i className="p-2 fa fa-rss" aria-hidden="true" />
+          <span className="card-tooltip-text">Notify me</span>
+        </a> }
+        <a
+          onClick={ () => {
+            joinChat(props.name, props.gameId);
+            setTimeout(() => {
+              document.getElementById('chat-input').focus();
+            }, 0);
+          } }
+          role="button"
+          tabIndex={ 0 }
+          className="card-tooltip"
+        >
+          <i className="p-2 fa fa-commenting" aria-hidden="true" />
+          <span className="card-tooltip-text">Join chat</span>
+        </a>
+      </div>
     </div>
   );
 };

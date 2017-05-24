@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardMain from './CardMain';
+import CardMainNBA from './CardMainNBA';
+import CardMainNHL from './CardMainNHL';
+import CardMainMLB from './CardMainMLB';
 import PlayByPlay from './PlayByPlay';
 import CardFooter from './CardFooter';
 import cardProps from '../../prop_validations/card';
@@ -10,7 +12,7 @@ export default function Card({ ...props }) {
 
   return (
     <div className="card mb-3 ml-3 mr-3">
-      <CardMain
+      { props.league === 'NBA' && <CardMainNBA
         gameId={ props.gameId }
         league={ props.league }
         homeTeam={ props.homeTeam }
@@ -21,6 +23,31 @@ export default function Card({ ...props }) {
         timeRemaining={ props.timeRemaining }
         closeCard={ props.closeCard }
       />
+    }
+      { props.league === 'MLB' && <CardMainMLB
+        gameId={ props.gameId }
+        league={ props.league }
+        homeTeam={ props.homeTeam }
+        awayTeam={ props.awayTeam }
+        homeScore={ props.homeScore }
+        awayScore={ props.awayScore }
+        quarter={ props.quarter }
+        timeRemaining={ props.timeRemaining }
+        closeCard={ props.closeCard }
+      />
+    }
+      { props.league === 'NHL' && <CardMainNHL
+        gameId={ props.gameId }
+        league={ props.league }
+        homeTeam={ props.homeTeam }
+        awayTeam={ props.awayTeam }
+        homeScore={ props.homeScore }
+        awayScore={ props.awayScore }
+        quarter={ props.quarter }
+        timeRemaining={ props.timeRemaining }
+        closeCard={ props.closeCard }
+      />
+    }
 
       <PlayByPlay plays={ props.plays } display={ props.displayPlayByPlay } />
 
