@@ -24,7 +24,7 @@ const initialState = {
       awayScore: 85,
       quarter: 4,
       timeRemaining: 70,
-      displayPlayByPlay: true,
+      displayPlayByPlay: false,
       plays: [
         { id: 1, content: 'Steph scores a 3' },
         { id: 2, content: 'Steph scores a 3' },
