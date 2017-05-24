@@ -8,9 +8,10 @@ export default function CardBox(props) {
   const { allCards, joinRoom, socket = {}, togglePlayByPlay } = props;
 
   return (
-    <div className="card-container col-xs-12 col-s-9">
-      <div className="row">
-        {allCards.map(card => (
+    <div className="col-xs-12 col-md-9">
+      <h1>Dashboard</h1>
+      <div className="card-deck">
+        { allCards.map(card => (
           <Card
             key={ card.gameId }
             joinRoom={ joinRoom }

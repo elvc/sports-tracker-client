@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Chat from '../components/chatbar/Chat';
 import * as actions from '../actions/chat';
 
-
 const ChatBar = props => (
   <Chat { ...props } />
 );

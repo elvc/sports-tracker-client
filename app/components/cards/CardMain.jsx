@@ -27,11 +27,9 @@ const CardMain = ({ ...props }) => (
       <div className="card-title">Quarter: { props.quarter } </div>
       <div className="card-title">Time Remaining: { props.timeRemaining } </div>
     </div>
-
   </div>
-    );
+);
 
 CardMain.propTypes = cardProps;
 
 export default CardMain;
-

@@ -3,9 +3,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 $border-style: 1px solid grey;
-$active-color: #2196f3;
+$active-color: #ffeb3b;
 
-@import 'home';
+@import 'main';
+@import 'dashboard';
 @import 'chatbar';
 @import 'sidebar';
-@import 'card';

@@ -89,7 +89,6 @@ class Chat extends Component {
       const messages = activeRoom.messages;
       return (
         <div className="chat-container hidden-md-down col-md-3">
-
           <Rooms
             rooms={ this.props.rooms }
             active={ this.props.active }

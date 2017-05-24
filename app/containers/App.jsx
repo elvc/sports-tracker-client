@@ -12,19 +12,12 @@ import state from '../../state_structure';
 const App = () => (
   <div>
     <TopNav />
-    <SideBar />
-
-    <div className="container" id="main">
+    <div className="container-fluid">
       <div className="row">
-        {/* <CardBox allCards={ state.cards } />*/}
+        <SideBar />
         <Dashboard />
-        <ChatBar />
       </div>
     </div>
-
-    {/* <Header />
-    <GameSelector />*/}
-    <Footer />
   </div>
 );
 

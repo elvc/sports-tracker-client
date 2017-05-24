@@ -31,59 +31,47 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div className="nav-side-menu bg-inverse">
-        <div className="brand">Sports</div>
-        <i className="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content" />
-        <div className="menu-list">
-          <ul id="menu-content" className="menu-content collapse out">
-            <li><a href="#"><i className="fa fa-user fa-lg" /> Login</a></li>
-            <li><a href="#"><i className="fa fa-users fa-lg" /> Register</a></li>
+      <nav className="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
+        <ul className="nav nav-pills flex-column">
+          <li className="nav-item" data-toggle="collapse" data-target="#nhl">
+            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/nhl.png" alt="nhl" /> NHL <span className="arrow" /></a>
+          </li>
+          <ul className="sub-menu collapse" id="nhl">
+            { this.props.gamesNHL.map(game => <Game key={ game.id } {...game}/> ) }
+            { this.props.gamesNHL.length == 0 && <li>Sorry, no games today</li> }
           </ul>
-        </div>
-
-        <ul>
-          <li data-toggle="collapse" data-target="#nhl" className="collapsed">
-            <a href=""><img className="league-icon" src="/img/nhl.png" alt="nhl" /> NHL <span className="arrow" /></a>
+        </ul>
+        <ul className="nav nav-pills flex-column">
+          <li className="nav-item" data-toggle="collapse" data-target="#nfl">
+            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/nfl.png" alt="nfl" /> NFL <span className="arrow" /></a>
           </li>
+          <ul className="sub-menu collapse" id="nfl">
+            { this.props.gamesNFL.map(game => <Game key={ game.id } {...game}/> ) }
+            { this.props.gamesNFL.length == 0 && <li>Sorry, no games today</li> }
+          </ul>
         </ul>
-        <ul className="sub-menu collapse" id="nhl">
-          { this.props.gamesNHL.map(game => <Game key={ game.id } {...game}/> ) }
-          { this.props.gamesNHL.length == 0 && <li>Sorry, no games today</li> }
-        </ul>
-        <ul>
-          <li data-toggle="collapse" data-target="#nfl" className="collapsed">
-            <a href=""><img className="league-icon" src="/img/nfl.png" alt="nfl" /> NFL <span className="arrow" /></a>
+        <ul className="nav nav-pills flex-column">
+          <li className="nav-item" data-toggle="collapse" data-target="#nba">
+            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/nba.png" alt="nba" /> NBA <span className="arrow" /></a>
           </li>
+          <ul className="sub-menu collapse" id="nba">
+            { this.props.gamesNBA.map(game => <Game key={ game.id } {...game}/> ) }
+            { this.props.gamesNBA.length == 0 && <li>Sorry, no games today</li> }
+          </ul>
         </ul>
-        <ul className="sub-menu collapse" id="nfl">
-          { this.props.gamesNFL.map(game => <Game key={ game.id } {...game}/> ) }
-          { this.props.gamesNFL.length == 0 && <li>Sorry, no games today</li> }
-        </ul>
-
-        <ul>
-          <li data-toggle="collapse" data-target="#mlb" className="collapsed">
-            <a href=""><img className="league-icon" src="/img/mlb.png" alt="mlb" /> MLB <span className="arrow" /></a>
+        <ul className="nav nav-pills flex-column">
+          <li className="nav-item" data-toggle="collapse" data-target="#mlb">
+            <a className="nav-link" href=""><img className="league-icon mr-3" src="/img/mlb.png" alt="mlb" /> MLB <span className="arrow" /></a>
           </li>
+          <ul className="sub-menu collapse" id="mlb">
+            { this.props.gamesMLB.map(game => <Game key={ game.id } {...game}/> ) }
+            { this.props.gamesMLB.length == 0 && <li>Sorry, no games today</li> }
+          </ul>
         </ul>
-        <ul className="sub-menu collapse" id="mlb">
-          { this.props.gamesMLB.map(game => <Game key={ game.id } {...game}/> ) }
-          { this.props.gamesMLB.length == 0 && <li>Sorry, no games today</li> }
-        </ul>
-
-        <ul>
-          <li data-toggle="collapse" data-target="#nba" className="collapsed">
-            <a href=""><img className="league-icon" src="/img/nba.png" alt="nba" /> NBA <span className="arrow" /></a>
-          </li>
-        </ul>
-        <ul className="sub-menu collapse" id="nba">
-          { this.props.gamesNBA.map(game => <Game key={ game.id } {...game}/> ) }
-          { this.props.gamesNBA.length == 0 && <li>Sorry, no games today</li> }
-        </ul>
-      </div>
+      </nav>
     );
   }
 }
-
 
 const mapStateToProps = state => {
   return {

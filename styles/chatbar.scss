@@ -1,91 +1,71 @@
-
 .chat-container {
   position: fixed;
-  top: 50px;
   right: 0;
+  top: 50px;
   height: 100vh;
   border-left: $border-style;
   width: 250px;
   padding: 0;
-  transition: 1ms;
-
-  .exit-room {
-    color: #e2000f;
-  }
   .user-count {
     padding: 5px;
   }
+  .exit-room {
+    color: #e2000f;
+  }
   .room {
-    padding: 8px 5px 8px 10px;
+    padding: 0 5px 0 10px;
+    line-height: 1.3;
   }
-
-  .chat-input {
-    position: fixed;
-    bottom: 55px;
-    padding: 0 10px;
-  }
-
-  .input-group {
-    height: 30px;
-
-    #chat-input {
-      font-size: 13px;
-    }
-
-    .btn {
-      line-height: 0.9;
-    }
-  }
-
   .nav.nav-tabs {
     line-height: 0.5;
     overflow-x: auto;
     overflow-y: hidden;
-
+    .nav-link{
+      padding: 5px;
+      font-size: 0.9em;
+    }
     .unread {
-      background: gainsboro;
-    }
-  }
-
-  .nav-link {
-    padding-left: 0;
-  }
-  .nav-link.active {
-    background: #5bc0de;
-
-    a {
-      color: #fff;
-    }
-  }
-
-  .message-container {
-    margin-bottom: 0;
-
-    .message {
-      max-width: 25px;
-    }
-
-    .chat-user,
-    .message {
-      overflow-wrap: break-word;
-    }
-
-    .chat-user {
-      width: 20px;
+      background: #bdbdbd;
     }
   }
 
   .message-list {
-    height: calc(100% - 210px);
-    overflow-y: auto;
+    height: calc(100vh - 240px);
+    overflow-y: scroll;
     font-size: 0.9em;
     border-top: $border-style;
+    .nav-link{
+      padding: 0;
+    }
+    .room{
+      padding: 0 5px 0 15px;
+    }
+    .message-container{
+      margin-bottom: 0;
+      .chat-user,
+      .message {
+        overflow-wrap: break-word;
+      }
+      .chat-user{
+        width: 40px;
+      }
+    }
+  }
+  .chat-input-form{
+    position: fixed;
+    bottom: 50px;
+    padding: 0 15px 0 15px;
+    height: 25px;
+    #chat-input{
+      font-size: 0.8em;
+    }
+    .btn {
+      line-height: 0.8;
+      font-size: 0.8rem;
+    }
   }
 
-  .active {
-    color: $active-color;
-  }
-  ::-webkit-scrollbar {
-    display: none;
+  .nav-link.active {
+    background-color: $active-color;
   }
 }
