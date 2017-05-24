@@ -30,7 +30,8 @@ const initialState = {
         { id: 2, content: 'Steph scores a 3' },
         { id: 3, content: 'Steph scores a FG' },
         { id: 4, content: 'Someone else scores?' }
-      ]
+      ],
+      gameStarted: true
     },
     {
       gameId: 2,
@@ -42,7 +43,8 @@ const initialState = {
       quarter: 4,
       timeRemaining: 50,
       displayPlayByPlay: false,
-      plays: []
+      plays: [],
+      gameStarted: false
     },
     {
       gameId: 3,
@@ -66,7 +68,8 @@ const initialState = {
       quarter: 2,
       timeRemaining: 36,
       displayPlayByPlay: false,
-      plays: []
+      plays: [],
+      gameStarted: true
     },
     {
       gameId: 5,
@@ -78,7 +81,8 @@ const initialState = {
       quarter: 2,
       timeRemaining: 100,
       displayPlayByPlay: false,
-      plays: []
+      plays: [],
+      gameStarted: true
     }
   ],
   user: {

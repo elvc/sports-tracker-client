@@ -30,6 +30,7 @@ export default function Card({ ...props }) {
         joinRoom={ props.joinRoom }
         gameId={ props.gameId }
         togglePlayByPlay={ props.togglePlayByPlay }
+        gameStarted={ props.gameStarted }
       />
     </div>
   );
@@ -43,6 +44,7 @@ Card.propTypes = {
     content: PropTypes.string.isRequired
   }).isRequired).isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
+  gameStarted: PropTypes.bool.isRequired,
   joinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object,
   closeCard: PropTypes.func.isRequired
