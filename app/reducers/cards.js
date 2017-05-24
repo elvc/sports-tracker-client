@@ -13,6 +13,9 @@ function cards(state = defaultState, action) {
         return card;
       });
     }
+    case 'REMOVE_CARD': {
+      return state.filter(card => card.gameId !== action.gameId);
+    }
     default:
       return state;
   }

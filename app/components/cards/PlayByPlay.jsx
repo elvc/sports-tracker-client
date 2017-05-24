@@ -7,9 +7,23 @@ const PlayByPlay = ({ ...props }) => {
       <div className="play-by-play d-flex">
         <h4>Play-by-play</h4>
         <ul>
-          { props.plays.map(play => (
-            <li key={ play.id }>{ play.content }</li>
-            ))}
+          { props.plays.map((play) => {
+            switch (play.sport) {
+              case 'nhl':
+                return (
+                  <li key={ play.id } className={ play.style }>
+                    <span className="time-play-nhl">{ play.time } </span>
+                    { play.content }
+                  </li>
+                );
+              case 'mlb':
+                return <li key={ play.id } className={ play.style }>{ play.content }</li>;
+              case 'nba':
+                return <li key={ play.id }>{ play.content }</li>;
+              default:
+                return null;
+            }
+          })}
         </ul>
       </div>
     );

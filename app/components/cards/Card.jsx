@@ -11,6 +11,7 @@ export default function Card({ ...props }) {
   return (
     <div className="card mb-3 ml-3 mr-3">
       <CardMain
+        gameId={ props.gameId }
         league={ props.league }
         homeTeam={ props.homeTeam }
         awayTeam={ props.awayTeam }
@@ -18,6 +19,7 @@ export default function Card({ ...props }) {
         awayScore={ props.awayScore }
         quarter={ props.quarter }
         timeRemaining={ props.timeRemaining }
+        closeCard={ props.closeCard }
       />
 
       <PlayByPlay plays={ props.plays } display={ props.displayPlayByPlay } />
@@ -42,5 +44,6 @@ Card.propTypes = {
   }).isRequired).isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
-  socket: PropTypes.object
+  socket: PropTypes.object,
+  closeCard: PropTypes.func.isRequired
 };

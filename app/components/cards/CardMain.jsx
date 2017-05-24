@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cardProps from '../../prop_validations/card';
 
 const CardMain = ({ ...props }) => (
@@ -27,9 +28,20 @@ const CardMain = ({ ...props }) => (
       <div className="card-title">Quarter: { props.quarter } </div>
       <div className="card-title">Time Remaining: { props.timeRemaining } </div>
     </div>
+    <aside
+      className="close-card"
+      onClick={ () => props.closeCard(props.gameId) }
+      role="button"
+      tabIndex={ 0 }
+    >
+      <i className="fa fa-times exit-room" />
+    </aside>
   </div>
 );
 
-CardMain.propTypes = cardProps;
+CardMain.propTypes = {
+  ...cardProps,
+  closeCard: PropTypes.func.isRequired
+};
 
 export default CardMain;

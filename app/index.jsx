@@ -81,14 +81,6 @@ const initialState = {
       plays: []
     }
   ],
-  // gameSelector: {
-  //   visible: [
-  //     'NBA', 'MLB', 'MLB_TODAY'
-  //   ],
-  //   games: [
-  //     // all game data here
-  //   ]
-  // },
   user: {
     name: 'George'
   },

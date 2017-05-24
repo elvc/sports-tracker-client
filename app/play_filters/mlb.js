@@ -37,12 +37,12 @@ const createPlayString = data => getPlayInfo(data).map((play, id) => {
   const output = {
     id,
     content: '',
-    style: 'none'
+    sport: 'mlb'
   };
   switch (play.result) {
     case 'NEWINNINGS': {
       output.content = `${play.team} - ${play.inningHalf} of the ${ordinalize(play.inning)}`;
-      output.style = 'innings';
+      output.style = 'innings-play-mlb';
       return output;
     }
     case 'SINGLE': {
@@ -151,7 +151,7 @@ const createPlayString = data => getPlayInfo(data).map((play, id) => {
       switch (true) {
         case (run.base === '4' && run.safe === 'true'):
           output.content += ` ${run.runner} scored.`;
-          output.style = 'scored';
+          output.style = 'scored-play-mlb';
           break;
         case (run.safe === 'true'):
           output.content += ` ${run.runner} to ${ordinalize(run.base)}.`;
