@@ -9,37 +9,37 @@ const defaultState = {
 function sidebar(state = defaultState, action) {
   switch (action.type) {
     case 'RECEIVE_NHL': {
-      return{
+      return {
         ...state,
         gamesNHL: [...action.gamesNHL],
         receivedAt: action.receivedAt
-      }
+      };
     }
     case 'RECEIVE_NBA': {
-      return{
+      return {
         ...state,
         gamesNBA: [...action.gamesNBA],
         receivedAt: action.receivedAt
-      }
+      };
     }
     case 'RECEIVE_MLB': {
-      return{
+      return {
         ...state,
         gamesMLB: [...action.gamesMLB],
         receivedAt: action.receivedAt
-      }
+      };
     }
     case 'RECEIVE_NFL': {
-      return{
+      return {
         ...state,
         gamesNFL: [...action.gamesNFL],
         receivedAt: action.receivedAt
-      }
+      };
     }
     case 'REQUEST_FEEDS': {
       return {
         ...state
-      }
+      };
     }
     default:
       return state;

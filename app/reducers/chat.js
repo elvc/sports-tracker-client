@@ -5,7 +5,7 @@ const defaultState = {
 
 function chat(state = defaultState, action) {
   switch (action.type) {
-    case 'JOIN_ROOM':
+    case 'JOIN_ROOM': {
       if (state.rooms.find(room => room.id === action.room.id)) {
         return {
           ...state,
@@ -20,6 +20,7 @@ function chat(state = defaultState, action) {
         ],
         active: action.room.id
       };
+    }
     case 'RECEIVE_MESSAGE': {
       const roomForPost = state.rooms.find(room => room.id === action.message.room);
       const otherRooms = state.rooms.filter(room => room !== roomForPost);
