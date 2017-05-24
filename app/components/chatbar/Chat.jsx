@@ -36,17 +36,6 @@ class Chat extends Component {
   }
 
   componentDidMount() {
-    console.log(socket);
-    socket.emit('join', {
-      room: 172,
-    });
-    socket.emit('join', {
-      room: 27,
-    });
-    socket.emit('join', {
-      room: 17,
-    });
-
 
   }
 
@@ -84,8 +73,7 @@ class Chat extends Component {
   }
 
   onTabClick(roomId) {
-    const { changeRoom } = this.props;
-    changeRoom(roomId);
+    this.props.changeRoom(roomId);
     document.getElementById('chat-input').focus();
   }
 
@@ -101,7 +89,6 @@ class Chat extends Component {
       const messages = activeRoom.messages;
       return (
         <div className="chat-container hidden-md-down col-md-3">
-
           <Rooms
             rooms={ this.props.rooms }
             active={ this.props.active }

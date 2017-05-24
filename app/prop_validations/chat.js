@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const rooms = {
+export default {
   rooms: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,

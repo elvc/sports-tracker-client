@@ -6,7 +6,7 @@ export default class Register extends Component {
     return (
       <div>
         <h3>Registration Form:</h3>
-        <form action="http://localhost:8080/register" method="post">
+        <form action="/register" method="post">
           <div className="form-group row">
             <label htmlFor="username" className="col-2 col-form-label">Username</label>
             <div className="col-10">
