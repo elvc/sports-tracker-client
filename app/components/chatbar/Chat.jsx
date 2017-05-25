@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
 import PropTypes from 'prop-types';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Message from './Message';
 import MessageBox from './MessageBox';
 import Rooms from './Rooms';
@@ -31,22 +32,15 @@ class Chat extends Component {
   }
 
   componentWillMount() {
-
     this.props.connectToSocket(socket);
-  }
-
-  componentDidMount() {
-
   }
 
   componentDidUpdate() {
     const { socket, user, receiveMessage, updateUserCount } = this.props;
 
-    // test code to join manually created rooms
-
     // autoscroll to the latest message in message list
     const msgList = document.getElementById('messageList');
-    if (msgList && msgList.scrollTop === msgList.scrollHeight - 30 - msgList.clientHeight) {
+    if (msgList && msgList.scrollTop >= msgList.scrollHeight - 40 - msgList.clientHeight) {
       msgList.scrollTop = msgList.scrollHeight;
     }
   }
@@ -88,36 +82,46 @@ class Chat extends Component {
     if (activeRoom) {
       const messages = activeRoom.messages;
       return (
-        <div className="chat-container hidden-md-down col-md-3">
-          <Rooms
-            rooms={ this.props.rooms }
-            active={ this.props.active }
-            onTabClick={ this.onTabClick }
-            closeChat={ this.closeChat }
-          />
+        <CSSTransitionGroup
+          transitionName="chatbar"
+          transitionAppear={true}
+          transitionAppearTimeout={ 500 }
+          transitionEnter={ false }
+          transitionLeave={ true }
+          transitionLeaveTimeout={ 300 }
+        >
+          <div className="chat-container hidden-sm-down col-sm-3">
+            <Rooms
+              rooms={ this.props.rooms }
+              active={ this.props.active }
+              onTabClick={ this.onTabClick }
+              closeChat={ this.closeChat }
+            />
 
-          <div className="user-count">
-            { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } chatting
-          </div>
-
-          <div className="message-list" id='messageList'>
-            <div>
-              { messages.map(message =>
-                <Message
-                  key={ message.id }
-                  message={ message }
-                />
-              )}
+            <div className="user-count">
+              { activeRoom.onlineUsers } { activeRoom.onlineUsers > 1 ? 'people' : 'person' } chatting
             </div>
+
+            <div className="message-list" id='messageList'>
+              <div>
+                { messages.map(message =>
+                  <Message
+                    key={ message.id }
+                    message={ message }
+                  />
+                )}
+              </div>
+            </div>
+
+            <MessageBox
+              input={ this.props.input }
+              onChange={ this.onChange }
+              handleSubmit={ this.handleSubmit }
+            />
+
           </div>
+        </CSSTransitionGroup>
 
-          <MessageBox
-            input={ this.props.input }
-            onChange={ this.onChange }
-            handleSubmit={ this.handleSubmit }
-          />
-
-        </div>
       );
     } else {
       return null;

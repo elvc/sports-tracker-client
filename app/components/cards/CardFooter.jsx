@@ -16,15 +16,15 @@ const CardFooter = ({ ...props }) => {
   };
 
   return (
-    <div className="card-footer d-flex">
+    <div className="game-card-footer">
       <a
-        className="card-pbp-btn"
+        className="game-card-pbp-btn"
         onClick={ () => props.togglePlayByPlay(props.gameId) }
         role="button"
         tabIndex={ 0 }
       >Play-by-Play</a>
 
-      <div className="d-flex card-social">
+      <div className="game-card-social">
         <a
           onClick={ () => {
             joinChat(props.name, props.gameId);
@@ -34,10 +34,10 @@ const CardFooter = ({ ...props }) => {
           } }
           role="button"
           tabIndex={ 0 }
-          className="card-tooltip"
+          className="game-card-tooltip"
         >
           <i className="p-2 fa fa-share-alt" aria-hidden="true" />
-          <span className="card-tooltip-text">Share</span>
+          <span className="game-card-tooltip-text">Share</span>
         </a>
         { props.gameStarted || <a
           onClick={ () => {
@@ -48,10 +48,10 @@ const CardFooter = ({ ...props }) => {
           } }
           role="button"
           tabIndex={ 0 }
-          className="card-tooltip"
+          className="game-card-tooltip"
         >
           <i className="p-2 fa fa-rss" aria-hidden="true" />
-          <span className="card-tooltip-text">Notify me</span>
+          <span className="game-card-tooltip-text">Notify me</span>
         </a> }
         <a
           onClick={ () => {
@@ -62,10 +62,11 @@ const CardFooter = ({ ...props }) => {
           } }
           role="button"
           tabIndex={ 0 }
-          className="card-tooltip"
+          className="game-card-tooltip"
+          id="chat-btn"
         >
           <i className="p-2 fa fa-commenting" aria-hidden="true" />
-          <span className="card-tooltip-text">Join chat</span>
+          <span className="game-card-tooltip-text">Join chat</span>
         </a>
       </div>
     </div>

@@ -1,12 +1,23 @@
-$inactive-btn-color: grey;
-$hover-btn-color: black;
-
-.card {
+.game-card-box {
+  margin: 0 auto;
+}
+.game-card {
   width: 350px;
+  margin: 10px;
+  box-shadow: 0px 0px 5px 2px $card-shadow-color;
+  flex: 0 0 auto;
+  position: relative;
+  @media (max-width: 767px) {
+    width: calc(100vw - 20px);
+  }
 }
 
-.card-block {
+.game-card-main {
   padding: 20px 10px 10px 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   .nba-team-logo {
     width: 75px;
     padding: 10px;
@@ -33,7 +44,7 @@ $hover-btn-color: black;
   }
 }
 
-.card-pbp {
+.game-card-pbp {
   font-size: 0.8rem;
   padding: 0px 10px 0 10px;
   border-top: $border-style;
@@ -52,16 +63,17 @@ $hover-btn-color: black;
   }
 }
 
-.card-footer {
+.game-card-footer {
   padding: 0;
   height: 32px;
+  background-color: $bg-color;
 
-  .card-social {
+  .game-card-social {
     position: absolute;
     bottom: 0px;
     right: 5px;
   }
-  .card-pbp-btn {
+  .game-card-pbp-btn {
     font-size: 0.8rem;
     padding: 6px 15px;
   }
@@ -76,12 +88,18 @@ $hover-btn-color: black;
   }
 }
 
-.close-card {
+.close-game-card {
   position: absolute;
   top: 1px;
   right: 5px;
   color: $inactive-btn-color;
   &:hover {
     color: $hover-btn-color;
+  }
+}
+
+@media (max-width: 767px) {
+  #chat-btn {
+    display: none;
   }
 }

@@ -1,0 +1,67 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 56px;
+}
+
+/*
+ * Typography
+ */
+
+h1 {
+  margin: 10px 10px 20px 10px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Sidebar
+ */
+
+.dashboard {
+  &.chat-active {
+    margin-right: 25vw;
+  }
+}
+
+/*
+ * Dashboard
+ */
+
+ /* Placeholders */
+.placeholders {
+  padding-bottom: 3rem;
+}
+
+.placeholder img {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .dashboard {
+    margin-left: 25%;
+    width: 75vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .dashboard {
+    width: calc(100vw - 250px);
+    margin-left: 250px;
+    &.chat-active {
+      width: calc(100vw - 550px);
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard {
+    &.chat-active {
+      margin-right: 300px;
+    }
+  }
+}

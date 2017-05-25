@@ -1,22 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CardBox from '../components/cards/CardBox';
-import ChatBar from './ChatBar';
 import { joinRoom, leaveRoom } from '../actions/chat';
 import { togglePlayByPlay, removeCard } from '../actions/cards';
 
 const Dashboard = props => (
-  <main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-    <section className="row">
-      <CardBox { ...props } />
-      <ChatBar />
-    </section>
-  </main>
+  <CardBox { ...props } />
 );
 
 const mapStateToProps = state => ({
   allCards: state.cards,
-  socket: state.chat.socket
+  socket: state.chat.socket,
+  chatActive: state.chat.active !== 0
 });
 const mapDispatchToProps = dispatch => ({
   joinRoom: (room) => {
