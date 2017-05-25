@@ -12,7 +12,6 @@ const Dashboard = props => (
       <CardBox { ...props } />
       <ChatBar />
     </section>
-    <RegForm />
   </main>
 );
 

@@ -56,36 +56,28 @@ export default class RegForm extends Component {
   };
 
   render() {
-
     return (
-
       <form onSubmit={this.handleSubmit}>
-        <div className="form-group row">
-          <label className="col-2 col-form-label-sm">
+        <div className="form-group row pr-3 pl-3">
+          <label className="col-form-label-sm">
             User Name:
           </label>
-          <input id="formUser" className="form-control col-sm-6" name='username' type="text"
+          <input id="formUser" className="form-control" name='username' type="text"
             onChange={this.handleKeyChange('username')} />
         </div>
-        <div className="form-group row">
-          <label className="col-2 col-form-label-sm">
+        <div className="form-group row pl-3 pr-3">
+          <label className="col-form-label-sm">
             Email:
           </label>
-          <input id="formEmail" className="form-control col-sm-6" name='email' type="email" id="email"
+          <input id="formEmail" className="form-control" name='email' type="email" id="email"
             onChange={this.handleKeyChange('email')} />
         </div>
-        <div className="form-group row">
-          <label className="col-2 col-form-label-sm">
+        <div className="form-group row pl-3 pr-3">
+          <label className="col-form-label-sm">
             Password:
           </label>
-          <input id="formPassword" className="form-control col-sm-6" name='password' type="password" id="password"
+          <input id="formPassword" className="form-control" name='password' type="password" id="password"
             onChange={this.handleKeyChange('password')} />
-        </div>
-        <div className="form-group row">
-          <label className="col-2 col-form-label-sm">
-            Password Confirmation:
-          </label>
-          <input className="form-control col-sm-6" type="password" name='password' id="password-digest" />
         </div>
         <button className="btn btn-primary" type="submit">Sign up</button>
       </form>
