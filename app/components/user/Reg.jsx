@@ -8,6 +8,8 @@ export default class RegForm extends Component {
       email: '',
       password: ''
     }
+    this.handleKeyChange = this.handleKeyChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleKeyChange = (key) => {
@@ -20,28 +22,26 @@ export default class RegForm extends Component {
     e.preventDefault();
 
     let formData = {
-    formUser: this.state.username,
-    formEmail: this.state.email,
-    formPassword: this.state.password,
+    username: this.state.username,
+    email: this.state.email,
+    password: this.state.password,
     }
 
     console.log('formData', formData);
     // error checking
-    if (formData.formUser.length < 1 || formData.formEmail.length < 1 || formData.formPassword.length < 1) {
+    if (formData.username.length < 1 || formData.email.length < 1 || formData.password.length < 1) {
       return false;
     }
 
     $.ajax({
-      url: '/register',
+      url: 'http://localhost:8080/register',
       dataType: 'json',
       type: 'POST',
       data: formData,
-      success: function(data) {
-       console.log('data submitted', formData);
+      success: (data) => {
        alert('Thank you for signing up');
       },
-      error: function(xhr, status, err) {
-       console.log('data submitted err', formData);
+      error: (xhr, status, err) => {
        console.error(status, err.toString());
        alert('There was some problem with the form. Please resubmit');
       }
@@ -56,7 +56,9 @@ export default class RegForm extends Component {
   };
 
   render() {
+
     return (
+
       <form onSubmit={this.handleSubmit}>
         <div className="form-group row">
           <label className="col-2 col-form-label-sm">
