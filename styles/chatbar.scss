@@ -68,4 +68,7 @@
   .nav-link.active {
     background-color: $active-color;
   }
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }

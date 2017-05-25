@@ -7,6 +7,11 @@ export default function CardBox(props) {
     // cards container rendering all cards
   const { allCards, joinRoom, socket = {}, togglePlayByPlay } = props;
 
+  const closeCard = (gameId) => {
+    props.leaveRoom(gameId);
+    props.removeCard(gameId);
+  };
+
   return (
     <div className="col-xs-12 col-md-9">
       <h1>Dashboard</h1>
@@ -17,6 +22,7 @@ export default function CardBox(props) {
             joinRoom={ joinRoom }
             socket={ socket }
             togglePlayByPlay={ togglePlayByPlay }
+            closeCard={ closeCard }
             { ...card }
           />
         ))}

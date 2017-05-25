@@ -1,0 +1,87 @@
+$inactive-btn-color: grey;
+$hover-btn-color: black;
+
+.card {
+  width: 350px;
+}
+
+.card-block {
+  padding: 20px 10px 10px 10px;
+  .nba-team-logo {
+    width: 75px;
+    padding: 10px;
+  }
+
+  .nba-team-name {
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+
+  .nba-score {
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  .nba-score-home, .nba-score-away {
+    padding: 50px;
+  }
+
+  .nba-time {
+    margin-top: 5px;
+    font-size: 0.8em;
+    text-align: center;
+  }
+}
+
+.card-pbp {
+  font-size: 0.8rem;
+  padding: 0px 10px 0 10px;
+  border-top: $border-style;
+  max-height: 100px;
+  min-height: 60px;
+  overflow: auto;
+
+  span {
+    font-size: 0.75rem;
+    font-style: italic;
+  }
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin-bottom: 0;
+  }
+}
+
+.card-footer {
+  padding: 0;
+  height: 32px;
+
+  .card-social {
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+  }
+  .card-pbp-btn {
+    font-size: 0.8rem;
+    padding: 6px 15px;
+  }
+  a {
+    color: $inactive-btn-color;
+    &:hover {
+      color: $hover-btn-color;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.close-card {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  color: $inactive-btn-color;
+  &:hover {
+    color: $hover-btn-color;
+  }
+}
