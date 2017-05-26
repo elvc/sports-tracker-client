@@ -1,13 +1,14 @@
-import PropTypes from 'prop-types'; // for React v15.5
 import React from 'react';
+import PropTypes from 'prop-types';
+import Masonry from 'react-masonry-component';
 import Card from './Card';
 import cardProps from '../../prop_validations/card';
-import Masonry from 'react-masonry-component';
 
 const masonryOptions = {
   transitionDuration: 500,
   fitWidth: true,
-  horizontalOrder: true
+  horizontalOrder: true,
+  stagger: 30
 };
 
 export default function CardBox(props) {

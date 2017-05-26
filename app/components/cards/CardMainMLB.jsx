@@ -4,20 +4,20 @@ import cardProps from '../../prop_validations/card';
 import ordinalize from '../../helpers/ordinalize';
 
 const CardMainNBA = ({ ...props }) => (
-  <div className="card-block">
+  <div className="game-card-main">
 
     <div className="d-flex justify-content-around">
-      <div className="card-text d-flex flex-column">
+      <div className="d-flex flex-column">
         <div className="text-center">
-          <img src={ `/img/${props.league}/${props.awayTeam.toLowerCase()}.gif` } className="nba-team-logo" alt="" />
+          <img src={ `/img/${props.league.toLowerCase()}/${props.awayTeam.toLowerCase()}.gif` } className="nba-team-logo" alt="" />
           <span className="nba-team-name">{ props.awayTeam }</span>
         </div>
       </div>
 
-      <div className="card-text d-flex flex-column">
+      <div className="d-flex flex-column">
         <div>
           <span className="nba-team-name">{ props.homeTeam }</span>
-          <img src={ `/img/${props.league}/${props.homeTeam.toLowerCase()}.gif` } className="nba-team-logo" alt="" />
+          <img src={ `/img/${props.league.toLowerCase()}/${props.homeTeam.toLowerCase()}.gif` } className="nba-team-logo" alt="" />
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@ const CardMainNBA = ({ ...props }) => (
     </div>
 
     <aside
-      className="close-card"
+      className="close-game-card"
       onClick={ () => props.closeCard(props.gameId) }
       role="button"
       tabIndex={ 0 }

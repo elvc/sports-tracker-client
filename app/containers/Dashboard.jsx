@@ -14,19 +14,11 @@ const mapStateToProps = state => ({
   socket: state.chat.socket,
   chatActive: state.chat.active !== 0
 });
-const mapDispatchToProps = dispatch => ({
-  joinRoom: (room) => {
-    dispatch(joinRoom(room));
-  },
-  leaveRoom: (gameId) => {
-    dispatch(leaveRoom(gameId));
-  },
-  togglePlayByPlay: (gameId) => {
-    dispatch(togglePlayByPlay(gameId));
-  },
-  removeCard: (gameId) => {
-    dispatch(removeCard(gameId));
-  }
-});
+const mapDispatchToProps = {
+  joinRoom,
+  leaveRoom,
+  togglePlayByPlay,
+  removeCard
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

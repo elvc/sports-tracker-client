@@ -3,7 +3,6 @@ import RoomTab from './RoomTab';
 import roomsProps from '../../prop_validations/chat';
 
 class Rooms extends React.Component {
-
   render() {
     const sortedRooms = this.props.rooms;
     sortedRooms.sort((a, b) => {

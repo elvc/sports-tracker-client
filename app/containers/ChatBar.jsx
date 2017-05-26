@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  connectToSocket: (socket) => {
+  getSocket: (socket) => {
     dispatch(actions.getSocket(socket));
   },
   receiveMessage: (msg) => {

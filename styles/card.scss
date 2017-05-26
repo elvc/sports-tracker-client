@@ -49,8 +49,21 @@
   padding: 0px 10px 0 10px;
   border-top: $border-style;
   max-height: 100px;
-  min-height: 60px;
   overflow: auto;
+  &.pbp-appear {
+    max-height: 0px;
+    &.pbp-appear-active {
+      transition: height 800ms ease;
+      max-height: 100px;
+    }
+  }
+  &.pbp-leave {
+    max-height: 100px;
+    &.pbp-leave-active {
+      transition: max-height 800ms ease;
+      max-height: 0px;
+    }
+  }
 
   span {
     font-size: 0.75rem;
