@@ -1,8 +1,8 @@
 import React from 'react';
 import Dashboard from './Dashboard';
 import TopNav from '../components/navbar/TopNav';
-import Footer from '../components/navbar/Footer';
-import SideBar from '../components/sidebar/SideBar';
+import ChatBar from './ChatBar';
+import SideBar from './Sidebar';
 
 const App = () => (
   <div>
@@ -11,6 +11,7 @@ const App = () => (
       <div className="row">
         <SideBar />
         <Dashboard />
+        <ChatBar />
       </div>
     </div>
   </div>

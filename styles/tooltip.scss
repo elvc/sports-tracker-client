@@ -1,7 +1,7 @@
-.card-tooltip {
+.game-card-tooltip {
     position: relative;
     display: inline-block;
-    .card-tooltip-text {
+    .game-card-tooltip-text {
       visibility: hidden;
       font-size: 0.9em;
       min-width: 90px;
@@ -27,7 +27,7 @@
         border-color: black transparent transparent transparent;
     }
   }
-  &:hover .card-tooltip-text {
+  &:hover .game-card-tooltip-text {
     visibility: visible;
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import Chat from '../components/chatbar/Chat';
 import * as actions from '../actions/chat';
 

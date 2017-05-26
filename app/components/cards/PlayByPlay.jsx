@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const PlayByPlay = ({ ...props }) => {
   if (props.display) {
     return (
-      <div className="card-pbp">
+      <div className="game-card-pbp">
         <ul>
           { props.plays.map((play) => {
             switch (play.sport) {

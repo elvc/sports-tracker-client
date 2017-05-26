@@ -1,16 +1,20 @@
 .chat-container {
   position: fixed;
   right: 0;
-  top: 50px;
+  top: 56px;
   height: 100vh;
   border-left: $border-style;
-  width: 250px;
+  width: 300px;
   padding: 0;
   .user-count {
     padding: 5px;
+    font-size: 0.85rem;
   }
   .exit-room {
-    color: #e2000f;
+    color: $inactive-btn-color;
+    &:hover {
+      color: $hover-btn-color;
+    }
   }
   .room {
     padding: 0 5px 0 10px;
@@ -20,17 +24,31 @@
     line-height: 0.5;
     overflow-x: auto;
     overflow-y: hidden;
+    white-space: nowrap;
+    background-color: $bg-color;
+
     .nav-link{
       padding: 5px;
       font-size: 0.9em;
+      a {
+        color: black;
+        font-weight: 500;
+      }
+      &:hover {
+        background-color: #F0F0F0;
+      }
+      .active {
+        background-color: $active-color;
+        z-index: 10;
+      }
     }
     .unread {
-      background: #bdbdbd;
+      background: $unread-color;
     }
   }
 
   .message-list {
-    height: calc(100vh - 240px);
+    height: calc(100vh - 170px);
     overflow-y: scroll;
     font-size: 0.9em;
     border-top: $border-style;
@@ -53,11 +71,14 @@
   }
   .chat-input-form{
     position: fixed;
-    bottom: 50px;
-    padding: 0 15px 0 15px;
-    height: 25px;
+    bottom: 15px;
+    padding: 0 15px;
+    height: 30px;
     #chat-input{
       font-size: 0.8em;
+      @media (min-width: 992px) {
+        width: 100%;
+      }
     }
     .btn {
       line-height: 0.8;
@@ -65,10 +86,25 @@
     }
   }
 
-  .nav-link.active {
-    background-color: $active-color;
-  }
   ::-webkit-scrollbar {
     display: none;
   }
+}
+
+.chatbar-appear {
+  opacity: 0.01;
+}
+
+.chatbar-appear.chatbar-appear-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.chatbar-leave {
+  opacity: 1;
+}
+
+.chatbar-leave.chatbar-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
