@@ -9,7 +9,7 @@ const CardMainNBA = ({ ...props }) => (
     <div className="d-flex justify-content-around">
       <div className="d-flex flex-column">
         <div className="text-center">
-          <img src={ `/img/${props.league}/${props.awayTeam}.gif` } className="nba-team-logo" alt="" />
+          <img src={ `/img/${props.league}/${props.awayTeam.toLowerCase()}.gif` } className="nba-team-logo" alt="" />
           <span className="nba-team-name">{ props.awayTeam }</span>
         </div>
       </div>
@@ -17,7 +17,7 @@ const CardMainNBA = ({ ...props }) => (
       <div className="d-flex flex-column">
         <div>
           <span className="nba-team-name">{ props.homeTeam }</span>
-          <img src={ `/img/${props.league}/${props.homeTeam}.gif` } className="nba-team-logo" alt="" />
+          <img src={ `/img/${props.league}/${props.homeTeam.toLowerCase()}.gif` } className="nba-team-logo" alt="" />
         </div>
       </div>
     </div>

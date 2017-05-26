@@ -23,7 +23,6 @@ class Sidebar extends Component {
     const date = moment().format('YYYYMMDD');
     dispatch(fetchFeeds('nhl', date));
     dispatch(fetchFeeds('nba', date));
-    dispatch(fetchFeeds('nfl', date));
     dispatch(fetchFeeds('mlb', date));
   }
 
@@ -40,7 +39,11 @@ class Sidebar extends Component {
       <nav className="col-sm-3 hidden-sm-down bg-faded sidebar">
         {
           this.props.leagues.map(league => (
-            <LeagueItem key={ league.name } leagueClick={ this.leagueClick.bind(this, league.name) } league={ league.name } gameData={ league.data } isActive={ this.state.activeLeague === league.name }/>
+            <LeagueItem key={ league.name }
+              leagueClick={ this.leagueClick.bind(this, league.name) }
+              league={ league.name }
+              gameData={ league.data }
+              isActive={ this.state.activeLeague === league.name }/>
           ))
         }
       </nav>
@@ -65,6 +68,6 @@ const mapStateToProps = state => {
     }],
     receivedAt: state.sidebar.receivedAt
   }
-}
+};
 
 export default connect(mapStateToProps)(Sidebar);

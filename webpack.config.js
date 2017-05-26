@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   devServer: { host: '0.0.0.0' },
@@ -30,4 +31,5 @@ module.exports = {
       }
     ]
   }
+
 };

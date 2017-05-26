@@ -11,8 +11,8 @@ export default function Card({ ...props }) {
   const name = `${props.awayTeam}/${props.homeTeam}`;
 
   return (
-    <div className="game-card">
-      { props.league === 'NBA' && <CardMainNBA
+    <div className="card mb-3 ml-3 mr-3">
+      { props.league === 'nba' && <CardMainNBA
         gameId={ props.gameId }
         league={ props.league }
         homeTeam={ props.homeTeam }
@@ -24,7 +24,7 @@ export default function Card({ ...props }) {
         closeCard={ props.closeCard }
       />
     }
-      { props.league === 'MLB' && <CardMainMLB
+      { props.league === 'mlb' && <CardMainMLB
         gameId={ props.gameId }
         league={ props.league }
         homeTeam={ props.homeTeam }
@@ -36,7 +36,7 @@ export default function Card({ ...props }) {
         closeCard={ props.closeCard }
       />
     }
-      { props.league === 'NHL' && <CardMainNHL
+      { props.league === 'nhl' && <CardMainNHL
         gameId={ props.gameId }
         league={ props.league }
         homeTeam={ props.homeTeam }

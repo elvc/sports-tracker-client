@@ -24,7 +24,7 @@ class LeagueItem extends Component {
           <div onClick={ this.props.leagueClick } className={ activeLeagueClass }><img className="league-icon mr-3" src={`/img/${league}.png`} alt={ league } /> { league.toUpperCase() } </div>
         </li>
         <ul className="sub-menu collapse" id={league}>
-          { gameData.map(game => <Game key={ game.id } { ...game }/> ) }
+          { gameData.map(game => <Game key={ game.id } league={league} { ...game }/> ) }
           { gameData.length == 0 && <li>Sorry, no games today</li> }
         </ul>
       </ul>

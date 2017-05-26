@@ -4,7 +4,7 @@ import TopNav from '../components/navbar/TopNav';
 import ChatBar from './ChatBar';
 import SideBar from './Sidebar';
 
-const App = () => (
+const App = (props) => (
   <div>
     <TopNav />
     <div className="container-fluid">
@@ -17,4 +17,4 @@ const App = () => (
   </div>
 );
 
-export default App;
+export default App

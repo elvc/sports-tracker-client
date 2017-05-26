@@ -16,7 +16,7 @@ const initialState = {
   cards: [
     {
       gameId: 1,
-      league: 'NBA',
+      league: 'nba',
       display: 'BASIC', // 'STATS', 'PLAY_BY_PLAY' other options
       homeTeam: 'SAS',
       awayTeam: 'GSW',
@@ -36,7 +36,7 @@ const initialState = {
     },
     {
       gameId: 2,
-      league: 'NBA',
+      league: 'nba',
       homeTeam: 'GSW',
       awayTeam: 'PHI',
       homeScore: 10,
@@ -50,7 +50,7 @@ const initialState = {
     },
     {
       gameId: 3,
-      league: 'NBA',
+      league: 'nba',
       homeTeam: 'GSW',
       awayTeam: 'GSW',
       homeScore: 9,
@@ -59,6 +59,7 @@ const initialState = {
       inningsHalf: 'top',
       scoreLoading: true,
       displayPlayByPlay: false,
+      gameStarted: true,
       plays: [
         { id: 1, content: 'Batter singled', sport: 'mlb' },
         { id: 2, content: 'Batter singled', sport: 'mlb' },
@@ -80,7 +81,7 @@ const initialState = {
     },
     {
       gameId: 34,
-      league: 'NBA',
+      league: 'nba',
       homeTeam: 'LAL',
       awayTeam: 'SAC',
       homeScore: 35,
@@ -94,7 +95,7 @@ const initialState = {
     },
     {
       gameId: 24,
-      league: 'NBA',
+      league: 'nba',
       homeTeam: 'LAL',
       awayTeam: 'SAC',
       homeScore: 35,
@@ -108,7 +109,7 @@ const initialState = {
     },
     {
       gameId: 14,
-      league: 'NBA',
+      league: 'nba',
       homeTeam: 'LAL',
       awayTeam: 'SAC',
       homeScore: 35,
@@ -122,7 +123,7 @@ const initialState = {
     },
     {
       gameId: 5,
-      league: 'NBA',
+      league: 'nba',
       homeTeam: 'MIA',
       awayTeam: 'GSW',
       homeScore: 3,
