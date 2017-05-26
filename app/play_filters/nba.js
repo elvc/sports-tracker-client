@@ -19,7 +19,7 @@ module.exports = function createPlayString(data) {
       switch(prop){
         case 'jumpBall':
           const jump = jumpBallPlay(play[prop]);
-          eachPlay.team = jump.wonBy === 'HOME' ? game.homeTeam.Abbreviation : game.awayTeam.Abbreviation;
+          eachPlay.team = play[prop].wonBy === 'HOME' ? game.homeTeam.Abbreviation : game.awayTeam.Abbreviation;
           eachPlay.content = jump.play;
           break;
         case 'fieldGoalAttempt':
@@ -63,8 +63,10 @@ module.exports = function createPlayString(data) {
           break;
       } 
     }
+    if(!eachPlay.content){
+      return; 
+    }
     return eachPlay;
   });
-  
-  return playList.filter((play) => play !== undefined);
+  return playList.filter((play) => play);
 }
