@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 
-export default class RegForm extends Component {
+export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
-      email: '',
       password: ''
     }
-    this.handleKeyChange = this.handleKeyChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleKeyChange = (key) => {
@@ -23,34 +20,34 @@ export default class RegForm extends Component {
 
     let formData = {
       username: this.state.username,
-      email: this.state.email,
       password: this.state.password,
     }
 
     // error checking
-    if (formData.username.length < 1 || formData.email.length < 1 || formData.password.length < 1) {
+    if (formData.username.length < 1 || formData.password.length < 1) {
       return false;
     }
 
     $.ajax({
-      url: 'http://localhost:8080/register',
+      url: 'http://localhost:8080/login',
       dataType: 'json',
       type: 'POST',
       data: formData,
-      success: (data) => {
+      xhrFields: { withCredentials: true },
+      success: (result) => {
         this.props.close();
-        alert('Registration successful');
+        this.props.handleLoginSession();
+        alert('Logged in');
       },
       error: (err) => {
-        console.error('Error', err);
-        alert('There was some problem with the form. Please resubmit');
+        console.error(err);
+        alert('There was some problem. Please resubmit');
       }
     });
 
     // reset state after form submission
     this.setState({
       username: '',
-      email: '',
       password: '',
     });
   };
@@ -63,23 +60,16 @@ export default class RegForm extends Component {
             User Name:
           </label>
           <input id="formUser" className="form-control" name='username' type="text"
-            onChange={this.handleKeyChange('username')} />
-        </div>
-        <div className="form-group row pl-3 pr-3">
-          <label className="col-form-label-sm">
-            Email:
-          </label>
-          <input id="formEmail" className="form-control" name='email' type="email" id="email"
-            onChange={this.handleKeyChange('email')} />
+            onChange={ this.handleKeyChange('username') } />
         </div>
         <div className="form-group row pl-3 pr-3">
           <label className="col-form-label-sm">
             Password:
           </label>
           <input id="formPassword" className="form-control" name='password' type="password" id="password"
-            onChange={this.handleKeyChange('password')} />
+            onChange={ this.handleKeyChange('password') } />
         </div>
-        <button className="btn btn-primary" type="submit">Sign up</button>
+        <button className="btn btn-primary pull-right" type="submit">Login</button>
       </form>
     );
   }
