@@ -3,9 +3,8 @@ export const receiveMessage = message => ({
   message
 });
 
-export const sendMessage = message => ({
-  type: 'SEND_MESSAGE',
-  message
+export const sendMessage = () => ({
+  type: 'SEND_MESSAGE'
 });
 
 export const inputChange = (input, roomId) => ({
@@ -39,3 +38,23 @@ export const getSocket = socket => ({
   type: 'GET_SOCKET',
   socket
 });
+
+export const postMessage = payload => ({
+  type: 'POST_MESSAGE',
+  payload
+});
+
+export const postLeaveRoom = roomId => ({
+  type: 'POST_LEAVE_ROOM',
+  payload: {
+    roomId
+  }
+});
+
+export const postJoinRoom = roomId => ({
+  type: 'POST_JOIN_ROOM',
+  payload: {
+    roomId
+  }
+});
+

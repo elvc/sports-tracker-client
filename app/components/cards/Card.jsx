@@ -55,6 +55,7 @@ export default function Card({ ...props }) {
         name={ name }
         socket={ props.socket }
         joinRoom={ props.joinRoom }
+        postJoinRoom={ props.postJoinRoom }
         gameId={ props.gameId }
         togglePlayByPlay={ props.togglePlayByPlay }
         gameStarted={ props.gameStarted }

@@ -13,7 +13,7 @@ const masonryOptions = {
 
 export default function CardBox(props) {
     // cards container rendering all cards
-  const { allCards, joinRoom, socket = {}, togglePlayByPlay, chatActive } = props;
+  const { allCards, joinRoom, postJoinRoom, socket = {}, togglePlayByPlay, chatActive } = props;
 
   const closeCard = (gameId) => {
     props.leaveRoom(gameId);
@@ -32,6 +32,7 @@ export default function CardBox(props) {
           <Card
             key={ card.gameId }
             joinRoom={ joinRoom }
+            postJoinRoom={ postJoinRoom }
             socket={ socket }
             togglePlayByPlay={ togglePlayByPlay }
             closeCard={ closeCard }
@@ -54,6 +55,7 @@ CardBox.propTypes = {
   }).isRequired).isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
+  postJoinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object,
   chatActive: PropTypes.bool.isRequired
 };
