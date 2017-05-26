@@ -121,7 +121,6 @@ class Chat extends Component {
 
           </div>
         </CSSTransitionGroup>
-
       );
     } else {
       return null;

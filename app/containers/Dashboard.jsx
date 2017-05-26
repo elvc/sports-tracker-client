@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import CardBox from '../components/cards/CardBox';
+import RegForm from '../components/user/Reg';
 import { joinRoom, leaveRoom } from '../actions/chat';
 import { togglePlayByPlay, removeCard } from '../actions/cards';
 
