@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardMain from './CardMain';
+import CardMainNBA from './CardMainNBA';
+import CardMainNHL from './CardMainNHL';
+import CardMainMLB from './CardMainMLB';
 import PlayByPlay from './PlayByPlay';
 import CardFooter from './CardFooter';
 import cardProps from '../../prop_validations/card';
 
 export default function Card({ ...props }) {
-  const name = `${props.awayTeam} @ ${props.homeTeam}`;
+  const name = `${props.awayTeam}/${props.homeTeam}`;
 
   return (
-    <div className="card mb-3 ml-3 mr-3">
-      <CardMain
+    <div className="game-card">
+      { props.league === 'NBA' && <CardMainNBA
+        gameId={ props.gameId }
         league={ props.league }
         homeTeam={ props.homeTeam }
         awayTeam={ props.awayTeam }
@@ -18,7 +21,33 @@ export default function Card({ ...props }) {
         awayScore={ props.awayScore }
         quarter={ props.quarter }
         timeRemaining={ props.timeRemaining }
+        closeCard={ props.closeCard }
       />
+    }
+      { props.league === 'MLB' && <CardMainMLB
+        gameId={ props.gameId }
+        league={ props.league }
+        homeTeam={ props.homeTeam }
+        awayTeam={ props.awayTeam }
+        homeScore={ props.homeScore }
+        awayScore={ props.awayScore }
+        quarter={ props.quarter }
+        timeRemaining={ props.timeRemaining }
+        closeCard={ props.closeCard }
+      />
+    }
+      { props.league === 'NHL' && <CardMainNHL
+        gameId={ props.gameId }
+        league={ props.league }
+        homeTeam={ props.homeTeam }
+        awayTeam={ props.awayTeam }
+        homeScore={ props.homeScore }
+        awayScore={ props.awayScore }
+        quarter={ props.quarter }
+        timeRemaining={ props.timeRemaining }
+        closeCard={ props.closeCard }
+      />
+    }
 
       <PlayByPlay plays={ props.plays } display={ props.displayPlayByPlay } />
 
@@ -28,6 +57,7 @@ export default function Card({ ...props }) {
         joinRoom={ props.joinRoom }
         gameId={ props.gameId }
         togglePlayByPlay={ props.togglePlayByPlay }
+        gameStarted={ props.gameStarted }
       />
     </div>
   );
@@ -41,6 +71,8 @@ Card.propTypes = {
     content: PropTypes.string.isRequired
   }).isRequired).isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
+  gameStarted: PropTypes.bool.isRequired,
   joinRoom: PropTypes.func.isRequired,
-  socket: PropTypes.object
+  socket: PropTypes.object,
+  closeCard: PropTypes.func.isRequired
 };

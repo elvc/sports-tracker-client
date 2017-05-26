@@ -1,13 +1,8 @@
 import React from 'react';
-import Header from './Header';
-import GameSelector from './GameSelector';
 import Dashboard from './Dashboard';
-import ChatBar from './ChatBar';
 import TopNav from '../components/navbar/TopNav';
-import Footer from '../components/navbar/Footer';
-import SideBar from '../components/sidebar/SideBar';
-import CardBox from '../components/cards/CardBox';
-import state from '../../state_structure';
+import ChatBar from './ChatBar';
+import SideBar from './Sidebar';
 
 const App = () => (
   <div>
@@ -16,6 +11,7 @@ const App = () => (
       <div className="row">
         <SideBar />
         <Dashboard />
+        <ChatBar />
       </div>
     </div>
   </div>

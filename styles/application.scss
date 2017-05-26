@@ -3,9 +3,18 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 $border-style: 1px solid grey;
-$active-color: #ffeb3b;
+$active-color: #D3D3D3;
+$inactive-btn-color: grey;
+$hover-btn-color: black;
+$unread-color: #bdbdbd;
+$bg-color: #f7f7f7;
+$card-shadow-color: grey;
 
 @import 'main';
-@import 'dashboard';
 @import 'chatbar';
 @import 'sidebar';
+@import 'card';
+@import 'modal';
+@import 'dashboard';
+@import 'tooltip';
+

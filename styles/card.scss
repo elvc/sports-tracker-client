@@ -1,0 +1,105 @@
+.game-card-box {
+  margin: 0 auto;
+}
+.game-card {
+  width: 350px;
+  margin: 10px;
+  box-shadow: 0px 0px 5px 2px $card-shadow-color;
+  flex: 0 0 auto;
+  position: relative;
+  @media (max-width: 767px) {
+    width: calc(100vw - 20px);
+  }
+}
+
+.game-card-main {
+  padding: 20px 10px 10px 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  .nba-team-logo {
+    width: 75px;
+    padding: 10px;
+  }
+
+  .nba-team-name {
+    font-size: 1.3em;
+    font-weight: 700;
+  }
+
+  .nba-score {
+    font-size: 1.2em;
+    text-align: center;
+  }
+
+  .nba-score-home, .nba-score-away {
+    padding: 50px;
+  }
+
+  .nba-time {
+    margin-top: 5px;
+    font-size: 0.8em;
+    text-align: center;
+  }
+}
+
+.game-card-pbp {
+  font-size: 0.8rem;
+  padding: 0px 10px 0 10px;
+  border-top: $border-style;
+  max-height: 100px;
+  min-height: 60px;
+  overflow: auto;
+
+  span {
+    font-size: 0.75rem;
+    font-style: italic;
+  }
+  ul {
+    list-style: none;
+    padding: 0px;
+    margin-bottom: 0;
+  }
+}
+
+.game-card-footer {
+  padding: 0;
+  height: 32px;
+  background-color: $bg-color;
+
+  .game-card-social {
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+  }
+  .game-card-pbp-btn {
+    font-size: 0.8rem;
+    padding: 6px 15px;
+  }
+  a {
+    color: $inactive-btn-color;
+    &:hover {
+      color: $hover-btn-color;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.close-game-card {
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  color: $inactive-btn-color;
+  &:hover {
+    color: $hover-btn-color;
+  }
+}
+
+@media (max-width: 767px) {
+  #chat-btn {
+    display: none;
+  }
+}

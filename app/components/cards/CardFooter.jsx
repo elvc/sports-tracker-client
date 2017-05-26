@@ -16,25 +16,59 @@ const CardFooter = ({ ...props }) => {
   };
 
   return (
-    <div className="card-footer d-flex justify-content-end">
-      <button
-        className="btn btn-info mr-auto p-2"
-        onClick={ () => props.togglePlayByPlay(props.gameId) }
-      >Play-by-Play</button>
-      <i className="p-2 fa fa-share-alt" aria-hidden="true" />
-      <i className="p-2 fa fa-rss" aria-hidden="true" />
+    <div className="game-card-footer">
       <a
-        onClick={ () => {
-          joinChat(props.name, props.gameId);
-          setTimeout(() => {
-            document.getElementById('chat-input').focus();
-          }, 0);
-        } }
+        className="game-card-pbp-btn"
+        onClick={ () => props.togglePlayByPlay(props.gameId) }
         role="button"
         tabIndex={ 0 }
-      >
-        <i className="p-2 fa fa-commenting" aria-hidden="true" />
-      </a>
+      >Play-by-Play</a>
+
+      <div className="game-card-social">
+        <a
+          onClick={ () => {
+            joinChat(props.name, props.gameId);
+            setTimeout(() => {
+              document.getElementById('chat-input').focus();
+            }, 0);
+          } }
+          role="button"
+          tabIndex={ 0 }
+          className="game-card-tooltip"
+        >
+          <i className="p-2 fa fa-share-alt" aria-hidden="true" />
+          <span className="game-card-tooltip-text">Share</span>
+        </a>
+        { props.gameStarted || <a
+          onClick={ () => {
+            joinChat(props.name, props.gameId);
+            setTimeout(() => {
+              document.getElementById('chat-input').focus();
+            }, 0);
+          } }
+          role="button"
+          tabIndex={ 0 }
+          className="game-card-tooltip"
+        >
+          <i className="p-2 fa fa-rss" aria-hidden="true" />
+          <span className="game-card-tooltip-text">Notify me</span>
+        </a> }
+        <a
+          onClick={ () => {
+            joinChat(props.name, props.gameId);
+            setTimeout(() => {
+              document.getElementById('chat-input').focus();
+            }, 0);
+          } }
+          role="button"
+          tabIndex={ 0 }
+          className="game-card-tooltip"
+          id="chat-btn"
+        >
+          <i className="p-2 fa fa-commenting" aria-hidden="true" />
+          <span className="game-card-tooltip-text">Join chat</span>
+        </a>
+      </div>
     </div>
   );
 };
@@ -42,6 +76,7 @@ const CardFooter = ({ ...props }) => {
 CardFooter.propTypes = {
   name: PropTypes.string.isRequired,
   gameId: PropTypes.number.isRequired,
+  gameStarted: PropTypes.bool.isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object.isRequired
