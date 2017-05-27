@@ -27,6 +27,7 @@ const initialState = {
       timeRemaining: '10:09',
       displayPlayByPlay: true,
       scoreLoading: false,
+      gameOver: true,
       plays: [
         { id: 1, content: 'Steph scores a 3', sport: 'NBA', time: '10:11' },
         { id: 2, content: 'Steph scores a 3', sport: 'NBA', time: '10:34' },
@@ -157,7 +158,9 @@ const initialState = {
       ],
       scoreLoading: false,
       displayPlayByPlay: false,
-      gameStarted: true,
+      gameStarted: false,
+      gameOver: false,
+      gameStart: '4:00pm 05/28/2017',
       plays: []
     },
     {
@@ -172,6 +175,7 @@ const initialState = {
       scoreLoading: false,
       displayPlayByPlay: false,
       plays: [],
+      gameOver: true,
       gameStarted: true
     },
     {
@@ -235,6 +239,7 @@ const initialState = {
       scoreLoading: false,
       displayPlayByPlay: false,
       plays: [],
+      gameOver: true,
       gameStarted: true
     },
     {
@@ -249,6 +254,7 @@ const initialState = {
       scoreLoading: false,
       displayPlayByPlay: false,
       plays: [],
+      gameOver: true,
       gameStarted: true
     },
     {
@@ -263,6 +269,7 @@ const initialState = {
       scoreLoading: false,
       displayPlayByPlay: false,
       plays: [],
+      gameOver: true,
       gameStarted: true
     }
   ],

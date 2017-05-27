@@ -17,12 +17,13 @@ const CardFooter = ({ ...props }) => {
 
   return (
     <div className="game-card-footer">
-      <a
+      { props.gameStarted && <a
         className="game-card-pbp-btn"
         onClick={ () => props.togglePlayByPlay(props.gameId) }
         role="button"
         tabIndex={ 0 }
       >Play-by-Play</a>
+      }
 
       <div className="game-card-social">
         <a
@@ -78,8 +79,7 @@ CardFooter.propTypes = {
   gameId: PropTypes.number.isRequired,
   gameStarted: PropTypes.bool.isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
-  joinRoom: PropTypes.func.isRequired,
-  socket: PropTypes.object.isRequired
+  joinRoom: PropTypes.func.isRequired
 };
 
 export default CardFooter;

@@ -13,43 +13,15 @@ export default function Card({ ...props }) {
   return (
     <div className="game-card">
       { props.league === 'NBA' && <CardMainNBA
-        gameId={ props.gameId }
-        league={ props.league }
-        homeTeam={ props.homeTeam }
-        awayTeam={ props.awayTeam }
-        homeScore={ props.homeScore }
-        awayScore={ props.awayScore }
-        quarter={ props.quarter }
-        timeRemaining={ props.timeRemaining }
-        closeCard={ props.closeCard }
+        { ...props }
       />
     }
       { props.league === 'MLB' && <CardMainMLB
-        gameId={ props.gameId }
-        homeTeam={ props.homeTeam }
-        awayTeam={ props.awayTeam }
-        homeScore={ props.homeScore }
-        awayScore={ props.awayScore }
-        currentInning={ props.currentInning }
-        currentInningHalf={ props.currentInningHalf }
-        innings={ props.innings }
-        plays={ props.plays }
-        gameStarted={ props.gameStarted }
-        gameCompleted={ props.gameCompleted }
-        closeCard={ props.closeCard }
+        { ...props }
       />
     }
       { props.league === 'NHL' && <CardMainNHL
-        gameId={ props.gameId }
-        league={ props.league }
-        homeTeam={ props.homeTeam }
-        awayTeam={ props.awayTeam }
-        homeScore={ props.homeScore }
-        awayScore={ props.awayScore }
-        period={ props.period }
-        periods={ props.periods }
-        timeRemaining={ props.timeRemaining }
-        closeCard={ props.closeCard }
+        { ...props }
       />
     }
 
