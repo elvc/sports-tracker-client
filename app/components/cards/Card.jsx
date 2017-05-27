@@ -24,26 +24,30 @@ export default function Card({ ...props }) {
         closeCard={ props.closeCard }
       />
     }
-      { props.league === 'mlb' && <CardMainMLB
+      { props.league === 'MLB' && <CardMainMLB
         gameId={ props.gameId }
-        league={ props.league }
         homeTeam={ props.homeTeam }
         awayTeam={ props.awayTeam }
         homeScore={ props.homeScore }
         awayScore={ props.awayScore }
-        quarter={ props.quarter }
-        timeRemaining={ props.timeRemaining }
+        currentInning={ props.currentInning }
+        currentInningHalf={ props.currentInningHalf }
+        innings={ props.innings }
+        plays={ props.plays }
+        gameStarted={ props.gameStarted }
+        gameCompleted={ props.gameCompleted }
         closeCard={ props.closeCard }
       />
     }
-      { props.league === 'nhl' && <CardMainNHL
+      { props.league === 'NHL' && <CardMainNHL
         gameId={ props.gameId }
         league={ props.league }
         homeTeam={ props.homeTeam }
         awayTeam={ props.awayTeam }
         homeScore={ props.homeScore }
         awayScore={ props.awayScore }
-        quarter={ props.quarter }
+        period={ props.period }
+        periods={ props.periods }
         timeRemaining={ props.timeRemaining }
         closeCard={ props.closeCard }
       />
@@ -74,6 +78,5 @@ Card.propTypes = {
   togglePlayByPlay: PropTypes.func.isRequired,
   gameStarted: PropTypes.bool.isRequired,
   joinRoom: PropTypes.func.isRequired,
-  socket: PropTypes.object,
   closeCard: PropTypes.func.isRequired
 };

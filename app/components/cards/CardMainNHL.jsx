@@ -3,32 +3,74 @@ import PropTypes from 'prop-types';
 import cardProps from '../../prop_validations/card';
 import ordinalize from '../../helpers/ordinalize';
 
-const CardMainNBA = ({ ...props }) => (
+const CardMainNHL = ({ ...props }) => (
   <div className="game-card-main">
 
     <div className="d-flex justify-content-around">
       <div className="d-flex flex-column">
         <div className="text-center">
-          <img src={ `/img/${props.league.toLowerCase()}/${props.awayTeam.toLowerCase()}.gif` } className="nba-team-logo" alt="" />
-          <span className="nba-team-name">{ props.awayTeam }</span>
+          <img src={ `/img/nhl/${props.awayTeam.toLowerCase()}.gif` } className="nhl-team-logo" alt="" />
+          <span className="nhl-team-name">{ props.awayTeam }</span>
         </div>
       </div>
 
       <div className="d-flex flex-column">
         <div>
-          <span className="nba-team-name">{ props.homeTeam }</span>
-          <img src={ `/img/${props.league.toLowerCase()}/${props.homeTeam.toLowerCase()}.gif` } className="nba-team-logo" alt="" />
+          <span className="nhl-team-name">{ props.homeTeam }</span>
+          <img src={ `/img/nhl/${props.homeTeam.toLowerCase()}.gif` } className="nhl-team-logo" alt="" />
         </div>
       </div>
     </div>
 
-    <div className="nba-score">
-      <span className="nba-score-away">{ props.awayScore }</span><span className="nba-score-home">{ props.homeScore }</span>
+    <div className="nhl-time">
+      { ordinalize(props.period)} - { props.timeRemaining }
     </div>
 
-    <div className="nba-time">
-      { ordinalize(props.quarter)} - { props.timeRemaining }
+    {/* eslint-disable react/no-array-index-key */}
+    {/* TODO add support for extra innings, styling should work already */}
+    <div className="nhl-score">
+      <table>
+        <thead>
+          <tr>
+            { [...Array(4)].map((x, i) => <th key={ i } className="nhl-score-innings">{ i || '' }</th>) }
+            { props.period.length > 3 && props.period.map((inning, i) => {
+              if (i > 2) {
+                return <th key={ i + 10 } className="nhl-score-innings">{ inning.inning }</th>;
+              }
+              return null;
+            })}
+            <th>T</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td className="nhl-score-team-name">{ props.awayTeam }</td>
+            { [...Array(3)].map((x, i) => <td key={ i }>{ props.periods[i] ? props.periods[i].awayScore : '' }</td>) }
+            { props.periods.length > 3 && props.periods.map((period, i) => {
+              if (i > 2) {
+                return <td key={ i + 10 }>{ props.periods[i] ? props.periods[i].awayScore : '' }</td>;
+              }
+              return null;
+            })}
+            <td>{ props.awayScore }</td>
+          </tr>
+
+          <tr>
+            <td className="nhl-score-team-name">{ props.homeTeam }</td>
+            { [...Array(3)].map((x, i) => <td key={ i }>{ props.periods[i] ? props.periods[i].homeScore : '' }</td>) }
+            { props.periods.length > 3 && props.periods.map((period, i) => {
+              if (i > 2) {
+                return <td key={ i + 10 }>{ props.periods[i] ? props.periods[i].homeScore : '' }</td>;
+              }
+              return null;
+            })}
+            <td>{ props.homeScore }</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    {/* eslint-enable */}
 
     <aside
       className="close-game-card"
@@ -41,9 +83,9 @@ const CardMainNBA = ({ ...props }) => (
   </div>
 );
 
-CardMainNBA.propTypes = {
+CardMainNHL.propTypes = {
   ...cardProps,
   closeCard: PropTypes.func.isRequired
 };
 
-export default CardMainNBA;
+export default CardMainNHL;

@@ -37,48 +37,128 @@ const initialState = {
     },
     {
       gameId: 2,
-      league: 'NBA',
-      homeTeam: 'GSW',
-      awayTeam: 'PHI',
-      homeScore: 10,
-      awayScore: 3,
-      period: '3',
-      timeRemaining: '8:30',
+      league: 'MLB',
+      homeTeam: 'PIT',
+      awayTeam: 'TOR',
+      homeScore: 5,
+      awayScore: 6,
       displayPlayByPlay: false,
       scoreLoading: false,
-      plays: [],
-      gameStarted: false
+      currentInning: '4',
+      currentInningHalf: 'top',
+      innings: [
+        {
+          inning: 1,
+          awayScore: 2,
+          homeScore: 0
+        },
+        {
+          inning: 2,
+          awayScore: 1,
+          homeScore: 0
+        },
+        {
+          inning: 3,
+          awayScore: 2,
+          homeScore: 1
+        },
+        {
+          inning: 4,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 5,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 6,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 7,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 8,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 9,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 10,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 11,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 12,
+          awayScore: 0,
+          homeScore: 5
+        }
+      ],
+      plays: [
+        { id: 1, content: 'Batter singled', sport: 'MLB' },
+        { id: 2, content: 'Batter singled', sport: 'MLB' },
+        { id: 3, content: 'Batter singled', sport: 'MLB' },
+        { id: 4, content: 'Batter doubled', sport: 'MLB' },
+        { id: 5, content: 'Batter singled', sport: 'MLB' },
+        { id: 6, content: 'Batter singled', sport: 'MLB' },
+        { id: 7, content: 'Batter singled', sport: 'MLB' },
+        { id: 8, content: 'Batter grounded out', sport: 'MLB' },
+        { id: 9, content: 'Batter singled', sport: 'MLB' },
+        { id: 10, content: 'Batter singled', sport: 'MLB' },
+        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored' },
+        { id: 12, content: 'Batter singled', sport: 'MLB' },
+        { id: 13, content: 'Batter singled', sport: 'MLB' },
+        { id: 14, content: 'Batter singled', sport: 'MLB' },
+        { id: 15, content: 'Batter singled', sport: 'MLB' },
+        { id: 16, content: 'Batter singled', sport: 'MLB' }
+      ],
+      gameStarted: true,
+      gameCompleted: false
     },
     {
       gameId: 3,
-      league: 'NBA',
-      homeTeam: 'GSW',
-      awayTeam: 'GSW',
+      league: 'NHL',
+      homeTeam: 'CGY',
+      awayTeam: 'VAN',
       homeScore: 9,
       awayScore: 5,
-      innings: '4',
-      inningsHalf: 'top',
-      scoreLoading: true,
+      period: '3',
+      timeRemaining: '1:07',
+      periods: [
+        {
+          period: '1',
+          awayScore: 3,
+          homeScore: 2
+        },
+        {
+          period: '2',
+          awayScore: 4,
+          homeScore: 1
+        },
+        {
+          period: '1',
+          awayScore: 2,
+          homeScore: 2
+        }
+      ],
+      scoreLoading: false,
       displayPlayByPlay: false,
       gameStarted: true,
-      plays: [
-        { id: 1, content: 'Batter singled', sport: 'mlb' },
-        { id: 2, content: 'Batter singled', sport: 'mlb' },
-        { id: 3, content: 'Batter singled', sport: 'mlb' },
-        { id: 4, content: 'Batter doubled', sport: 'mlb' },
-        { id: 5, content: 'Batter singled', sport: 'mlb' },
-        { id: 6, content: 'Batter singled', sport: 'mlb' },
-        { id: 7, content: 'Batter singled', sport: 'mlb' },
-        { id: 8, content: 'Batter grounded out', sport: 'mlb' },
-        { id: 9, content: 'Batter singled', sport: 'mlb' },
-        { id: 10, content: 'Batter singled', sport: 'mlb' },
-        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'mlb', style: 'scored' },
-        { id: 12, content: 'Batter singled', sport: 'mlb' },
-        { id: 13, content: 'Batter singled', sport: 'mlb' },
-        { id: 14, content: 'Batter singled', sport: 'mlb' },
-        { id: 15, content: 'Batter singled', sport: 'mlb' },
-        { id: 16, content: 'Batter singled', sport: 'mlb' }
-      ]
+      plays: []
     },
     {
       gameId: 44,
@@ -96,17 +176,52 @@ const initialState = {
     },
     {
       gameId: 34,
-      league: 'NBA',
-      homeTeam: 'LAL',
-      awayTeam: 'SAC',
-      homeScore: 35,
-      awayScore: 25,
-      quarter: '2',
-      timeRemaining: 36,
-      scoreLoading: false,
+      league: 'MLB',
+      homeTeam: 'PIT',
+      awayTeam: 'TOR',
+      homeScore: 5,
+      awayScore: 6,
       displayPlayByPlay: false,
-      plays: [],
-      gameStarted: true
+      scoreLoading: false,
+      currentInning: '4',
+      currentInningHalf: 'top',
+      innings: [
+        {
+          inning: 1,
+          awayScore: 2,
+          homeScore: 0
+        },
+        {
+          inning: 2,
+          awayScore: 1,
+          homeScore: 0
+        },
+        {
+          inning: 3,
+          awayScore: 2,
+          homeScore: 1
+        }
+      ],
+      plays: [
+        { id: 1, content: 'Batter singled', sport: 'MLB' },
+        { id: 2, content: 'Batter singled', sport: 'MLB' },
+        { id: 3, content: 'Batter singled', sport: 'MLB' },
+        { id: 4, content: 'Batter doubled', sport: 'MLB' },
+        { id: 5, content: 'Batter singled', sport: 'MLB' },
+        { id: 6, content: 'Batter singled', sport: 'MLB' },
+        { id: 7, content: 'Batter singled', sport: 'MLB' },
+        { id: 8, content: 'Batter grounded out', sport: 'MLB' },
+        { id: 9, content: 'Batter singled', sport: 'MLB' },
+        { id: 10, content: 'Batter singled', sport: 'MLB' },
+        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored' },
+        { id: 12, content: 'Batter singled', sport: 'MLB' },
+        { id: 13, content: 'Batter singled', sport: 'MLB' },
+        { id: 14, content: 'Batter singled', sport: 'MLB' },
+        { id: 15, content: 'Batter singled', sport: 'MLB' },
+        { id: 16, content: 'Batter singled', sport: 'MLB' }
+      ],
+      gameStarted: true,
+      gameCompleted: false
     },
     {
       gameId: 24,
