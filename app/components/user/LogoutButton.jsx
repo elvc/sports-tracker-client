@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class LogoutButton extends Component {
-  constructor(props) {
-    super(props);
-  }
+  static propTypes = {
+    handleLogoutSession: PropTypes.func.isRequired
+  };
 
   handleLogout = () => {
     $.ajax({
@@ -22,7 +23,7 @@ export default class LogoutButton extends Component {
 
   render() {
     return (
-      <ul onClick={this.handleLogout} className="navbar-nav ml-auto">
+      <ul onClick={ this.handleLogout } className="navbar-nav ml-auto">
         <li className="nav-item">
           <a className="navitem">Logout</a>
         </li>

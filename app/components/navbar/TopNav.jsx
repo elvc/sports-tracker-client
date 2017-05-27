@@ -16,7 +16,7 @@ export default class TopNav extends Component {
     $.ajax({
       url: 'http://localhost:8080/checkifloggedin',
       dataType: 'json',
-      type: 'POST',
+      type: 'GET',
       xhrFields: { withCredentials: true },
       success: (result) => {
         this.setState({isLoggedIn: result.isLoggedIn});
