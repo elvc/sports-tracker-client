@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import moment from 'moment';
-import { fetchFeeds , requestFeeds} from '../actions/api'
+import { fetchFeeds, requestFeeds } from '../actions/api';
 import LeagueItem from '../components/sidebar/LeagueItem';
 
 class Sidebar extends Component {
@@ -18,7 +18,7 @@ class Sidebar extends Component {
     this.state = { activeLeague: '' };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const { dispatch } = this.props;
     const date = moment().format('YYYYMMDD');
     dispatch(fetchFeeds('nhl', date));
@@ -40,7 +40,7 @@ class Sidebar extends Component {
       <nav className="col-sm-3 hidden-sm-down bg-faded sidebar">
         {
           this.props.leagues.map(league => (
-            <LeagueItem key={ league.name } leagueClick={ this.leagueClick.bind(this, league.name) } league={ league.name } gameData={ league.data } isActive={ this.state.activeLeague === league.name }/>
+            <LeagueItem key={ league.name } leagueClick={ this.leagueClick.bind(this, league.name) } league={ league.name } gameData={ league.data } isActive={ this.state.activeLeague === league.name } />
           ))
         }
       </nav>
@@ -48,23 +48,21 @@ class Sidebar extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    leagues: [{
-      name: 'nhl',
-      data: state.sidebar.gamesNHL,
-    }, {
-      name: 'nfl',
-      data: state.sidebar.gamesNFL
-    }, {
-      name: 'nba',
-      data: state.sidebar.gamesNBA
-    }, {
-      name: 'mlb',
-      data: state.sidebar.gamesMLB
-    }],
-    receivedAt: state.sidebar.receivedAt
-  }
-}
+const mapStateToProps = state => ({
+  leagues: [{
+    name: 'nhl',
+    data: state.sidebar.gamesNHL
+  }, {
+    name: 'nfl',
+    data: state.sidebar.gamesNFL
+  }, {
+    name: 'nba',
+    data: state.sidebar.gamesNBA
+  }, {
+    name: 'mlb',
+    data: state.sidebar.gamesMLB
+  }],
+  receivedAt: state.sidebar.receivedAt
+});
 
 export default connect(mapStateToProps)(Sidebar);

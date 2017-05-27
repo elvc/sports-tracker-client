@@ -1,5 +1,5 @@
 const defaultState = {
-  active: -1,
+  active: 0,
   rooms: []
 };
 
@@ -22,7 +22,7 @@ function chat(state = defaultState, action) {
       };
     }
     case 'RECEIVE_MESSAGE': {
-      const roomForPost = state.rooms.find(room => room.id === action.message.room);
+      const roomForPost = state.rooms.find(room => room.id === action.room);
       const otherRooms = state.rooms.filter(room => room !== roomForPost);
       if (roomForPost.id !== state.active) {
         roomForPost.unread = true;
@@ -88,7 +88,13 @@ function chat(state = defaultState, action) {
     }
     case 'LEAVE_ROOM': {
       const otherRooms = state.rooms.filter(room => room.id !== action.roomId);
-      const activeRoom = otherRooms.length ? otherRooms[0].id : 0;
+      let activeRoom = 0;
+      if (action.roomId === state.active) {
+        activeRoom = otherRooms.length ? otherRooms[0].id : 0;
+      } else {
+        activeRoom = state.active;
+      }
+
       return {
         ...state,
         rooms: otherRooms,

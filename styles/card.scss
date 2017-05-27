@@ -1,3 +1,5 @@
+$table-border: 1px solid darkgrey;
+
 .game-card-box {
   margin: 0 auto;
 }
@@ -7,8 +9,10 @@
   box-shadow: 0px 0px 5px 2px $card-shadow-color;
   flex: 0 0 auto;
   position: relative;
+  background-color: white;
+
   @media (max-width: 767px) {
-    width: calc(100vw - 20px);
+    width: calc(100vw - 60px);
   }
 }
 
@@ -18,12 +22,13 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  .nba-team-logo {
+
+  .nba-team-logo, .mlb-team-logo, .nhl-team-logo {
     width: 75px;
     padding: 10px;
   }
 
-  .nba-team-name {
+  .nba-team-name, .mlb-team-name, .nhl-team-name {
     font-size: 1.3em;
     font-weight: 700;
   }
@@ -42,6 +47,47 @@
     font-size: 0.8em;
     text-align: center;
   }
+
+  .mlb-innings {
+    text-align: center;
+
+    &:first-letter {
+      text-transform:capitalize;
+    }
+  }
+  .mlb-score, .nhl-score {
+    overflow-x: auto;
+    max-width: 330px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    table {
+      text-align: center;
+      margin: 5px auto;
+      font-size: 0.8rem;
+
+      td {
+        width: 24px;
+      }
+      th {
+        text-align: center;
+        padding: 0 3px;
+      }
+      td + td, th + th {
+        border-left: $table-border;
+      }
+      tbody tr {
+        border-top: $table-border
+      }
+      .mlb-score-team-name, .nhl-score-team-name {
+        font-weight: 600;
+        padding: 0 5px;
+      }
+    }
+  }
+  .nhl-time {
+    text-align: center;
+  }
 }
 
 .game-card-pbp {
@@ -49,8 +95,21 @@
   padding: 0px 10px 0 10px;
   border-top: $border-style;
   max-height: 100px;
-  min-height: 60px;
   overflow: auto;
+  &.pbp-appear {
+    max-height: 0px;
+    &.pbp-appear-active {
+      transition: height 800ms ease;
+      max-height: 100px;
+    }
+  }
+  &.pbp-leave {
+    max-height: 100px;
+    &.pbp-leave-active {
+      transition: max-height 800ms ease;
+      max-height: 0px;
+    }
+  }
 
   span {
     font-size: 0.75rem;

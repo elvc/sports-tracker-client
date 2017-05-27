@@ -6,6 +6,8 @@
   border-left: $border-style;
   width: 300px;
   padding: 0;
+  background-color: white;
+
   .user-count {
     padding: 5px;
     font-size: 0.85rem;
@@ -91,20 +93,20 @@
   }
 }
 
-.chatbar-appear {
-  opacity: 0.01;
+.chatbar-enter {
+  right: -300px;
 }
 
-.chatbar-appear.chatbar-appear-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+.chatbar-enter.chatbar-enter-active {
+  right: 0px;
+  transition: right 700ms ease;
 }
 
 .chatbar-leave {
-  opacity: 1;
+  right: 0px;
 }
 
 .chatbar-leave.chatbar-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+  right: -300px;
+  transition: right 300ms ease;
 }

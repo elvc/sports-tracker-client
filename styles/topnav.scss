@@ -1,0 +1,9 @@
+.topnav {
+  a.navitem {
+    padding: 15px;
+    color: #fff;
+    &:hover {
+      color: #ff0000;
+    }
+  }
+}

@@ -1,18 +1,19 @@
-import PropTypes from 'prop-types'; // for React v15.5
 import React from 'react';
+import PropTypes from 'prop-types';
+import Masonry from 'react-masonry-component';
 import Card from './Card';
 import cardProps from '../../prop_validations/card';
-import Masonry from 'react-masonry-component';
 
 const masonryOptions = {
   transitionDuration: 500,
   fitWidth: true,
-  horizontalOrder: true
+  horizontalOrder: true,
+  stagger: 30
 };
 
 export default function CardBox(props) {
     // cards container rendering all cards
-  const { allCards, joinRoom, socket = {}, togglePlayByPlay, chatActive } = props;
+  const { allCards, joinRoom, postJoinRoom, socket = {}, togglePlayByPlay, chatActive } = props;
 
   const closeCard = (gameId) => {
     props.leaveRoom(gameId);
@@ -31,6 +32,7 @@ export default function CardBox(props) {
           <Card
             key={ card.gameId }
             joinRoom={ joinRoom }
+            postJoinRoom={ postJoinRoom }
             socket={ socket }
             togglePlayByPlay={ togglePlayByPlay }
             closeCard={ closeCard }
@@ -53,6 +55,7 @@ CardBox.propTypes = {
   }).isRequired).isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
+  postJoinRoom: PropTypes.func.isRequired,
   socket: PropTypes.object,
   chatActive: PropTypes.bool.isRequired
 };

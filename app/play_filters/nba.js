@@ -7,15 +7,16 @@ const substitutionPlay = require('./nba_helper/substitutionPlay');
 const turnoverPlay = require('./nba_helper/turnoverPlay');
 const violationPlay = require('./nba_helper/violationPlay')
 
-module.exports = function createPlayString(data) {
-  const game = data.gameplaybyplay.game; 
+function createPlayString(data) {
+  const game = data.gameplaybyplay.game;
   const playList = data.gameplaybyplay.plays.play.map((play, id) => {
     const eachPlay = {
       id: id,
       time: play.time,
-      quarter: play.quarter
+      quarter: play.quarter,
+      sport: 'nba'
     };
-    for(prop in play) {
+    for(const prop in play) {
       switch(prop){
         case 'jumpBall':
           const jump = jumpBallPlay(play[prop]);
@@ -31,7 +32,7 @@ module.exports = function createPlayString(data) {
           const foul = foulPlay(play[prop]);
           eachPlay.team = foul.team;
           eachPlay.content = foul.play;
-          break; 
+          break;
         case 'freeThrowAttempt':
           const freeThrow = freeThrowPlay(play[prop]);
           eachPlay.team = freeThrow.team;
@@ -61,12 +62,14 @@ module.exports = function createPlayString(data) {
           eachPlay.team = violation.team;
           eachPlay.content = violation.play;
           break;
-      } 
+      }
     }
     if(!eachPlay.content){
-      return; 
-    }
+      return;
+    };
     return eachPlay;
   });
   return playList.filter((play) => play);
 }
+
+export default createPlayString;

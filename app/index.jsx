@@ -1,8 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import io from 'socket.io-client';
+import createSocketIoMiddleware from 'redux-socket.io';
 import sportsApp from './reducers/index';
 import App from './containers/App';
 
@@ -17,7 +19,6 @@ const initialState = {
     {
       gameId: 1,
       league: 'NBA',
-      display: 'BASIC', // 'STATS', 'PLAY_BY_PLAY' other options
       homeTeam: 'SAS',
       awayTeam: 'GSW',
       homeScore: 91,
@@ -27,59 +28,140 @@ const initialState = {
       displayPlayByPlay: true,
       scoreLoading: false,
       plays: [
-        { id: 1, content: 'Steph scores a 3', sport: 'nba', time: '10:11' },
-        { id: 2, content: 'Steph scores a 3', sport: 'nba', time: '10:34' },
-        { id: 3, content: 'Steph scores a FG', sport: 'nba', time: '11:18' },
-        { id: 4, content: 'Someone else scores?', sport: 'nba', time: '0:11' }
+        { id: 1, content: 'Steph scores a 3', sport: 'NBA', time: '10:11' },
+        { id: 2, content: 'Steph scores a 3', sport: 'NBA', time: '10:34' },
+        { id: 3, content: 'Steph scores a FG', sport: 'NBA', time: '11:18' },
+        { id: 4, content: 'Someone else scores?', sport: 'NBA', time: '0:11' }
       ],
       gameStarted: true
     },
     {
       gameId: 2,
-      league: 'NBA',
-      homeTeam: 'GSW',
-      awayTeam: 'PHI',
-      homeScore: 10,
-      awayScore: 3,
-      period: '3',
-      timeRemaining: '8:30',
+      league: 'MLB',
+      homeTeam: 'PIT',
+      awayTeam: 'TOR',
+      homeScore: 5,
+      awayScore: 6,
       displayPlayByPlay: false,
       scoreLoading: false,
-      plays: [],
-      gameStarted: false
+      currentInning: '4',
+      currentInningHalf: 'top',
+      innings: [
+        {
+          inning: 1,
+          awayScore: 2,
+          homeScore: 0
+        },
+        {
+          inning: 2,
+          awayScore: 1,
+          homeScore: 0
+        },
+        {
+          inning: 3,
+          awayScore: 2,
+          homeScore: 1
+        },
+        {
+          inning: 4,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 5,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 6,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 7,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 8,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 9,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 10,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 11,
+          awayScore: 0,
+          homeScore: 5
+        },
+        {
+          inning: 12,
+          awayScore: 0,
+          homeScore: 5
+        }
+      ],
+      plays: [
+        { id: 1, content: 'Batter singled', sport: 'MLB' },
+        { id: 2, content: 'Batter singled', sport: 'MLB' },
+        { id: 3, content: 'Batter singled', sport: 'MLB' },
+        { id: 4, content: 'Batter doubled', sport: 'MLB' },
+        { id: 5, content: 'Batter singled', sport: 'MLB' },
+        { id: 6, content: 'Batter singled', sport: 'MLB' },
+        { id: 7, content: 'Batter singled', sport: 'MLB' },
+        { id: 8, content: 'Batter grounded out', sport: 'MLB' },
+        { id: 9, content: 'Batter singled', sport: 'MLB' },
+        { id: 10, content: 'Batter singled', sport: 'MLB' },
+        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored' },
+        { id: 12, content: 'Batter singled', sport: 'MLB' },
+        { id: 13, content: 'Batter singled', sport: 'MLB' },
+        { id: 14, content: 'Batter singled', sport: 'MLB' },
+        { id: 15, content: 'Batter singled', sport: 'MLB' },
+        { id: 16, content: 'Batter singled', sport: 'MLB' }
+      ],
+      gameStarted: true,
+      gameCompleted: false
     },
     {
       gameId: 3,
-      league: 'NBA',
-      homeTeam: 'GSW',
-      awayTeam: 'GSW',
+      league: 'NHL',
+      homeTeam: 'CGY',
+      awayTeam: 'VAN',
       homeScore: 9,
       awayScore: 5,
-      innings: '4',
-      inningsHalf: 'top',
-      scoreLoading: true,
+      period: '3',
+      timeRemaining: '1:07',
+      periods: [
+        {
+          period: '1',
+          awayScore: 3,
+          homeScore: 2
+        },
+        {
+          period: '2',
+          awayScore: 4,
+          homeScore: 1
+        },
+        {
+          period: '1',
+          awayScore: 2,
+          homeScore: 2
+        }
+      ],
+      scoreLoading: false,
       displayPlayByPlay: false,
-      plays: [
-        { id: 1, content: 'Batter singled', sport: 'mlb' },
-        { id: 2, content: 'Batter singled', sport: 'mlb' },
-        { id: 3, content: 'Batter singled', sport: 'mlb' },
-        { id: 4, content: 'Batter doubled', sport: 'mlb' },
-        { id: 5, content: 'Batter singled', sport: 'mlb' },
-        { id: 6, content: 'Batter singled', sport: 'mlb' },
-        { id: 7, content: 'Batter singled', sport: 'mlb' },
-        { id: 8, content: 'Batter grounded out', sport: 'mlb' },
-        { id: 9, content: 'Batter singled', sport: 'mlb' },
-        { id: 10, content: 'Batter singled', sport: 'mlb' },
-        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'mlb', style: 'scored' },
-        { id: 12, content: 'Batter singled', sport: 'mlb' },
-        { id: 13, content: 'Batter singled', sport: 'mlb' },
-        { id: 14, content: 'Batter singled', sport: 'mlb' },
-        { id: 15, content: 'Batter singled', sport: 'mlb' },
-        { id: 16, content: 'Batter singled', sport: 'mlb' }
-      ]
+      gameStarted: true,
+      plays: []
     },
     {
-      gameId: 34,
+      gameId: 44,
       league: 'NBA',
       homeTeam: 'LAL',
       awayTeam: 'SAC',
@@ -91,6 +173,55 @@ const initialState = {
       displayPlayByPlay: false,
       plays: [],
       gameStarted: true
+    },
+    {
+      gameId: 34,
+      league: 'MLB',
+      homeTeam: 'PIT',
+      awayTeam: 'TOR',
+      homeScore: 5,
+      awayScore: 6,
+      displayPlayByPlay: false,
+      scoreLoading: false,
+      currentInning: '4',
+      currentInningHalf: 'top',
+      innings: [
+        {
+          inning: 1,
+          awayScore: 2,
+          homeScore: 0
+        },
+        {
+          inning: 2,
+          awayScore: 1,
+          homeScore: 0
+        },
+        {
+          inning: 3,
+          awayScore: 2,
+          homeScore: 1
+        }
+      ],
+      plays: [
+        { id: 1, content: 'Batter singled', sport: 'MLB' },
+        { id: 2, content: 'Batter singled', sport: 'MLB' },
+        { id: 3, content: 'Batter singled', sport: 'MLB' },
+        { id: 4, content: 'Batter doubled', sport: 'MLB' },
+        { id: 5, content: 'Batter singled', sport: 'MLB' },
+        { id: 6, content: 'Batter singled', sport: 'MLB' },
+        { id: 7, content: 'Batter singled', sport: 'MLB' },
+        { id: 8, content: 'Batter grounded out', sport: 'MLB' },
+        { id: 9, content: 'Batter singled', sport: 'MLB' },
+        { id: 10, content: 'Batter singled', sport: 'MLB' },
+        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored' },
+        { id: 12, content: 'Batter singled', sport: 'MLB' },
+        { id: 13, content: 'Batter singled', sport: 'MLB' },
+        { id: 14, content: 'Batter singled', sport: 'MLB' },
+        { id: 15, content: 'Batter singled', sport: 'MLB' },
+        { id: 16, content: 'Batter singled', sport: 'MLB' }
+      ],
+      gameStarted: true,
+      gameCompleted: false
     },
     {
       gameId: 24,
@@ -146,12 +277,24 @@ const initialState = {
     receivedAt: Date.now()
   }
 };
+const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
+
+const socket = io(SOCKET_HOST);
+const socketIoMiddleware = createSocketIoMiddleware(socket, 'socket/');
+
+/* eslint-disable no-underscore-dangle */
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+/* eslint-enable */
+const middlewares = [
+  thunk,
+  socketIoMiddleware
+];
 
 const store = createStore(
   sportsApp,
   initialState,
-  applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+  composeEnhancers(applyMiddleware(...middlewares),
+  ));
 
 render(
   <Provider store={ store }>

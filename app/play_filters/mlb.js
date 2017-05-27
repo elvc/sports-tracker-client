@@ -33,7 +33,7 @@ const getPlayInfo = plays => plays.reduce((acc, atBat, i) => {
   return acc.concat(item);
 }, []);
 
-const createPlayString = data => getPlayInfo(data).map((play, id) => {
+const createPlayString = data => getPlayInfo(data.gameplaybyplay.atBats.atBat).map((play, id) => {
   const output = {
     id,
     content: '',
@@ -142,7 +142,7 @@ const createPlayString = data => getPlayInfo(data).map((play, id) => {
       break;
     }
     default: {
-      output.content = 'Unknown play type.';
+      output.content = `${play.batter} batting..`;
       return output;
     }
   }
