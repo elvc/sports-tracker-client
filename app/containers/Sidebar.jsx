@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import moment from 'moment';
-import { fetchFeeds, requestFeeds } from '../actions/api';
+import { receiveMLB, receiveNBA, receiveNHL, receiveNFL } from '../actions/api';
 import LeagueItem from '../components/sidebar/LeagueItem';
+import api from '../lib/api';
 
 class Sidebar extends Component {
 
@@ -20,11 +20,18 @@ class Sidebar extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    const date = moment().format('YYYYMMDD');
-    dispatch(fetchFeeds('nhl', date));
-    dispatch(fetchFeeds('nba', date));
-    dispatch(fetchFeeds('nfl', date));
-    dispatch(fetchFeeds('mlb', date));
+    api.get(`http://localhost:8080/leagues/nhl`).then(response => {
+      dispatch(receiveNHL(response.response));
+    });
+    api.get(`http://localhost:8080/leagues/nba`).then(response => {
+      dispatch(receiveNBA(response.response));
+    });
+    api.get(`http://localhost:8080/leagues/nfl`).then(response => {
+      dispatch(receiveNFL(response.response));
+    });
+    api.get(`http://localhost:8080/leagues/mlb`).then(response => {
+      dispatch(receiveMLB(response.response));
+    });
   }
 
   // handle toggle highlight of league
@@ -59,16 +66,16 @@ class Sidebar extends Component {
 
 const mapStateToProps = state => ({
   leagues: [{
-    name: 'nhl',
+    name: 'NHL',
     data: state.sidebar.gamesNHL
   }, {
-    name: 'nfl',
+    name: 'NFL',
     data: state.sidebar.gamesNFL
   }, {
-    name: 'nba',
+    name: 'NBA',
     data: state.sidebar.gamesNBA
   }, {
-    name: 'mlb',
+    name: 'MLB',
     data: state.sidebar.gamesMLB
   }],
   receivedAt: state.sidebar.receivedAt

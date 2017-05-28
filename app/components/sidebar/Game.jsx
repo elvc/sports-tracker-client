@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCardInfo } from '../../actions/card'
+import { receiveCard } from '../../actions/card';
+import api from '../../lib/api';
 
 const Game = (props) => {
 
   const add = (props) => {
     const {dispatch} = props;
     const game = {
-        gameId: props.id,
+        gameId: props.gameId,
         league: props.league,
         homeTeam: props.homeTeam.Abbreviation,
         awayTeam: props.awayTeam.Abbreviation,
@@ -16,7 +17,9 @@ const Game = (props) => {
         time: props.time,
         date: props.date
       };
-    dispatch(fetchCardInfo(game));
+    api.post(`http://localhost:8080/leagues/${props.league}/games/${props.gameId}`, game).then(response => {
+      dispatch(receiveCard(response.response));
+    });
   }
 
   return (
@@ -32,7 +35,7 @@ const Game = (props) => {
 
 Game.propTypes = {
   league: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  gameId: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   awayTeam: PropTypes.object.isRequired,
   homeTeam: PropTypes.object.isRequired,

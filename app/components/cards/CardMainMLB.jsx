@@ -5,12 +5,12 @@ import ordinalize from '../../helpers/ordinalize';
 
 const CardMainMLB = ({ ...props }) => {
   let timeString;
-  if (props.gameOver) {
+  if (props.innings.length !== 0 && props.isCompleted) {
     timeString = 'Final';
-  } else if (props.gameStarted) {
+  } else if (props.innings.length !==0 && !props.isCompleted) {
     timeString = `${props.currentInningHalf} of ${ordinalize(props.currentInning)}`;
   } else {
-    timeString = props.gameStart;
+    timeString = props.startTime;
   }
 
   return (
@@ -35,6 +35,7 @@ const CardMainMLB = ({ ...props }) => {
       <div className="mlb-innings">
         { timeString }
       </div>
+
 
       {/* eslint-disable react/no-array-index-key */}
       {/* TODO add support for extra innings, styling should work already */}

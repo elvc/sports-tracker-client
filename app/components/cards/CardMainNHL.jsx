@@ -6,12 +6,12 @@ import ordinalize from '../../helpers/ordinalize';
 
 const CardMainNHL = ({ ...props }) => {
   let timeString;
-  if (props.gameOver) {
+  if (props.plays.length !== 0 && props.isCompleted) {
     timeString = 'Final';
-  } else if (props.gameStarted) {
+  } else if (props.plays.length !==0 && !props.isCompleted) {
     timeString = `${ordinalize(props.period)} - ${props.timeRemaining}`;
   } else {
-    timeString = props.gameStart;
+    timeString = props.startTime;
   }
 
   return (
@@ -53,7 +53,6 @@ const CardMainNHL = ({ ...props }) => {
               <th>T</th>
             </tr>
           </thead>
-
           <tbody>
             <tr>
               <td className="nhl-score-team-name">{ props.awayTeam }</td>
@@ -66,7 +65,6 @@ const CardMainNHL = ({ ...props }) => {
               })}
               <td>{ props.awayScore }</td>
             </tr>
-
             <tr>
               <td className="nhl-score-team-name">{ props.homeTeam }</td>
               { [...Array(3)].map((x, i) => <td key={ i }>{ props.periods[i] ? props.periods[i].homeScore : '' }</td>) }

@@ -5,12 +5,12 @@ import ordinalize from '../../helpers/ordinalize';
 
 const CardMainNBA = ({ ...props }) => {
   let timeString;
-  if (props.gameOver) {
+  if (props.plays.length !== 0 && props.isCompleted) {
     timeString = 'Final';
-  } else if (props.gameStarted) {
+  } else if (props.plays.length !==0 && !props.isCompleted) {
     timeString = `${ordinalize(props.quarter)} - ${props.timeRemaining}`;
   } else {
-    timeString = props.gameStart;
+    timeString = props.startTime;
   }
 
   return (
