@@ -4,14 +4,17 @@
   "plugins": [
     "react",
     "jsx-a11y",
-    "import"
+    "import",
+    "mocha"
   ],
   "rules": {
     "comma-dangle": ["error", "never"],
-    "react/jsx-curly-spacing": [2, "always"]
+    "react/jsx-curly-spacing": [2, "always"],
+    "mocha/no-exclusive-tests": "error"
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   }
 }

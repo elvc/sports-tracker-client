@@ -21,7 +21,7 @@ class LeagueItem extends Component {
     return (
       <ul className="nav nav-pills flex-column">
         <li className="nav-item" data-toggle="collapse" data-target={ `#${league}` }>
-          <div onClick={ this.props.leagueClick } className={ activeLeagueClass }><img className="league-icon mr-3" src={ `/img/${league}.png` } alt={ league } /> { league.toUpperCase() } </div>
+          <div onClick={ this.props.leagueClick } className={ activeLeagueClass }><img className="league-icon mr-3 ml-3" src={ `/img/${league}.png` } alt={ league } /> { league.toUpperCase() } </div>
         </li>
         <ul className="sub-menu collapse" id={ league }>
           { gameData.map(game => <Game key={ game.id } league={ league } { ...game } />) }

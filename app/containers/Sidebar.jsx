@@ -37,12 +37,14 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <nav className="col-sm-3 hidden-sm-down bg-faded sidebar">
-        {
-          this.props.leagues.map(league => (
-            <LeagueItem key={ league.name } leagueClick={ this.leagueClick.bind(this, league.name) } league={ league.name } gameData={ league.data } isActive={ this.state.activeLeague === league.name } />
-          ))
-        }
+      <nav className="col-sm-3 bg-faded navbar-collapse collapse sidebar" id="collapseLeagueItem">
+        <div className="nav-item">
+          {
+            this.props.leagues.map(league => (
+              <LeagueItem key={ league.name } leagueClick={ this.leagueClick.bind(this, league.name) } league={ league.name } gameData={ league.data } isActive={ this.state.activeLeague === league.name } />
+            ))
+          }
+        </div>
       </nav>
     );
   }

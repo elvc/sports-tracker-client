@@ -23,7 +23,7 @@ export default class LogoutButton extends Component {
 
   render() {
     return (
-      <ul onClick={ this.handleLogout } className="navbar-nav ml-auto">
+      <ul onClick={ this.handleLogout } className="navbar-nav ml-auto text-right pb-2 pt-2">
         <li className="nav-item">
           <a className="navitem">Logout</a>
         </li>
