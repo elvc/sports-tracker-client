@@ -15,9 +15,12 @@
   }
   a.navitem {
     color: #fff;
-    padding: 15px;
+    padding: 20px;
     &:hover {
-      color: #ff0000;
+      cursor: pointer;
+      color: #fff;
+      background: #ff0000;
+      transition: all 350ms ease-in-out;
     }
   }
   .navbar-toggler-left {

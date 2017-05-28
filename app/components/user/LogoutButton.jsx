@@ -6,10 +6,6 @@ export default class LogoutButton extends Component {
     handleLogoutSession: PropTypes.func.isRequired
   };
 
-  constructor(props) {
-    super(props);
-  }
-
   handleLogout = () => {
     $.ajax({
       url: '/logout',
@@ -27,7 +23,7 @@ export default class LogoutButton extends Component {
 
   render() {
     return (
-        <ul className="navbar-nav ml-auto text-right pb-2 pt-3">
+        <ul className="navbar-nav ml-auto text-right pb-2 pt-2">
           <span className="logged-in-as">Logged in as: { this.props.user }</span>
           <li onClick={ this.handleLogout } className="nav-item">
             <a className="navitem">Logout</a>
