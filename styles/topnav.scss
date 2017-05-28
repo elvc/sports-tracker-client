@@ -1,18 +1,21 @@
 .topnav {
-  // height: 55px;
-
   .navbar-brand {
-  @media screen and (max-width: 991px) {
-    display: flex;
-    justify-content: center;
-  }
-}
-    a.navitem {
-      color: #fff;
-      padding: 15px;
-      &:hover {
-        color: #ff0000;
-      }
+    @media screen and (max-width: 991px) {
+      display: flex;
+      justify-content: center;
     }
+  }
+  a.navitem {
+    color: #fff;
+    padding: 15px;
+    &:hover {
+      color: #ff0000;
+    }
+  }
 
+  .navbar-toggler-left {
+    @media screen and (max-width: 767px) {
+      position: fixed;
+    }
+  }
 }

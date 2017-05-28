@@ -64,7 +64,7 @@ export default class LoginRegButton extends Component {
     return (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item text-right pb-2 pt-2">
-          <a className="navitem" onClick={ this.regOpenModal }>Registration</a>
+          <a className="reg-btn navitem" onClick={ this.regOpenModal }>Registration</a>
           <Modal
             isOpen={ this.state.regModalIsOpen }
             onRequestClose={ this.regCloseModal }
@@ -81,7 +81,7 @@ export default class LoginRegButton extends Component {
         </li>
 
         <li className="nav-item text-right pb-2 pt-2">
-          <a className="navitem" onClick={ this.loginOpenModal }>Login</a>
+          <a className="login-btn navitem" onClick={ this.loginOpenModal }>Login</a>
           <Modal
             isOpen={ this.state.loginModalIsOpen }
             onRequestClose={ this.loginCloseModal }
