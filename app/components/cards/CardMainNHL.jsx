@@ -44,9 +44,9 @@ const CardMainNHL = ({ ...props }) => {
           <thead>
             <tr>
               { [...Array(4)].map((x, i) => <th key={ i } className="nhl-score-periods">{ i || '' }</th>) }
-              { props.period.length > 3 && props.period.map((inning, i) => {
+              { props.period.length > 3 && props.period.map((period, i) => {
                 if (i > 2) {
-                  return <th key={ i + 10 } className="nhl-score-periods">{ inning.inning }</th>;
+                  return <th key={ i + 10 } className="nhl-score-periods">{ period.period }</th>;
                 }
                 return null;
               })}

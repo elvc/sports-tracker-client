@@ -1,3 +1,3 @@
-# Boilerplate for Express/React apps
+# Front end for Sports Dashboard App
 
-Using webpack, webpack-dev-middleware and babel
+Full readme at https://github.com/JSRossiter/sports-tracker#readme
