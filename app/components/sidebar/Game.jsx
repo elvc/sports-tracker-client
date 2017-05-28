@@ -39,4 +39,4 @@ Game.propTypes = {
   time: PropTypes.string.isRequired
 };
 
-export default connect() (Game);
+export default connect()(Game);
