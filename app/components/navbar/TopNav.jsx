@@ -11,11 +11,11 @@ export default class TopNav extends Component {
       loggedInAs: ''
     }
   }
-  
+
   // check for sessions on page refresh
   componentDidMount(){
     $.ajax({
-      url: 'http://localhost:8080/checkifloggedin',
+      url: '/checkifloggedin',
       dataType: 'json',
       type: 'GET',
       xhrFields: { withCredentials: true },
@@ -32,14 +32,14 @@ export default class TopNav extends Component {
   }
 
   handleLoginSession = (user) => {
-    this.setState({ 
+    this.setState({
       isLoggedIn: true,
       loggedInAs: user
      });
   }
 
   handleLogoutSession = () => {
-    this.setState({ 
+    this.setState({
       isLoggedIn: false,
       loggedInAs: ''
     });
@@ -51,7 +51,7 @@ export default class TopNav extends Component {
     return (
       <nav className="topnav navbar navbar-toggleable-sm navbar-inverse fixed-top bg-inverse">
         <button className="navbar-toggler navbar-toggler-right hidden-md-up" type="button" data-toggle="collapse" data-target="#topnavbar" aria-controls="topnavbar" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
+          <span className="user-icon"><i className="fa fa-user-o" aria-hidden="true"></i></span>
         </button>
 
         <a className="navbar-brand" href="/">Sports Score Board</a>
@@ -70,4 +70,3 @@ export default class TopNav extends Component {
     );
   }
 }
-
