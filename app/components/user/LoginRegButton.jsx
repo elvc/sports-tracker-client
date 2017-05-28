@@ -50,19 +50,20 @@ export default class LoginRegButton extends Component {
   render() {
     const modalStyles = {
       content: {
-        width: '700px',
+        width: '50vw',
         padding: '30px',
         top: '50%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',
+        zIndex: '5000',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)'
       }
     };
     return (
       <ul className="navbar-nav ml-auto">
-        <li className="nav-item">
+        <li className="nav-item text-right pb-2 pt-2">
           <a className="navitem" onClick={ this.regOpenModal }>Registration</a>
           <Modal
             isOpen={ this.state.regModalIsOpen }
@@ -79,7 +80,7 @@ export default class LoginRegButton extends Component {
           </Modal>
         </li>
 
-        <li className="nav-item">
+        <li className="nav-item text-right pb-2 pt-2">
           <a className="navitem" onClick={ this.loginOpenModal }>Login</a>
           <Modal
             isOpen={ this.state.loginModalIsOpen }

@@ -1,3 +1,10 @@
 .modal-header {
   display: inline-block;
 }
+
+.ReactModal__Content.ReactModal__Content--after-open {
+  @media screen and (max-width: 767px) {
+    width: 80vw !important;
+    height: 80vh !important;
+  } 
+}

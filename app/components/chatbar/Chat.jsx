@@ -53,7 +53,6 @@ class Chat extends Component {
     }
   }
 
-
   closeChat = (roomId) => {
     const { leaveRoom, postLeaveRoom } = this.props;
     leaveRoom(roomId);
