@@ -35,7 +35,7 @@ export default class TopNav extends Component {
     this.setState({
       isLoggedIn: true,
       loggedInAs: user
-     });
+    });
   }
 
   handleLogoutSession = () => {
