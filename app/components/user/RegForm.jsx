@@ -25,7 +25,7 @@ export default class RegForm extends Component {
   handleSubmit = (e, message) => {
     e.preventDefault();
 
-    let formData = {
+    const formData = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
@@ -37,14 +37,14 @@ export default class RegForm extends Component {
     }
 
     $.ajax({
-      url: '/register',
+      url: 'http://localhost:8080/register',
       dataType: 'json',
       type: 'POST',
       data: formData,
       xhrFields: { withCredentials: true },
-      success: () => {
+      success: (data) => {
         this.props.close();
-        this.props.handleLoginSession();
+        this.props.handleLoginSession(data.username);
         alert('Registration successful');
       },
       error: (err) => {

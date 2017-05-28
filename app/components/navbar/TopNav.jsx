@@ -20,20 +20,6 @@ export default class TopNav extends Component {
     });
   }
 
-  handleLoginSession = (user) => {
-    this.setState({
-      isLoggedIn: true,
-      loggedInAs: user
-    });
-  }
-
-  handleLogoutSession = () => {
-    this.setState({
-      isLoggedIn: false,
-      loggedInAs: ''
-    });
-  }
-
   render() {
     const { username, login, logout } = this.props;
 

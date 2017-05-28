@@ -8,7 +8,7 @@ export default class LogoutButton extends Component {
 
   handleLogout = () => {
     $.ajax({
-      url: '/logout',
+      url: 'http://localhost:8080/logout',
       type: 'POST',
       xhrFields: { withCredentials: true },
       success: () => {
