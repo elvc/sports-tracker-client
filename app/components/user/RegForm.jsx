@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class RegForm extends Component {
+  static propTypes = {
+    handleLoginSession: PropTypes.func.isRequired,
+    close: PropTypes.func.isRequired
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -36,7 +42,7 @@ export default class RegForm extends Component {
       type: 'POST',
       data: formData,
       xhrFields: { withCredentials: true },
-      success: (data) => {
+      success: () => {
         this.props.close();
         this.props.handleLoginSession();
         alert('Registration successful');
@@ -51,33 +57,59 @@ export default class RegForm extends Component {
     this.setState({
       username: '',
       email: '',
-      password: '',
+      password: ''
     });
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={ this.handleSubmit } >
         <div className="form-group row pr-3 pl-3">
-          <label className="col-form-label-sm">
+          <label
+            htmlFor="formUser"
+            className="col-form-label-sm"
+          >
             User Name:
           </label>
-          <input id="formUser" className="form-control" name='username' type="text"
-            onChange={this.handleKeyChange('username')} />
+          <input
+            id="formUser"
+            className="form-control"
+            name="username"
+            placeholder="username"
+            type="text"
+            onChange={ this.handleKeyChange('username') }
+          />
         </div>
         <div className="form-group row pl-3 pr-3">
-          <label className="col-form-label-sm">
+          <label
+            htmlFor="formEmail"
+            className="col-form-label-sm"
+          >
             Email:
           </label>
-          <input id="formEmail" className="form-control" name='email' type="email" id="email"
-            onChange={this.handleKeyChange('email')} />
+          <input
+            id="formEmail"
+            className="form-control"
+            name="email"
+            placeholder="user@example.com"
+            type="email"
+            onChange={ this.handleKeyChange('email') }
+          />
         </div>
         <div className="form-group row pl-3 pr-3">
-          <label className="col-form-label-sm">
+          <label
+            htmlFor="formPassword"
+            className="col-form-label-sm"
+          >
             Password:
           </label>
-          <input id="formPassword" className="form-control" name='password' type="password" id="password"
-            onChange={this.handleKeyChange('password')} />
+          <input
+            id="formPassword"
+            className="form-control"
+            name="password"
+            type="password"
+            onChange={ this.handleKeyChange('password') }
+          />
         </div>
         <button className="btn btn-primary pull-right" type="submit">Sign up</button>
       </form>

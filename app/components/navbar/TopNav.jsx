@@ -62,7 +62,7 @@ export default class TopNav extends Component {
 
         <div className="collapse navbar-collapse" id="topnavbar">
 
-          { isLoggedIn ? (<LogoutButton handleLogoutSession={ this.handleLogoutSession }  user={this.state.loggedInAs} />) : (<LoginRegButton handleLoginSession={ this.handleLoginSession } />) }
+          { isLoggedIn ? (<LogoutButton handleLogoutSession={ this.handleLogoutSession } user={ this.state.loggedInAs } />) : (<LoginRegButton handleLoginSession={ this.handleLoginSession } />) }
 
         </div>
 

@@ -60,6 +60,7 @@ export default class LoginRegButton extends Component {
         bottom: 'auto',
         zIndex: '5000',
         marginRight: '-50%',
+        transition: 'all 400ms ease-in-out',
         transform: 'translate(-50%, -50%)'
       }
     };
