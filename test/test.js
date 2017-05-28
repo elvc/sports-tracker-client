@@ -193,4 +193,15 @@ describe('cards', () => {
     expectState.cards.splice(1, 2);
     expect(testState).to.eql(expectState);
   });
+  it('swaps cards', () => {
+    const testState = reducers(state, { type: 'REPOSITION_CARD', from: 0, to: 1 });
+    const oldCards = state.cards.slice();
+    const expectState = state;
+    expectState.cards = [oldCards[1], oldCards[0]];
+    expect(testState).to.eql(expectState);
+  });
+  it('returns previous state for invalid input', () => {
+    const testState = reducers(state, { type: 'REPOSITION_CARD', from: 0, to: 2 });
+    expect(testState).to.eql(state);
+  });
 });

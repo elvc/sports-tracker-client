@@ -1,15 +1,7 @@
-/*
- * Base structure
- */
-
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 56px;
 }
-
-/*
- * Typography
- */
 
 h1 {
   margin: 10px 10px 20px 10px;
@@ -17,22 +9,16 @@ h1 {
   border-bottom: 1px solid #eee;
 }
 
-/*
- * Sidebar
- */
-
 .dashboard {
   width: 100vw;
+  transition: margin-right 500ms ease;
+
   &.chat-active {
     margin-right: 25vw;
+    transition: margin-right 500ms ease;
   }
 }
 
-/*
- * Dashboard
- */
-
- /* Placeholders */
 .placeholders {
   padding-bottom: 3rem;
 }

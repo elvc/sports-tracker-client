@@ -31,7 +31,7 @@ export default class RegForm extends Component {
     }
 
     $.ajax({
-      url: 'http://localhost:8080/register',
+      url: '/register',
       dataType: 'json',
       type: 'POST',
       data: formData,

@@ -41,7 +41,13 @@ class Sidebar extends Component {
         <div className="nav-item">
           {
             this.props.leagues.map(league => (
-              <LeagueItem key={ league.name } leagueClick={ this.leagueClick.bind(this, league.name) } league={ league.name } gameData={ league.data } isActive={ this.state.activeLeague === league.name } />
+              <LeagueItem
+                key={ league.name }
+                leagueClick={ this.leagueClick.bind(this, league.name) }
+                league={ league.name }
+                gameData={ league.data }
+                isActive={ this.state.activeLeague === league.name }
+              />
             ))
           }
         </div>

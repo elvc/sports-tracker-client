@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
+import { DragDropContext } from 'react-dnd';
+import MultiBackend from 'react-dnd-multi-backend';
+import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
 import Card from './Card';
 import cardProps from '../../prop_validations/card';
 
@@ -11,37 +14,45 @@ const masonryOptions = {
   stagger: 30
 };
 
-export default function CardBox(props) {
-    // cards container rendering all cards
-  const { allCards, joinRoom, postJoinRoom, socket = {}, togglePlayByPlay, chatActive } = props;
+@DragDropContext(MultiBackend(HTML5toTouch))
+export default class CardBox extends React.Component {
 
-  const closeCard = (gameId) => {
-    props.leaveRoom(gameId);
-    props.removeCard(gameId);
+  closeCard = (gameId) => {
+    this.props.leaveRoom(gameId);
+    this.props.removeCard(gameId);
   };
 
-  return (
-    <main className={ chatActive ? 'dashboard chat-active' : 'dashboard' }>
-      <h1>Dashboard</h1>
-      <Masonry
-        className="game-card-box"
-        elementType={ 'div' }
-        options={ masonryOptions }
-      >
-        { allCards.map(card => (
-          <Card
-            key={ card.gameId }
-            joinRoom={ joinRoom }
-            postJoinRoom={ postJoinRoom }
-            socket={ socket }
-            togglePlayByPlay={ togglePlayByPlay }
-            closeCard={ closeCard }
-            { ...card }
-          />
+  moveCard = (dragIndex, hoverIndex) => {
+    this.props.repositionCard(dragIndex, hoverIndex);
+  };
+
+  render() {
+    const { allCards, joinRoom, postJoinRoom, togglePlayByPlay, chatActive } = this.props;
+
+    return (
+      <main className={ chatActive ? 'dashboard chat-active' : 'dashboard' }>
+        <h1>Dashboard</h1>
+        <Masonry
+          className="game-card-box"
+          elementType={ 'div' }
+          options={ masonryOptions }
+        >
+          { allCards.map((card, i) => (
+            <Card
+              key={ card.gameId }
+              joinRoom={ joinRoom }
+              postJoinRoom={ postJoinRoom }
+              togglePlayByPlay={ togglePlayByPlay }
+              closeCard={ this.closeCard }
+              moveCard={ this.moveCard }
+              index={ i }
+              { ...card }
+            />
         ))}
-      </Masonry>
-    </main>
-  );
+        </Masonry>
+      </main>
+    );
+  }
 }
 
 CardBox.propTypes = {
@@ -54,8 +65,10 @@ CardBox.propTypes = {
     }).isRequired).isRequired
   }).isRequired).isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
+  repositionCard: PropTypes.func.isRequired,
+  leaveRoom: PropTypes.func.isRequired,
+  removeCard: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
   postJoinRoom: PropTypes.func.isRequired,
-  socket: PropTypes.object,
   chatActive: PropTypes.bool.isRequired
 };
