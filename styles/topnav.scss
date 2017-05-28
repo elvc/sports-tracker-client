@@ -1,4 +1,8 @@
 .topnav {
+  .logged-in-as {
+    color: #fff;
+    font-style: italic;
+  }
   .navbar-brand {
     @media screen and (max-width: 991px) {
       display: flex;
@@ -12,7 +16,6 @@
       color: #ff0000;
     }
   }
-
   .navbar-toggler-left {
     @media screen and (max-width: 767px) {
       position: fixed;

@@ -7,7 +7,8 @@ export default class TopNav extends Component {
     super(props);
 
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: false,
+      loggedInAs: ''
     }
   }
   
@@ -19,7 +20,10 @@ export default class TopNav extends Component {
       type: 'GET',
       xhrFields: { withCredentials: true },
       success: (result) => {
-        this.setState({isLoggedIn: result.isLoggedIn});
+        this.setState({
+          isLoggedIn: result.isLoggedIn,
+          loggedInAs: result.username
+        });
       },
       error: (err) => {
         console.error(err);
@@ -27,19 +31,18 @@ export default class TopNav extends Component {
     });
   }
 
-  // reset state
-  resetState = () => {
-    this.setState({
-      isLoggedIn: false
-    });
-  }
-
-  handleLoginSession = () => {
-    this.setState({ isLoggedIn: true });
+  handleLoginSession = (user) => {
+    this.setState({ 
+      isLoggedIn: true,
+      loggedInAs: user
+     });
   }
 
   handleLogoutSession = () => {
-    this.setState({ isLoggedIn: false });
+    this.setState({ 
+      isLoggedIn: false,
+      loggedInAs: ''
+    });
   }
 
   render() {
@@ -59,7 +62,7 @@ export default class TopNav extends Component {
 
         <div className="collapse navbar-collapse" id="topnavbar">
 
-          { isLoggedIn ? (<LogoutButton handleLogoutSession={ this.handleLogoutSession }/>) : (<LoginRegButton handleLoginSession={ this.handleLoginSession } />) }
+          { isLoggedIn ? (<LogoutButton handleLogoutSession={ this.handleLogoutSession }  user={this.state.loggedInAs} />) : (<LoginRegButton handleLoginSession={ this.handleLoginSession } />) }
 
         </div>
 

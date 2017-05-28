@@ -36,7 +36,7 @@ export default class LoginForm extends Component {
       xhrFields: { withCredentials: true },
       success: (result) => {
         this.props.close();
-        this.props.handleLoginSession();
+        this.props.handleLoginSession(result.username);
         alert('Logged in');
       },
       error: (err) => {
