@@ -16,16 +16,16 @@ class LeagueItem extends Component {
 
   render() {
     const { leagueClick, league, gameData, isActive } = this.props;
-    const activeLeagueClass = `nav-link ${isActive ? 'active' : ''}`;
+    const activeLeagueClass = `d-flex justify-content-center pl-0 nav-link ${isActive ? 'active' : ''}`;
 
     return (
       <ul className="nav nav-pills flex-column">
         <li className="nav-item" data-toggle="collapse" data-target={ `#${league}` }>
-          <div onClick={ this.props.leagueClick } className={ activeLeagueClass }><img className="league-icon mr-3 ml-3" src={ `/img/${league}.png` } alt={ league } /> { league.toUpperCase() } </div>
+          <div onClick={ this.props.leagueClick } className={ activeLeagueClass }><img className="league-icon mr-2" src={ `/img/${league}.png` } alt={ league } /> { league.toUpperCase() } </div>
         </li>
-        <ul className="sub-menu collapse" id={ league }>
+        <ul className="sub-menu collapse pl-0" id={ league }>
           { gameData.map(game => <Game key={ game.id } league={ league } { ...game } />) }
-          { gameData.length == 0 && <li>Sorry, no games today</li> }
+          { gameData.length == 0 && <li className="d-flex justify-content-center pl-0">Sorry, no games today</li> }
         </ul>
       </ul>
     );

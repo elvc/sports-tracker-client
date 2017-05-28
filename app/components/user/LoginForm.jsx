@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class LoginForm extends Component {
+  static propTypes = {
+    close: PropTypes.func.isRequired,
+    handleLoginSession: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -15,10 +21,10 @@ export default class LoginForm extends Component {
     }
   }
 
-  handleSubmit = (e, message) => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
-    let formData = {
+    const formData = {
       username: this.state.username,
       password: this.state.password,
     }
@@ -29,7 +35,7 @@ export default class LoginForm extends Component {
     }
 
     $.ajax({
-      url: 'http://localhost:8080/login',
+      url: '/login',
       dataType: 'json',
       type: 'POST',
       data: formData,
@@ -48,26 +54,42 @@ export default class LoginForm extends Component {
     // reset state after form submission
     this.setState({
       username: '',
-      password: '',
+      password: ''
     });
   };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={ this.handleSubmit }>
         <div className="form-group row pr-3 pl-3">
-          <label className="col-form-label-sm">
+          <label
+            htmlFor="formUser"
+            className="col-form-label-sm"
+          >
             User Name:
           </label>
-          <input id="formUser" className="form-control" name='username' type="text"
-            onChange={ this.handleKeyChange('username') } />
+          <input
+            id="formUser"
+            className="form-control"
+            name="username"
+            type="text"
+            onChange={ this.handleKeyChange('username') }
+          />
         </div>
         <div className="form-group row pl-3 pr-3">
-          <label className="col-form-label-sm">
+          <label
+            htmlFor="formPassword"
+            className="col-form-label-sm"
+          >
             Password:
           </label>
-          <input id="formPassword" className="form-control" name='password' type="password" id="password"
-            onChange={ this.handleKeyChange('password') } />
+          <input
+            id="formPassword"
+            className="form-control"
+            name="password"
+            type="password"
+            onChange={ this.handleKeyChange('password') }
+          />
         </div>
         <button className="btn btn-primary pull-right" type="submit">Login</button>
       </form>
