@@ -119,6 +119,15 @@ $table-border: 1px solid darkgrey;
     list-style: none;
     padding: 0px;
     margin-bottom: 0;
+
+    .innings-play-mlb, .period-play-nhl {
+      font-style: italic;
+      font-weight: 600;
+    }
+    .scored-play-mlb, .goal-play-nhl {
+      font-weight: 700;
+    }
+
   }
 }
 

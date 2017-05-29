@@ -3,10 +3,6 @@ export const receiveMessage = message => ({
   message
 });
 
-export const sendMessage = () => ({
-  type: 'SEND_MESSAGE'
-});
-
 export const inputChange = (input, roomId) => ({
   type: 'INPUT_CHANGE',
   input,
@@ -15,7 +11,9 @@ export const inputChange = (input, roomId) => ({
 
 export const joinRoom = room => ({
   type: 'JOIN_ROOM',
-  room
+  payload: {
+    room
+  }
 });
 
 export const changeRoom = roomId => ({
@@ -29,25 +27,13 @@ export const updateUserCount = ({ room, userCount }) => ({
   userCount
 });
 
-export const leaveRoom = roomId => ({
-  type: 'LEAVE_ROOM',
-  roomId
-});
-
 export const postMessage = payload => ({
   type: 'POST_MESSAGE',
   payload
 });
 
-export const postLeaveRoom = roomId => ({
-  type: 'POST_LEAVE_ROOM',
-  payload: {
-    roomId
-  }
-});
-
-export const postJoinRoom = roomId => ({
-  type: 'POST_JOIN_ROOM',
+export const leaveRoom = roomId => ({
+  type: 'LEAVE_ROOM',
   payload: {
     roomId
   }

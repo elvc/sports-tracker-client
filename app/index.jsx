@@ -120,7 +120,7 @@ const initialState = {
         { id: 8, content: 'Batter grounded out', sport: 'MLB' },
         { id: 9, content: 'Batter singled', sport: 'MLB' },
         { id: 10, content: 'Batter singled', sport: 'MLB' },
-        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored' },
+        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored-play-mlb' },
         { id: 12, content: 'Batter singled', sport: 'MLB' },
         { id: 13, content: 'Batter singled', sport: 'MLB' },
         { id: 14, content: 'Batter singled', sport: 'MLB' },
@@ -160,122 +160,12 @@ const initialState = {
       displayPlayByPlay: false,
       gameStarted: false,
       gameOver: false,
-      gameStart: '4:00pm 05/28/2017',
+      startTime: '4:00PM',
+      date: '2017-05-30',
       plays: []
-    },
-    {
-      gameId: 44,
-      league: 'NBA',
-      homeTeam: 'LAL',
-      awayTeam: 'SAC',
-      homeScore: 35,
-      awayScore: 25,
-      quarter: '2',
-      timeRemaining: 36,
-      scoreLoading: false,
-      displayPlayByPlay: false,
-      plays: [],
-      gameOver: true,
-      gameStarted: true
-    },
-    {
-      gameId: 34,
-      league: 'MLB',
-      homeTeam: 'PIT',
-      awayTeam: 'TOR',
-      homeScore: 5,
-      awayScore: 6,
-      displayPlayByPlay: false,
-      scoreLoading: false,
-      currentInning: '4',
-      currentInningHalf: 'top',
-      innings: [
-        {
-          inning: 1,
-          awayScore: 2,
-          homeScore: 0
-        },
-        {
-          inning: 2,
-          awayScore: 1,
-          homeScore: 0
-        },
-        {
-          inning: 3,
-          awayScore: 2,
-          homeScore: 1
-        }
-      ],
-      plays: [
-        { id: 1, content: 'Batter singled', sport: 'MLB' },
-        { id: 2, content: 'Batter singled', sport: 'MLB' },
-        { id: 3, content: 'Batter singled', sport: 'MLB' },
-        { id: 4, content: 'Batter doubled', sport: 'MLB' },
-        { id: 5, content: 'Batter singled', sport: 'MLB' },
-        { id: 6, content: 'Batter singled', sport: 'MLB' },
-        { id: 7, content: 'Batter singled', sport: 'MLB' },
-        { id: 8, content: 'Batter grounded out', sport: 'MLB' },
-        { id: 9, content: 'Batter singled', sport: 'MLB' },
-        { id: 10, content: 'Batter singled', sport: 'MLB' },
-        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored' },
-        { id: 12, content: 'Batter singled', sport: 'MLB' },
-        { id: 13, content: 'Batter singled', sport: 'MLB' },
-        { id: 14, content: 'Batter singled', sport: 'MLB' },
-        { id: 15, content: 'Batter singled', sport: 'MLB' },
-        { id: 16, content: 'Batter singled', sport: 'MLB' }
-      ],
-      gameStarted: true,
-      gameCompleted: false
-    },
-    {
-      gameId: 24,
-      league: 'NBA',
-      homeTeam: 'LAL',
-      awayTeam: 'SAC',
-      homeScore: 35,
-      awayScore: 25,
-      quarter: '2',
-      timeRemaining: 36,
-      scoreLoading: false,
-      displayPlayByPlay: false,
-      plays: [],
-      gameOver: true,
-      gameStarted: true
-    },
-    {
-      gameId: 14,
-      league: 'NBA',
-      homeTeam: 'LAL',
-      awayTeam: 'SAC',
-      homeScore: 35,
-      awayScore: 25,
-      quarter: '2',
-      timeRemaining: 36,
-      scoreLoading: false,
-      displayPlayByPlay: false,
-      plays: [],
-      gameOver: true,
-      gameStarted: true
-    },
-    {
-      gameId: 5,
-      league: 'NBA',
-      homeTeam: 'MIA',
-      awayTeam: 'GSW',
-      homeScore: 3,
-      awayScore: 4,
-      quarter: '2',
-      timeRemaining: 100,
-      scoreLoading: false,
-      displayPlayByPlay: false,
-      plays: [],
-      gameOver: true,
-      gameStarted: true
     }
   ],
-  user: {
-    name: 'George'
-  },
+  user: { },
   sidebar: {
     gamesNHL: [],
     gamesNFL: [],
@@ -284,8 +174,8 @@ const initialState = {
     receivedAt: Date.now()
   }
 };
-const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
 
+const SOCKET_HOST = location.origin.replace(/^http/, 'ws').replace('8081', '8080');
 const socket = io(SOCKET_HOST);
 const socketIoMiddleware = createSocketIoMiddleware(socket, 'socket/');
 

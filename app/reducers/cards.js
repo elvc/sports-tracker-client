@@ -8,7 +8,7 @@ function cards(state = defaultState, action) {
       if (state.find(card => card.gameId === action.game.gameId)) {
         return [...state];
       }
-      return [...state, action.game];
+      return [action.game, ...state];
     case 'TOGGLE_PLAY_BY_PLAY': {
       return state.map((card) => {
         if (card.gameId === action.gameId) {
@@ -22,6 +22,15 @@ function cards(state = defaultState, action) {
     }
     case 'REMOVE_CARD': {
       return state.filter(card => card.gameId !== action.gameId);
+    }
+    case 'UPDATE_CARDS': {
+      return state.map((card) => {
+        const found = action.some.find((game => game.gameId === card.gameId));
+        if (found) {
+          return found;
+        }
+        return card;
+      });
     }
     case 'REPOSITION_CARD': {
       const { from, to } = action;

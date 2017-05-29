@@ -5,19 +5,19 @@ const jumpBallPlay = require('./nba_helper/jumpBallPlay');
 const reboundPlay = require('./nba_helper/reboundPlay');
 const substitutionPlay = require('./nba_helper/substitutionPlay');
 const turnoverPlay = require('./nba_helper/turnoverPlay');
-const violationPlay = require('./nba_helper/violationPlay')
+const violationPlay = require('./nba_helper/violationPlay');
 
 function createPlayString(data) {
   const game = data.gameplaybyplay.game;
   const playList = data.gameplaybyplay.plays.play.map((play, id) => {
     const eachPlay = {
-      id: id,
+      id,
       time: play.time,
       quarter: play.quarter,
       sport: 'nba'
     };
-    for(const prop in play) {
-      switch(prop){
+    for (const prop in play) {
+      switch (prop) {
         case 'jumpBall':
           const jump = jumpBallPlay(play[prop]);
           eachPlay.team = play[prop].wonBy === 'HOME' ? game.homeTeam.Abbreviation : game.awayTeam.Abbreviation;
@@ -44,14 +44,14 @@ function createPlayString(data) {
           eachPlay.content = rebound.play;
           break;
         case 'substitution':
-          if (!play[prop].incomingPlayer){
+          if (!play[prop].incomingPlayer) {
             return;
-          } else {
-            const sub = substitutionPlay(play[prop]);
-            eachPlay.team = sub.team;
-            eachPlay.content = sub.play;
-            break;
           }
+          const sub = substitutionPlay(play[prop]);
+          eachPlay.team = sub.team;
+          eachPlay.content = sub.play;
+          break;
+
         case 'turnover':
           const turnover = turnoverPlay(play[prop]);
           eachPlay.team = turnover.team;
@@ -64,12 +64,12 @@ function createPlayString(data) {
           break;
       }
     }
-    if(!eachPlay.content){
+    if (!eachPlay.content) {
       return;
-    };
+    }
     return eachPlay;
   });
-  return playList.filter((play) => play);
+  return playList.filter(play => play);
 }
 
 export default createPlayString;

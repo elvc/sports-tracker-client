@@ -5,20 +5,20 @@ const defaultState = {
 
 function chat(state = defaultState, action) {
   switch (action.type) {
-    case 'JOIN_ROOM': {
-      if (state.rooms.find(room => room.id === action.room.id)) {
+    case 'socket/JOIN_ROOM': {
+      if (state.rooms.find(room => room.id === action.payload.room.id)) {
         return {
           ...state,
-          active: action.room.id
+          active: action.payload.room.id
         };
       }
       return {
         ...state,
         rooms: [
           ...state.rooms,
-          action.room
+          action.payload.room
         ],
-        active: action.room.id
+        active: action.payload.room.id
       };
     }
     case 'RECEIVE_MESSAGE': {
@@ -37,7 +37,7 @@ function chat(state = defaultState, action) {
       };
       return newState;
     }
-    case 'SEND_MESSAGE': {
+    case 'socket/POST_MESSAGE': {
       const roomToUpdate = state.rooms.find(room => room.id === state.active);
       const otherRooms = state.rooms.filter(room => room !== roomToUpdate);
       roomToUpdate.input = '';
@@ -77,7 +77,9 @@ function chat(state = defaultState, action) {
     case 'UPDATE_USER_COUNT': {
       const roomToUpdate = state.rooms.find(room => room.id === action.room);
       const otherRooms = state.rooms.filter(room => room !== roomToUpdate);
+      if (roomToUpdate === undefined) return state;
       roomToUpdate.onlineUsers = action.userCount;
+
       return {
         ...state,
         rooms: [
@@ -86,10 +88,10 @@ function chat(state = defaultState, action) {
         ]
       };
     }
-    case 'LEAVE_ROOM': {
-      const otherRooms = state.rooms.filter(room => room.id !== action.roomId);
+    case 'socket/LEAVE_ROOM': {
+      const otherRooms = state.rooms.filter(room => room.id !== action.payload.roomId);
       let activeRoom = 0;
-      if (action.roomId === state.active) {
+      if (action.payload.roomId === state.active) {
         activeRoom = otherRooms.length ? otherRooms[0].id : 0;
       } else {
         activeRoom = state.active;
@@ -99,12 +101,6 @@ function chat(state = defaultState, action) {
         ...state,
         rooms: otherRooms,
         active: activeRoom
-      };
-    }
-    case 'GET_SOCKET': {
-      return {
-        ...state,
-        socket: action.socket
       };
     }
     default:

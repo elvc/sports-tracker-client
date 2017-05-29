@@ -78,7 +78,6 @@ export default class Card extends React.Component {
         <CardFooter
           name={ name }
           joinRoom={ this.props.joinRoom }
-          postJoinRoom={ this.props.postJoinRoom }
           gameId={ this.props.gameId }
           togglePlayByPlay={ this.props.togglePlayByPlay }
           gameStarted={ this.props.gameStarted }
