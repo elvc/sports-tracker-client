@@ -24,9 +24,9 @@ const Game = (props) => {
   };
 
   return (
-    <div>
+    <div className="game-container">
       <a onClick={ () => add(props) } role="button">
-        <li>
+        <li className="d-flex justify-content-center game pt-2 pb-2">
           {props.awayTeam.Abbreviation} @ {props.homeTeam.Abbreviation} ({props.time})
         </li>
       </a>

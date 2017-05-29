@@ -1,51 +1,63 @@
 nav.sidebar {
-  width: 250px;
-  .nav-item {
-    cursor: pointer;
-  }
-  img.league-icon {
-    height: 30px;
-  }
-}
-
-.sidebar {
+  width: 220px;
   position: fixed;
   top: 56px;
   bottom: 0;
   left: 0;
-  padding: 20px;
+  padding: 20px 0;
   z-index: 2000;
   overflow-x: hidden;
   overflow-y: auto;
   /* Scrollable contents if viewport is shorter than content. */
   border-right: 1px solid #eee;
-}
 
+  .nav-item {
+    cursor: pointer;
+  }
 
-/* Sidebar navigation */
+  img.league-icon {
+    height: 30px;
+  }
 
-.sidebar {
-  padding-left: 0;
-  padding-right: 0;
-}
+  .nav {
+    margin-bottom: 20px;
+  }
 
-.sidebar .nav {
-  margin-bottom: 20px;
-}
+  .nav-item {
+    width: 100%;
+  }
 
-.sidebar .nav-item {
-  width: 100%;
-}
+  .nav-item+.nav-item {
+    margin-left: 0;
+  }
 
-.sidebar .nav-item+.nav-item {
-  margin-left: 0;
-}
+  .nav-link {
+    border-radius: 0;
+    @media screen and (max-width: 767px) {
+      display: flex;
+      justify-content: center;
+    }
+  }
 
-.sidebar .nav-link {
-  border-radius: 0;
-  @media screen and (max-width: 767px) {
-    display:flex;
-    justify-content: center;
+  .league-heading {
+    .active {
+      outline: none;
+    }
+  }
+
+  .game-container {
+    &:hover {
+      font-weight: bold;
+      transform: scale(1.2);
+    }
+
+    .game {
+      font-size: 0.8em;
+    }
+  }
+  .league-game-heading{
+    background-color: $league-game-heading-color;
+    padding: 21px;
   }
 }
 
@@ -56,6 +68,9 @@ nav.sidebar {
   @media screen and (max-width: 767px) {
     width: 100vw;
     max-width: 100%;
-    min-height: 100vh;
+
+    .game-container {
+      overflow: scroll;
+    }
   }
 }

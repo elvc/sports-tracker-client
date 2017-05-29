@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Game from './Game';
 
 const LeagueItem = ({ leagueClick, league, gameData, isActive }) => {
-  const activeLeagueClass = `d-flex justify-content-center pl-0 nav-link ${isActive ? 'active' : ''}`;
+  const activeLeagueClass = `d-flex justify-content-center league-heading pl-0 pt-3 pb-3 nav-link ${isActive ? 'active' : ''}`;
 
   return (
-    <ul className="nav nav-pills flex-column">
+    <ul className="nav nav-pills mb-0 flex-column">
       <li className="nav-item" data-toggle="collapse" data-target={ `#${league}` }>
         <div
           onClick={ leagueClick }
@@ -18,9 +18,9 @@ const LeagueItem = ({ leagueClick, league, gameData, isActive }) => {
           { league.toUpperCase() }
         </div>
       </li>
-      <ul className="sub-menu collapse pl-0" id={ league }>
+      <ul className="sub-menu collapse pl-0 league-heading" id={ league }>
         { gameData.map(game => <Game key={ game.gameId } league={ league } { ...game } />) }
-        { gameData.length === 0 && <li className="d-flex justify-content-center pl-0">Sorry, no games today</li> }
+        { gameData.length === 0 && <li className="d-flex justify-content-center game pt-2 pb-2 pl-0">Sorry, no games today</li> }
       </ul>
     </ul>
   );

@@ -33,7 +33,7 @@ const CardMainNHL = ({ ...props }) => {
         </div>
       </div>
 
-      <div className="nhl-time">
+      <div className="nhl-time pb-2">
         { timeString }
       </div>
 
