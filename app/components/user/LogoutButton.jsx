@@ -7,16 +7,33 @@ export default class LogoutButton extends Component {
   };
 
   handleLogout = () => {
+    const HOST = location.origin.replace('8081', '8080');
+
+    const logoutSuccess = {
+      title: 'Logout Success',
+      status: 'success',
+      dismissible: true,
+      dismissAfter: 2000
+    }
+
+    const logoutError = {
+      title: 'Logout Error',
+      message: 'Please try again',
+      status: 'error',
+      dismissible: true,
+      dismissAfter: 2000
+    }
+
     $.ajax({
-      url: '/logout',
+      url: `${HOST}/logout`,
       type: 'POST',
       xhrFields: { withCredentials: true },
       success: () => {
         this.props.handleLogoutSession();
-        alert('Logout successful');
+        this.props.notify(logoutSuccess);
       },
-      error: (err) => {
-        console.error('Error', err);
+      error: () => {
+        this.props.notify(logoutError);
       }
     });
   }
@@ -24,7 +41,7 @@ export default class LogoutButton extends Component {
   render() {
     return (
         <ul className="navbar-nav ml-auto text-right pb-2 pt-2">
-          <span className="logged-in-as">Logged in as: { this.props.user }</span>
+          <span className="logged-in-as mr-3">Logged in as: { this.props.user }</span>
           <li onClick={ this.handleLogout } className="nav-item">
             <a className="navitem">Logout</a>
           </li>

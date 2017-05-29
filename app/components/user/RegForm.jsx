@@ -22,13 +22,30 @@ export default class RegForm extends Component {
     }
   }
 
-  handleSubmit = (e, message) => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
-    let formData = {
+    const formData = {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password,
+    }
+
+    const HOST = location.origin.replace('8081', '8080');
+
+    const regSuccess = {
+      title: 'Welcome',
+      status: 'success',
+      dismissible: true,
+      dismissAfter: 2000
+    }
+
+    const regError = {
+      title: 'Problem with Registration',
+      message: 'Please try again',
+      status: 'error',
+      dismissible: true,
+      dismissAfter: 2000
     }
 
     // error checking
@@ -37,19 +54,20 @@ export default class RegForm extends Component {
     }
 
     $.ajax({
-      url: '/register',
+      url: `${HOST}/register`,
       dataType: 'json',
       type: 'POST',
       data: formData,
       xhrFields: { withCredentials: true },
-      success: () => {
+      success: (data) => {
         this.props.close();
-        this.props.handleLoginSession();
-        alert('Registration successful');
+        this.props.handleLoginSession(data.username);
+        regSuccess.message = `Logged in as ${data.username}`;
+        this.props.notify(regSuccess);
       },
-      error: (err) => {
-        console.error('Error', err);
-        alert('There was some problem with the form. Please resubmit');
+      error: (result) => {
+        regError.message = `${result.message}`;
+        this.props.notify(regError);
       }
     });
 

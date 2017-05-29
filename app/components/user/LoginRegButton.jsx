@@ -79,6 +79,7 @@ export default class LoginRegButton extends Component {
             <RegForm
               close={ this.regCloseModal }
               handleLoginSession={ this.props.handleLoginSession }
+              notify={ this.props.notify }
             />
           </Modal>
         </li>
@@ -96,6 +97,7 @@ export default class LoginRegButton extends Component {
             <LoginForm
               close={ this.loginCloseModal }
               handleLoginSession={ this.props.handleLoginSession }
+              notify={ this.props.notify }
             />
           </Modal>
         </li>

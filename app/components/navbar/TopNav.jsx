@@ -3,50 +3,24 @@ import LoginRegButton from '../user/LoginRegButton';
 import LogoutButton from '../user/LogoutButton';
 
 export default class TopNav extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isLoggedIn: false,
-      loggedInAs: ''
-    }
-  }
 
   // check for sessions on page refresh
-  componentDidMount(){
+  componentDidMount() {
+    const HOST = location.origin.replace('8081', '8080');
+
     $.ajax({
-      url: '/checkifloggedin',
+      url: `${HOST}/checkifloggedin`,
       dataType: 'json',
       type: 'GET',
       xhrFields: { withCredentials: true },
       success: (result) => {
-        this.setState({
-          isLoggedIn: result.isLoggedIn,
-          loggedInAs: result.username
-        });
-      },
-      error: (err) => {
-        console.error(err);
+        this.login(result.username);
       }
     });
   }
 
-  handleLoginSession = (user) => {
-    this.setState({
-      isLoggedIn: true,
-      loggedInAs: user
-    });
-  }
-
-  handleLogoutSession = () => {
-    this.setState({
-      isLoggedIn: false,
-      loggedInAs: ''
-    });
-  }
-
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
+    const { username, login, logout, notify } = this.props;
 
     return (
       <nav className="topnav navbar navbar-toggleable-sm navbar-inverse fixed-top bg-inverse">
@@ -62,7 +36,7 @@ export default class TopNav extends Component {
 
         <div className="collapse navbar-collapse" id="topnavbar">
 
-          { isLoggedIn ? (<LogoutButton handleLogoutSession={ this.handleLogoutSession } user={ this.state.loggedInAs } />) : (<LoginRegButton handleLoginSession={ this.handleLoginSession } />) }
+          { username ? (<LogoutButton notify={ notify } handleLogoutSession={ logout } user={ username } />) : (<LoginRegButton handleLoginSession={ login } notify={ notify } />) }
 
         </div>
 

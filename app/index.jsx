@@ -273,9 +273,7 @@ const initialState = {
       gameStarted: true
     }
   ],
-  user: {
-    name: 'George'
-  },
+  user: { },
   sidebar: {
     gamesNHL: [],
     gamesNFL: [],

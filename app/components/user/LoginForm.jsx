@@ -28,6 +28,22 @@ export default class LoginForm extends Component {
       username: this.state.username,
       password: this.state.password,
     }
+    const HOST = location.origin.replace('8081', '8080');
+
+    const loginSuccess = {
+      title: 'Welcome',
+      status: 'success',
+      dismissible: true,
+      dismissAfter: 2000
+    }
+
+    const loginError = {
+      title: 'Problem with Login',
+      message: 'Please try again',
+      status: 'error',
+      dismissible: true,
+      dismissAfter: 2000
+    }
 
     // error checking
     if (formData.username.length < 1 || formData.password.length < 1) {
@@ -35,7 +51,7 @@ export default class LoginForm extends Component {
     }
 
     $.ajax({
-      url: '/login',
+      url: `${HOST}/login`,
       dataType: 'json',
       type: 'POST',
       data: formData,
@@ -43,11 +59,13 @@ export default class LoginForm extends Component {
       success: (result) => {
         this.props.close();
         this.props.handleLoginSession(result.username);
-        alert('Logged in');
+        loginSuccess.message = `Logged in as ${result.username}`;
+        this.props.notify(loginSuccess);
       },
       error: (err) => {
-        console.error(err);
-        alert('There was some problem. Please resubmit');
+        this.props.close();
+        loginError.message = `${err.responseJSON.message}`;
+        this.props.notify(loginError);
       }
     });
 
