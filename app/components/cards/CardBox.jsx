@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
 import { DragDropContext } from 'react-dnd';
-import MultiBackend from 'react-dnd-multi-backend';
+import MultiBackend, { Preview } from 'react-dnd-multi-backend';
 import HTML5toTouch from 'react-dnd-multi-backend/lib/HTML5toTouch';
+import dndBackend from '../../lib/dndBackend';
 import Card from './Card';
 import cardProps from '../../prop_validations/card';
 
@@ -14,7 +15,7 @@ const masonryOptions = {
   stagger: 30
 };
 
-@DragDropContext(MultiBackend(HTML5toTouch))
+@DragDropContext(MultiBackend(dndBackend))
 export default class CardBox extends React.Component {
 
   closeCard = (gameId) => {
@@ -25,6 +26,11 @@ export default class CardBox extends React.Component {
   moveCard = (dragIndex, hoverIndex) => {
     this.props.repositionCard(dragIndex, hoverIndex);
   };
+
+  generatePreview = (type, item, style) => {
+    Object.assign(style, { backgroundColor: item.color, width: '350px', height: '250px' });
+    return <div style={ { backgroundColor: 'black', opacity: 1 } } />;
+  }
 
   render() {
     const { allCards, joinRoom, togglePlayByPlay, chatActive } = this.props;
@@ -49,6 +55,7 @@ export default class CardBox extends React.Component {
             />
         ))}
         </Masonry>
+        <Preview generator={ this.generatePreview } />
       </main>
     );
   }

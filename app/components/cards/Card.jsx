@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
 
 import CardMainNBA from './CardMainNBA';
@@ -19,71 +18,78 @@ const cardSource = {
   }
 };
 const cardTarget = {
-  drop(props, monitor, component) {
+  drop(props, monitor) {
     const dragIndex = monitor.getItem().index;
     const hoverIndex = props.index;
-    // Don't replace items with themselves
+
     if (dragIndex === hoverIndex) {
       return;
     }
 
-    // const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-    // const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    // const clientOffset = monitor.getClientOffset();
-    // const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-
-    // if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-    //   return;
-    // }
-    // if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-    //   return;
-    // }
-
     props.moveCard(dragIndex, hoverIndex);
-    // monitor.getItem().index = hoverIndex;
   }
 };
 
-@DropTarget('card', cardTarget, connect => ({
-  connectDropTarget: connect.dropTarget()
+@DropTarget('card', cardTarget, (connect, monitor) => ({
+  connectDropTarget: connect.dropTarget(),
+  isOver: monitor.isOver()
 }))
 @DragSource('card', cardSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
+  isDragging: monitor.isDragging(),
+  connectDragPreview: connect.dragPreview()
 }))
 export default class Card extends React.Component {
 
   render() {
-    const { isDragging, connectDragSource, connectDropTarget } = this.props;
+    const {
+      isDragging,
+      connectDragSource,
+      connectDropTarget,
+      connectDragPreview,
+      isOver,
+      displayPlayByPlay,
+      league,
+      plays,
+      joinRoom,
+      gameId,
+      togglePlayByPlay,
+      gameStarted
+    } = this.props;
     const name = `${this.props.awayTeam}/${this.props.homeTeam}`;
-    const opacity = isDragging ? 0.5 : 1;
+    const opacity = isDragging || isOver ? 0.5 : 1;
+    const previewOptions = {
+      captureDraggingState: true,
+      anchorX: 0,
+      anchorY: 0
+    };
 
-    return connectDragSource(connectDropTarget(
+    return connectDragSource(connectDropTarget(connectDragPreview(
       <div className="game-card" style={ { opacity } }>
-        { this.props.league === 'NBA' && <CardMainNBA
+        { league === 'NBA' && <CardMainNBA
           { ...this.props }
         />
     }
-        { this.props.league === 'MLB' && <CardMainMLB
+        { league === 'MLB' && <CardMainMLB
           { ...this.props }
         />
     }
-        { this.props.league === 'NHL' && <CardMainNHL
+        { league === 'NHL' && <CardMainNHL
           { ...this.props }
         />
     }
 
-        <PlayByPlay plays={ this.props.plays } display={ this.props.displayPlayByPlay } />
+        { displayPlayByPlay && <PlayByPlay plays={ plays } /> }
 
         <CardFooter
           name={ name }
-          joinRoom={ this.props.joinRoom }
-          gameId={ this.props.gameId }
-          togglePlayByPlay={ this.props.togglePlayByPlay }
-          gameStarted={ this.props.gameStarted }
+          joinRoom={ joinRoom }
+          gameId={ gameId }
+          togglePlayByPlay={ togglePlayByPlay }
+          gameStarted={ gameStarted }
         />
       </div>
-    ));
+    , previewOptions)));
   }
 }
 
