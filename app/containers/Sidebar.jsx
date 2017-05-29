@@ -19,17 +19,19 @@ class Sidebar extends Component {
   }
 
   componentDidMount() {
+    const HOST = location.origin.replace('8081', '8080');
+
     const { dispatch } = this.props;
-    api.get(`/leagues/nhl`).then(response => {
+    api.get(`${HOST}/leagues/nhl`).then((response) => {
       dispatch(receiveNHL(response.response));
     });
-    api.get(`/leagues/nba`).then(response => {
+    api.get(`${HOST}/leagues/nba`).then((response) => {
       dispatch(receiveNBA(response.response));
     });
-    api.get(`/leagues/nfl`).then(response => {
+    api.get(`${HOST}/leagues/nfl`).then((response) => {
       dispatch(receiveNFL(response.response));
     });
-    api.get(`/leagues/mlb`).then(response => {
+    api.get(`${HOST}/leagues/mlb`).then((response) => {
       dispatch(receiveMLB(response.response));
     });
   }

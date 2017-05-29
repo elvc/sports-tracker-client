@@ -5,22 +5,23 @@ import { receiveCard } from '../../actions/card';
 import api from '../../lib/api';
 
 const Game = (props) => {
+  const HOST = location.origin.replace('8081', '8080');
 
   const add = (props) => {
-    const {dispatch} = props;
+    const { dispatch } = props;
     const game = {
-        gameId: props.gameId,
-        league: props.league,
-        homeTeam: props.homeTeam.Abbreviation,
-        awayTeam: props.awayTeam.Abbreviation,
-        location: props.homeTeam.City,
-        time: props.time,
-        date: props.date
-      };
-    api.post(`/leagues/${props.league}/games/${props.gameId}`, game).then(response => {
+      gameId: props.gameId,
+      league: props.league,
+      homeTeam: props.homeTeam.Abbreviation,
+      awayTeam: props.awayTeam.Abbreviation,
+      location: props.homeTeam.City,
+      time: props.time,
+      date: props.date
+    };
+    api.post(`${HOST}/leagues/${props.league}/games/${props.gameId}`, game).then((response) => {
       dispatch(receiveCard(response.response));
     });
-  }
+  };
 
   return (
     <div>
@@ -42,4 +43,4 @@ Game.propTypes = {
   time: PropTypes.string.isRequired
 };
 
-export default connect() (Game);
+export default connect()(Game);
