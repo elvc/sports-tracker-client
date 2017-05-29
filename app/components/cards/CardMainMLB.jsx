@@ -32,7 +32,7 @@ const CardMainMLB = ({ ...props }) => {
         </div>
       </div>
 
-      <div className="mlb-innings">
+      <div className="mlb-innings pb-2">
         { timeString }
       </div>
 

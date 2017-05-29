@@ -46,9 +46,9 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <nav className="col-sm-3 bg-faded navbar-collapse collapse sidebar" id="collapseLeagueItem">
-        <h5 className="d-flex justify-content-center mb-4">Leagues & Games</h5>
-        <div className="nav-item">
+      <nav className="col-sm-3 bg-faded navbar-collapse collapse sidebar pt-0" id="collapseLeagueItem">
+        <h5 className="d-flex justify-content-center mb-0 league-game-heading">Leagues & Games</h5>
+        <div className="nav-item league-heading">
           {
             this.props.leagues.map(league => (
               <LeagueItem
