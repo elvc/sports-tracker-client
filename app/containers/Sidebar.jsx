@@ -20,16 +20,16 @@ class Sidebar extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    api.get(`http://localhost:8080/leagues/nhl`).then(response => {
+    api.get(`/leagues/nhl`).then(response => {
       dispatch(receiveNHL(response.response));
     });
-    api.get(`http://localhost:8080/leagues/nba`).then(response => {
+    api.get(`/leagues/nba`).then(response => {
       dispatch(receiveNBA(response.response));
     });
-    api.get(`http://localhost:8080/leagues/nfl`).then(response => {
+    api.get(`/leagues/nfl`).then(response => {
       dispatch(receiveNFL(response.response));
     });
-    api.get(`http://localhost:8080/leagues/mlb`).then(response => {
+    api.get(`/leagues/mlb`).then(response => {
       dispatch(receiveMLB(response.response));
     });
   }
