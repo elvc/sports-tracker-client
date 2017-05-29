@@ -5,6 +5,7 @@ describe('chat', () => {
   let state;
   beforeEach(() => {
     state = {
+      notifications: [],
       user: {
         name: 'anonymous'
       },
@@ -113,12 +114,17 @@ describe('chat', () => {
     expectState.chat.rooms[0].onlineUsers = 2;
     expect(testState).to.eql(expectState);
   });
+  it("returns state if trying to update room that doens't exist", () => {
+    const testState = reducers(state, { type: 'UPDATE_USER_COUNT', room: 10, userCount: 2 });
+    expect(testState).to.eql(state);
+  });
 });
 
 describe('cards', () => {
   let state;
   beforeEach(() => {
     state = {
+      notifications: [],
       user: {
         name: 'anonymous'
       },
@@ -192,6 +198,69 @@ describe('cards', () => {
     const expectState = state;
     expectState.cards.splice(1, 2);
     expect(testState).to.eql(expectState);
+  });
+  it("returns state if card doesn't exist", () => {
+    const testState = reducers(state, { type: 'REMOVE_CARD', gameId: 5 });
+    expect(testState).to.eql(state);
+  });
+  it('adds a card', () => {
+    state.cards = [];
+    const testState = reducers(state, {
+      type: 'ADD_CARD',
+      game: {
+        gameId: 6,
+        league: 'NBA',
+        homeTeam: 'SAS',
+        awayTeam: 'GSW',
+        homeScore: 91,
+        awayScore: 120,
+        quarter: '4',
+        timeRemaining: '10:09',
+        displayPlayByPlay: false,
+        scoreLoading: false,
+        gameOver: true,
+        plays: [],
+        gameStarted: true
+      }
+    });
+    const expectState = state;
+    expectState.cards = [{
+      gameId: 6,
+      league: 'NBA',
+      homeTeam: 'SAS',
+      awayTeam: 'GSW',
+      homeScore: 91,
+      awayScore: 120,
+      quarter: '4',
+      timeRemaining: '10:09',
+      displayPlayByPlay: false,
+      scoreLoading: false,
+      gameOver: true,
+      plays: [],
+      gameStarted: true
+    }];
+    expect(testState).to.eql(expectState);
+  });
+  it('returns state if card already exists', () => {
+    const testState = reducers(state, {
+      type: 'ADD_CARD',
+      game: {
+        gameId: 1,
+        league: 'NBA',
+        homeTeam: 'SAS',
+        awayTeam: 'GSW',
+        homeScore: 91,
+        awayScore: 120,
+        quarter: '4',
+        timeRemaining: '10:09',
+        displayPlayByPlay: false,
+        scoreLoading: false,
+        gameOver: true,
+        plays: [],
+        gameStarted: true
+      }
+    });
+    expect(testState).to.eql(state);
   });
   it('swaps cards', () => {
     const testState = reducers(state, { type: 'REPOSITION_CARD', from: 0, to: 1 });

@@ -7,10 +7,10 @@ const CardMainNBA = ({ ...props }) => {
   let timeString;
   if (props.plays.length !== 0 && props.isCompleted) {
     timeString = 'Final';
-  } else if (props.plays.length !==0 && !props.isCompleted) {
+  } else if (props.plays.length !== 0 && !props.isCompleted) {
     timeString = `${ordinalize(props.quarter)} - ${props.timeRemaining}`;
   } else {
-    timeString = props.startTime;
+    timeString = `${props.startTime} - ${props.date.replace('2017-', '').replace('-', '/')}/2017`;
   }
 
   return (

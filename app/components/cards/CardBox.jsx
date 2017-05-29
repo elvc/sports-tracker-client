@@ -27,7 +27,7 @@ export default class CardBox extends React.Component {
   };
 
   render() {
-    const { allCards, joinRoom, postJoinRoom, togglePlayByPlay, chatActive } = this.props;
+    const { allCards, joinRoom, togglePlayByPlay, chatActive } = this.props;
 
     return (
       <main className={ chatActive ? 'dashboard chat-active' : 'dashboard' }>
@@ -41,7 +41,6 @@ export default class CardBox extends React.Component {
             <Card
               key={ card.gameId }
               joinRoom={ joinRoom }
-              postJoinRoom={ postJoinRoom }
               togglePlayByPlay={ togglePlayByPlay }
               closeCard={ this.closeCard }
               moveCard={ this.moveCard }
@@ -69,6 +68,5 @@ CardBox.propTypes = {
   leaveRoom: PropTypes.func.isRequired,
   removeCard: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
-  postJoinRoom: PropTypes.func.isRequired,
   chatActive: PropTypes.bool.isRequired
 };

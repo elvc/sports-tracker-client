@@ -7,10 +7,10 @@ const CardMainMLB = ({ ...props }) => {
   let timeString;
   if (props.innings.length !== 0 && props.isCompleted) {
     timeString = 'Final';
-  } else if (props.innings.length !==0 && !props.isCompleted) {
+  } else if (props.innings.length !== 0 && !props.isCompleted) {
     timeString = `${props.currentInningHalf} of ${ordinalize(props.currentInning)}`;
   } else {
-    timeString = props.startTime;
+    timeString = `${props.startTime} - ${props.date.replace('2017-', '').replace('-', '/')}/2017`;
   }
 
   return (

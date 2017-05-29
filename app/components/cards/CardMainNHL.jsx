@@ -8,10 +8,10 @@ const CardMainNHL = ({ ...props }) => {
   let timeString;
   if (props.plays.length !== 0 && props.isCompleted) {
     timeString = 'Final';
-  } else if (props.plays.length !==0 && !props.isCompleted) {
+  } else if (props.plays.length !== 0 && !props.isCompleted) {
     timeString = `${ordinalize(props.period)} - ${props.timeRemaining}`;
   } else {
-    timeString = props.startTime;
+    timeString = `${props.startTime} - ${props.date.replace('2017-', '').replace('-', '/')}/2017`;
   }
 
   return (
@@ -38,7 +38,7 @@ const CardMainNHL = ({ ...props }) => {
       </div>
 
       {/* eslint-disable react/no-array-index-key */}
-      {/* TODO add support for extra innings, styling should work already */}
+      {/* TODO add support for overtime, styling should work already */}
       { props.gameStarted && <div className="nhl-score">
         <table>
           <thead>
