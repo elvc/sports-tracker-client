@@ -1,10 +1,11 @@
 import React from 'react';
 import NotificationsSystem from 'reapop';
 import theme from 'reapop-theme-wybo';
-import Dashboard from './Dashboard';
-import Navbar from './Navbar';
-import ChatBar from './ChatBar';
-import SideBar from './Sidebar';
+import Dashboard from '../containers/Dashboard';
+import Navbar from '../containers/Navbar';
+import ChatBar from '../containers/ChatBar';
+import SideBar from '../containers/Sidebar';
+import ModalWrapper from '../containers/ModalWrapper';
 
 const App = () => (
   <div>
@@ -17,6 +18,7 @@ const App = () => (
         <ChatBar />
       </div>
     </div>
+    <ModalWrapper />
   </div>
 );
 

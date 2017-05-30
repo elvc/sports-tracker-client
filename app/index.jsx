@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import io from 'socket.io-client';
 import createSocketIoMiddleware from 'redux-socket.io';
 import sportsApp from './reducers/index';
-import App from './containers/App';
+import App from './components/App';
 
 require('../styles/application.scss');
 
@@ -28,6 +28,8 @@ const initialState = {
       timeRemaining: '10:09',
       displayPlayByPlay: true,
       scoreLoading: false,
+      startTime: '4:00PM',
+      date: '2017-05-30',
       gameOver: true,
       plays: [
         { id: 1, content: 'Steph scores a 3', sport: 'NBA', time: '10:11' },
@@ -47,6 +49,8 @@ const initialState = {
       displayPlayByPlay: false,
       scoreLoading: false,
       currentInning: '4',
+      startTime: '4:00PM',
+      date: '2017-05-30',
       currentInningHalf: 'top',
       innings: [
         {
@@ -139,6 +143,8 @@ const initialState = {
       homeScore: 9,
       awayScore: 5,
       period: '3',
+      startTime: '4:00PM',
+      date: '2017-05-30',
       timeRemaining: '1:07',
       periods: [
         {
@@ -161,8 +167,6 @@ const initialState = {
       displayPlayByPlay: false,
       gameStarted: false,
       gameOver: false,
-      startTime: '4:00PM',
-      date: '2017-05-30',
       plays: []
     }
   ],
@@ -173,6 +177,9 @@ const initialState = {
     gamesMLB: [],
     gamesNBA: [],
     receivedAt: Date.now()
+  },
+  modal: {
+    modal: 'NONE'
   }
 };
 

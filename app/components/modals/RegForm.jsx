@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class RegForm extends Component {
   static propTypes = {
-    handleLoginSession: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
     close: PropTypes.func.isRequired,
     notify: PropTypes.func.isRequired
   };
@@ -27,9 +27,9 @@ export default class RegForm extends Component {
     $('#formPassword').val('');
   }
 
-  handleKeyChange = (key) => (event) => {
-      this.setState({ [key]: event.target.value });
-    }
+  handleKeyChange = key => (event) => {
+    this.setState({ [key]: event.target.value });
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -69,7 +69,7 @@ export default class RegForm extends Component {
       }
       response.json().then((data) => {
         this.props.close();
-        this.props.handleLoginSession(data.username);
+        this.props.login(data.username);
         regSuccess.message = `Logged in as ${data.username}`;
         this.props.notify(regSuccess);
       });
@@ -85,56 +85,61 @@ export default class RegForm extends Component {
 
   render() {
     return (
-      <form onSubmit={ this.handleSubmit } >
-        <div className="form-group row pr-3 pl-3">
-          <label
-            htmlFor="formUser"
-            className="col-form-label-sm"
-          >
+      <div>
+        <h3 className="pl-0 d-flex modal-header">
+        Registration: <i className="fa fa-times justify-content-right" onClick={ this.props.close } />
+        </h3>
+        <form onSubmit={ this.handleSubmit } >
+          <div className="form-group row pr-3 pl-3">
+            <label
+              htmlFor="formUser"
+              className="col-form-label-sm"
+            >
             User Name:
           </label>
-          <input
-            id="formUser"
-            className="form-control"
-            name="username"
-            placeholder="Your username"
-            type="text"
-            onChange={ this.handleKeyChange('username') }
-          />
-        </div>
-        <div className="form-group row pl-3 pr-3">
-          <label
-            htmlFor="formEmail"
-            className="col-form-label-sm"
-          >
+            <input
+              id="formUser"
+              className="form-control"
+              name="username"
+              placeholder="Your username"
+              type="text"
+              onChange={ this.handleKeyChange('username') }
+            />
+          </div>
+          <div className="form-group row pl-3 pr-3">
+            <label
+              htmlFor="formEmail"
+              className="col-form-label-sm"
+            >
             Email:
           </label>
-          <input
-            id="formEmail"
-            className="form-control"
-            name="email"
-            placeholder="user@example.com"
-            type="email"
-            onChange={ this.handleKeyChange('email') }
-          />
-        </div>
-        <div className="form-group row pl-3 pr-3">
-          <label
-            htmlFor="formPassword"
-            className="col-form-label-sm"
-          >
+            <input
+              id="formEmail"
+              className="form-control"
+              name="email"
+              placeholder="user@example.com"
+              type="email"
+              onChange={ this.handleKeyChange('email') }
+            />
+          </div>
+          <div className="form-group row pl-3 pr-3">
+            <label
+              htmlFor="formPassword"
+              className="col-form-label-sm"
+            >
             Password:
           </label>
-          <input
-            id="formPassword"
-            className="form-control"
-            name="password"
-            type="password"
-            onChange={ this.handleKeyChange('password') }
-          />
-        </div>
-        <button className="btn btn-primary pull-right" type="submit">Sign up</button>
-      </form>
+            <input
+              id="formPassword"
+              className="form-control"
+              name="password"
+              type="password"
+              onChange={ this.handleKeyChange('password') }
+            />
+          </div>
+          <button className="btn btn-primary pull-right" type="submit">Sign up</button>
+        </form>
+      </div>
     );
   }
 }

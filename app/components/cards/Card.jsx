@@ -80,7 +80,7 @@ export default class Card extends React.Component {
         }
 
         { displayPlayByPlay && <PlayByPlay plays={ plays } /> }
-        
+
         <CardFooter
           name={ name }
           joinRoom={ joinRoom }
@@ -88,6 +88,7 @@ export default class Card extends React.Component {
           togglePlayByPlay={ togglePlayByPlay }
           gameStarted={ gameStarted }
           notify={ this.props.notify }
+          showModal={ this.props.showModal }
           awayTeam={ this.props.awayTeam }
           homeTeam={ this.props.homeTeam }
           date={ this.props.date }
@@ -108,5 +109,6 @@ Card.propTypes = {
   togglePlayByPlay: PropTypes.func.isRequired,
   gameStarted: PropTypes.bool.isRequired,
   joinRoom: PropTypes.func.isRequired,
-  closeCard: PropTypes.func.isRequired
+  closeCard: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired
 };

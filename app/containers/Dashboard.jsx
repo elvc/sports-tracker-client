@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNotification as notify } from 'reapop';
 import CardBox from '../components/cards/CardBox';
-import { joinRoom, leaveRoom } from '../actions/chat';
-import { togglePlayByPlay, removeCard, repositionCard, shareGame } from '../actions/cards';
+import { showModal, joinRoom, leaveRoom, togglePlayByPlay, removeCard, repositionCard, shareGame } from '../actions';
 import { socketAction } from '../middlewares/websocket';
 
 const Dashboard = props => (
@@ -22,6 +21,7 @@ const mapDispatchToProps = {
   removeCard,
   repositionCard,
   notify,
+  showModal,
   joinRoom: socketAction(joinRoom)
 };
 
