@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import fetchCards from '../../lib/fetch_cards';
 
 export default class LoginForm extends Component {
   static propTypes = {
@@ -15,9 +16,9 @@ export default class LoginForm extends Component {
     };
   }
 
-  handleKeyChange = (key) => (event) => {
-      this.setState({ [key]: event.target.value });
-    }
+  handleKeyChange = key => (event) => {
+    this.setState({ [key]: event.target.value });
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -58,6 +59,7 @@ export default class LoginForm extends Component {
         this.props.close();
         this.props.handleLoginSession(result.username);
         loginSuccess.message = `Logged in as ${result.username}`;
+        fetchCards(this.props.receiveCard);
         this.props.notify(loginSuccess);
       },
       error: (err) => {

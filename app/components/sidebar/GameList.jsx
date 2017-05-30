@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LeagueItem from './LeagueItem';
 import api from '../../lib/api';
+import fetchCards from '../../lib/fetch_cards';
 
 class GameList extends Component {
   constructor(props) {
@@ -27,21 +28,14 @@ class GameList extends Component {
       receiveMLB(response.response);
     });
 
-    api.get(`${HOST}/users/get`).then((response) => {
-      if (Object.keys(response.response).length) {
-        response.response.forEach((card) => {
-          api.post(`${HOST}/leagues/${card.league}/games/${card.gameId}`, card).then((response) => {
-            receiveCard(response.response);
-          });
-        });
-      }
-    });
+    fetchCards(receiveCard);
 
     const pathArray = window.location.pathname.split('/');
     const gameId = parseInt(pathArray[1], 10);
     if (pathArray[0] === 'game' && !Number.isNaN(gameId)) {
       this.addCard(pathArray[1]);
     }
+
     $('.sidebar').on(('shown.bs.collapse'), () => {
       $('body').addClass('noScroll');
     });
@@ -50,7 +44,6 @@ class GameList extends Component {
       $('body').removeClass('noScroll');
     });
   }
-
 
   // TODO refactor to only take gameId as argument
   addCard = (gameProps) => {

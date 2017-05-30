@@ -104,6 +104,7 @@ export default class LoginRegButton extends Component {
               close={ this.loginCloseModal }
               handleLoginSession={ this.props.handleLoginSession }
               notify={ this.props.notify }
+              receiveCard={ this.props.receiveCard }
             />
           </Modal>
         </li>
