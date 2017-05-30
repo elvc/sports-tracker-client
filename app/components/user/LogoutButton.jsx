@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 export default class LogoutButton extends Component {
   static propTypes = {
-    handleLogoutSession: PropTypes.func.isRequired
+    handleLogoutSession: PropTypes.func.isRequired,
+    notify: PropTypes.func.isRequired
   };
 
   handleLogout = () => {
@@ -13,7 +14,7 @@ export default class LogoutButton extends Component {
       title: 'Logout Success',
       status: 'success',
       dismissible: true,
-      dismissAfter: 2000
+      dismissAfter: 3000
     }
 
     const logoutError = {
@@ -21,21 +22,29 @@ export default class LogoutButton extends Component {
       message: 'Please try again',
       status: 'error',
       dismissible: true,
-      dismissAfter: 2000
+      dismissAfter: 3000
     }
 
-    $.ajax({
-      url: `${HOST}/logout`,
-      type: 'POST',
-      xhrFields: { withCredentials: true },
-      success: () => {
+    fetch(`${HOST}/logout`, {
+      method: 'post',
+      mode: 'cors',
+      credentials: 'include',
+      headers: new Headers({ 'Content-Type': 'application/json' })
+    })
+    .then((response) => {
+      if (response.status !== 200) {
+        console.error('Looks like there was a problem with logout. Status Code:', response.status);
+        return response.json();
+      }
+      response.json().then(() => {
         this.props.handleLogoutSession();
         this.props.notify(logoutSuccess);
-      },
-      error: () => {
-        this.props.notify(logoutError);
-      }
-    });
+      });
+    })
+    .catch((response) => {
+      logoutError.message = 'Unexpected error with logout. Please try again';
+      this.props.notify(logoutError);
+    })
   }
 
   render() {
