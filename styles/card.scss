@@ -18,9 +18,6 @@ $table-border: 1px solid darkgrey;
 
 .game-card-main {
   padding: 20px 10px 10px 10px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 
   .nba-team-logo, .mlb-team-logo, .nhl-team-logo {
