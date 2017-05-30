@@ -8,7 +8,11 @@ export default class CardFooter extends Component {
     super(props);
     this.state = {
       shareModalIsOpen: false
-    }
+    };
+  }
+
+  onModalOpen = () => {
+    document.querySelector('input').focus();
   }
 
   // reset state
@@ -82,6 +86,7 @@ export default class CardFooter extends Component {
             isOpen={ this.state.shareModalIsOpen }
             onRequestClose={ this.shareCloseModal }
             style={ modalStyles }
+            onAfterOpen={ this.onModalOpen }
             shouldCloseOnOverlayClick={ false }
             contentLabel="Share Modal"
           >
@@ -135,5 +140,6 @@ CardFooter.propTypes = {
   gameId: PropTypes.number.isRequired,
   gameStarted: PropTypes.bool.isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
+  notify: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired
 };
