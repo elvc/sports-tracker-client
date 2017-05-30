@@ -20,7 +20,7 @@ const LeagueItem = ({ leagueClick, league, gameData, isActive }) => {
       </li>
       <ul className="sub-menu collapse pl-0 league-heading" id={ league }>
         { gameData.map(game => <Game key={ game.gameId } league={ league } { ...game } />) }
-        { gameData.length === 0 && <div className="game-container"><li className="d-flex justify-content-center game pt-2 pb-2 pl-0">Sorry, no games today</li></div> }
+        { gameData.length === 0 && <div className="game-container"><li className="d-flex justify-content-center no-game pt-2 pb-2 pl-0">Sorry, no games today</li></div> }
       </ul>
     </ul>
   );

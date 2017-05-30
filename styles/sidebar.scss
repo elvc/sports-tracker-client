@@ -41,19 +41,31 @@ nav.sidebar {
     .active {
       outline: none;
     }
+
+    .nav-item {
+      &:hover {
+        font-weight: bold;
+        transform: scale(1.2);
+      }
+    }
   }
 
   .game-container {
-    &:hover {
-      font-weight: bold;
-      transform: scale(1.2);
-    }
-
     .game {
       font-size: 0.8em;
+
+      &:hover {
+        font-weight: bold;
+        transform: scale(1.2);
+      }
+    }
+
+    .no-game {
+      cursor: default;
     }
   }
-  .league-game-heading{
+
+  .league-game-heading {
     background-color: $league-game-heading-color;
     padding: 21px;
   }
@@ -65,7 +77,6 @@ nav.sidebar {
   }
   @media screen and (max-width: 767px) {
     width: 100vw;
-    max-width: 100%;
     top: 54px;
 
     .game-container {
