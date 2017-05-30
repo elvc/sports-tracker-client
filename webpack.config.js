@@ -1,7 +1,7 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 
-var CSSLoader = [
+const CSSLoader = [
   'css-loader?sourceMap&-minimize',
   'modules',
   'importLoaders=1',
@@ -28,7 +28,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loaders: [ 'style-loader', CSSLoader, 'sass-loader' ]
+        loaders: ['style-loader', CSSLoader, 'sass-loader']
       },
       {
         test: /\.scss$/,
