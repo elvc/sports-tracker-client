@@ -81,5 +81,6 @@ CardBox.propTypes = {
   leaveRoom: PropTypes.func.isRequired,
   removeCard: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
-  chatActive: PropTypes.bool.isRequired
+  chatActive: PropTypes.bool.isRequired,
+  notify: PropTypes.func.isRequired
 };

@@ -37,8 +37,11 @@ module.exports = {
         }, {
           loader: 'css-loader'
         }, {
+          loader: 'postcss-loader'
+        }, {
           loader: 'sass-loader'
-        }]
+        }
+        ]
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
