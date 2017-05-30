@@ -134,10 +134,12 @@
   font-size: 1.7rem;
   margin-left: 10px;
   margin-top: -4px;
+
   &:focus {
     outline: none;
     text-decoration: none;
   }
+
   &:hover {
     text-decoration: none;
     transform: scale(1.2);

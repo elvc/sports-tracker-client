@@ -5,3 +5,7 @@ body {
 a {
   text-decoration: none;
 }
+
+body.noScroll {
+  overflow: hidden;
+}
