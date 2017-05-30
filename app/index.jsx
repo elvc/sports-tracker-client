@@ -13,7 +13,8 @@ require('../styles/application.scss');
 const initialState = {
   chat: {
     active: 0,
-    rooms: []
+    rooms: [],
+    emojiPicker: false
   },
   cards: [
     {

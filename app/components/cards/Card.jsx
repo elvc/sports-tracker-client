@@ -69,24 +69,28 @@ export default class Card extends React.Component {
         { league === 'NBA' && <CardMainNBA
           { ...this.props }
         />
-    }
+        }
         { league === 'MLB' && <CardMainMLB
           { ...this.props }
         />
-    }
+        }
         { league === 'NHL' && <CardMainNHL
           { ...this.props }
         />
-    }
+        }
 
         { displayPlayByPlay && <PlayByPlay plays={ plays } /> }
-
+        
         <CardFooter
           name={ name }
           joinRoom={ joinRoom }
           gameId={ gameId }
           togglePlayByPlay={ togglePlayByPlay }
           gameStarted={ gameStarted }
+          notify={ this.props.notify }
+          awayTeam={ this.props.awayTeam }
+          homeTeam={ this.props.homeTeam }
+          date={ this.props.date }
         />
       </div>
     , previewOptions)));

@@ -9,8 +9,9 @@
   background-color: white;
 
   .user-count {
-    padding: 5px;
+    padding: 5px 10px;
     font-size: 0.85rem;
+    text-align: right;
   }
 
   .exit-room {
@@ -89,7 +90,7 @@
 
   .chat-input-form {
     position: relative;
-    bottom: 15px;
+    bottom: -10px;
     padding: 0 15px;
     height: 30px;
 
@@ -127,4 +128,18 @@
 .chatbar-leave.chatbar-leave-active {
   right: -300px;
   transition: right 300ms ease;
+}
+
+.emoji-btn {
+  font-size: 1.7rem;
+  margin-left: 10px;
+  margin-top: -4px;
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+  &:hover {
+    text-decoration: none;
+    transform: scale(1.2);
+  }
 }

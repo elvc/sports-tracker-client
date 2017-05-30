@@ -13,3 +13,8 @@ export const repositionCard = (from, to) => ({
   from,
   to
 });
+
+export const shareGame = gameId => ({
+  type: 'SHARE_GAME',
+  gameId
+});

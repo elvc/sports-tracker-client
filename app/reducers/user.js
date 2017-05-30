@@ -8,7 +8,7 @@ function user(state = defaultState, action) {
       return { name: action.username };
 
     case 'LOGOUT':
-      return { };
+      return {};
 
     default:
       return state;

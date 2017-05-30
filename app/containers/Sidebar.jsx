@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { receiveMLB, receiveNBA, receiveNHL, receiveNFL } from '../actions/api';
+import { receiveCard } from '../actions/card';
 import LeagueItem from '../components/sidebar/LeagueItem';
 import api from '../lib/api';
 
@@ -25,14 +26,22 @@ class Sidebar extends Component {
     api.get(`${HOST}/leagues/nhl`).then((response) => {
       dispatch(receiveNHL(response.response));
     });
-    api.get(`${HOST}/leagues/nba`).then((response) => {
-      dispatch(receiveNBA(response.response));
-    });
-    api.get(`${HOST}/leagues/nfl`).then((response) => {
-      dispatch(receiveNFL(response.response));
-    });
-    api.get(`${HOST}/leagues/mlb`).then((response) => {
-      dispatch(receiveMLB(response.response));
+    // api.get(`${HOST}/leagues/nba`).then((response) => {
+    //   dispatch(receiveNBA(response.response));
+    // });
+    // api.get(`${HOST}/leagues/nfl`).then((response) => {
+    //   dispatch(receiveNFL(response.response));
+    // });
+    // api.get(`${HOST}/leagues/mlb`).then((response) => {
+    //   dispatch(receiveMLB(response.response));
+    // });
+
+    api.get(`${HOST}/leagues/mlb/users/34`).then((response) => {
+      response.response.forEach(card => {
+        api.post(`${HOST}/leagues/${card.league}/games/${card.gameId}`, card).then((response) => {
+          dispatch(receiveCard(response.response));
+        });
+      });
     });
   }
 
