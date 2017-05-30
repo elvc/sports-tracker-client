@@ -13,14 +13,12 @@ export default class RegForm extends Component {
       username: '',
       email: '',
       password: ''
-    }
+    };
   }
 
-  handleKeyChange = (key) => {
-    return (event) => {
+  handleKeyChange = (key) => (event) => {
       this.setState({ [key]: event.target.value });
     }
-  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -28,8 +26,8 @@ export default class RegForm extends Component {
     const formData = {
       username: this.state.username,
       email: this.state.email,
-      password: this.state.password,
-    }
+      password: this.state.password
+    };
 
     const HOST = location.origin.replace('8081', '8080');
 
@@ -38,7 +36,7 @@ export default class RegForm extends Component {
       status: 'success',
       dismissible: true,
       dismissAfter: 2000
-    }
+    };
 
     const regError = {
       title: 'Problem with Registration',
@@ -46,7 +44,7 @@ export default class RegForm extends Component {
       status: 'error',
       dismissible: true,
       dismissAfter: 2000
-    }
+    };
 
     // error checking
     if (formData.username.length < 1 || formData.email.length < 1 || formData.password.length < 1) {
@@ -93,7 +91,7 @@ export default class RegForm extends Component {
             id="formUser"
             className="form-control"
             name="username"
-            placeholder="username"
+            placeholder="Your username"
             type="text"
             onChange={ this.handleKeyChange('username') }
           />

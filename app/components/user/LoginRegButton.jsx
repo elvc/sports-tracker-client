@@ -14,7 +14,11 @@ export default class LoginRegButton extends Component {
     this.state = {
       regModalIsOpen: false,
       loginModalIsOpen: false
-    }
+    };
+  }
+
+  onModalOpen = () => {
+    document.querySelector('input').focus();
   }
 
   // reset state
@@ -71,6 +75,7 @@ export default class LoginRegButton extends Component {
           <Modal
             isOpen={ this.state.regModalIsOpen }
             onRequestClose={ this.regCloseModal }
+            onAfterOpen={ this.onModalOpen }
             style={ modalStyles }
             shouldCloseOnOverlayClick={ false }
             contentLabel="Reg Modal"
@@ -89,6 +94,7 @@ export default class LoginRegButton extends Component {
           <Modal
             isOpen={ this.state.loginModalIsOpen }
             onRequestClose={ this.loginCloseModal }
+            onAfterOpen={ this.onModalOpen }
             style={ modalStyles }
             shouldCloseOnOverlayClick={ false }
             contentLabel="Reg Modal"
