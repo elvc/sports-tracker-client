@@ -21,6 +21,7 @@ const Game = (props) => {
     api.post(`${HOST}/leagues/${props.league}/games/${props.gameId}`, game).then((response) => {
       dispatch(receiveCard(response.response));
     });
+    $('.sidebar').removeClass('show');
   };
 
   return (

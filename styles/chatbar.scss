@@ -9,8 +9,9 @@
   background-color: white;
 
   .user-count {
-    padding: 5px;
+    padding: 5px 10px;
     font-size: 0.85rem;
+    text-align: right;
   }
 
   .exit-room {
@@ -89,7 +90,7 @@
 
   .chat-input-form {
     position: relative;
-    bottom: 15px;
+    bottom: -10px;
     padding: 0 15px;
     height: 30px;
 

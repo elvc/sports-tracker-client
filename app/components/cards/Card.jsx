@@ -69,15 +69,15 @@ export default class Card extends React.Component {
         { league === 'NBA' && <CardMainNBA
           { ...this.props }
         />
-    }
+        }
         { league === 'MLB' && <CardMainMLB
           { ...this.props }
         />
-    }
+        }
         { league === 'NHL' && <CardMainNHL
           { ...this.props }
         />
-    }
+        }
 
         { displayPlayByPlay && <PlayByPlay plays={ plays } /> }
 
