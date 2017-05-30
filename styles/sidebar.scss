@@ -41,19 +41,31 @@ nav.sidebar {
     .active {
       outline: none;
     }
+
+    .nav-item {
+      &:hover {
+        font-weight: bold;
+        transform: scale(1.2);
+      }
+    }
   }
 
   .game-container {
-    &:hover {
-      font-weight: bold;
-      transform: scale(1.2);
-    }
-
     .game {
       font-size: 0.8em;
+
+      &:hover {
+        font-weight: bold;
+        transform: scale(1.2);
+      }
+    }
+
+    .no-game {
+      cursor: default;
     }
   }
-  .league-game-heading{
+
+  .league-game-heading {
     background-color: $league-game-heading-color;
     padding: 21px;
   }

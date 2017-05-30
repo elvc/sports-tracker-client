@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 export default class ShareForm extends Component {
   static propTypes = {
-    close: PropTypes.func.isRequired
+    close: PropTypes.func.isRequired,
+    awayTeam: PropTypes.string.isRequired,
+    homeTeam: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    notify: PropTypes.func.isRequired
   }
 
   constructor(props) {
