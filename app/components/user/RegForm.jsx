@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 export default class RegForm extends Component {
   static propTypes = {
     handleLoginSession: PropTypes.func.isRequired,
-    close: PropTypes.func.isRequired
+    close: PropTypes.func.isRequired,
+    notify: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -16,6 +17,16 @@ export default class RegForm extends Component {
     };
   }
 
+  resetState = () => {
+    this.setState({
+      username: '',
+      password: ''
+    });
+    $('#formUser').val('');
+    $('#formEmail').val('');
+    $('#formPassword').val('');
+  }
+
   handleKeyChange = (key) => (event) => {
       this.setState({ [key]: event.target.value });
     }
@@ -23,58 +34,53 @@ export default class RegForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = {
-      username: this.state.username,
-      email: this.state.email,
-      password: this.state.password
-    };
-
     const HOST = location.origin.replace('8081', '8080');
 
     const regSuccess = {
       title: 'Welcome',
       status: 'success',
       dismissible: true,
-      dismissAfter: 2000
+      dismissAfter: 3000
     };
 
     const regError = {
-      title: 'Problem with Registration',
+      title: 'Error with Registration',
       message: 'Please try again',
       status: 'error',
       dismissible: true,
-      dismissAfter: 2000
+      dismissAfter: 3000
     };
 
-    // error checking
-    if (formData.username.length < 1 || formData.email.length < 1 || formData.password.length < 1) {
-      return false;
-    }
-
-    $.ajax({
-      url: `${HOST}/register`,
-      dataType: 'json',
-      type: 'POST',
-      data: formData,
-      xhrFields: { withCredentials: true },
-      success: (data) => {
+    fetch(`${HOST}/register`, {
+      method: 'post',
+      mode: 'cors',
+      credentials: 'include',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({
+        username: this.state.username,
+        email: this.state.email,
+        password: this.state.password
+      })
+    })
+    .then((response) => {
+      if (response.status !== 200) {
+        console.error('Looks like there was a problem with registration. Status Code:', response.status);
+        return response.json();
+      }
+      response.json().then((data) => {
         this.props.close();
         this.props.handleLoginSession(data.username);
         regSuccess.message = `Logged in as ${data.username}`;
         this.props.notify(regSuccess);
-      },
-      error: (result) => {
-        regError.message = `${result.message}`;
-        this.props.notify(regError);
-      }
+      });
+    })
+    // handle status code !== 200
+    .catch((err) => {
+      console.error('A problem with registration. Error:', err);
+      regError.message = `${err.message}`;
+      this.props.notify(regError);
     });
-
-    // reset state after form submission
-    this.setState({
-      username: '',
-      email: '',
-      password: ''
-    });
+    this.resetState();
   };
 
   render() {

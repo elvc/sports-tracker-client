@@ -1,6 +1,4 @@
-const defaultState = {
-  name: 'anonymous'
-};
+const defaultState = {};
 
 function user(state = defaultState, action) {
   switch (action.type) {

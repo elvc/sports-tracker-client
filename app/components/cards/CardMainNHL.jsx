@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cardProps from '../../prop_validations/card';
-import ordinalize from '../../helpers/ordinalize';
+import ordinalize from '../../lib/ordinalize';
 
 
 const CardMainNHL = ({ ...props }) => {

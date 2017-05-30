@@ -141,5 +141,8 @@ CardFooter.propTypes = {
   gameStarted: PropTypes.bool.isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
-  joinRoom: PropTypes.func.isRequired
+  joinRoom: PropTypes.func.isRequired,
+  awayTeam: PropTypes.string.isRequired,
+  homeTeam: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired
 };

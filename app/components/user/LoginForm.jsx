@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import fetchCards from '../../lib/fetch_cards';
 
 export default class LoginForm extends Component {
   static propTypes = {
     close: PropTypes.func.isRequired,
-    handleLoginSession: PropTypes.func.isRequired
+    handleLoginSession: PropTypes.func.isRequired,
+    notify: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -14,18 +16,23 @@ export default class LoginForm extends Component {
       password: ''
     };
   }
+  
+  resetState = () => {
+    this.setState({
+      username: '',
+      password: ''
+    });
+    $('#formUser').val('');
+    $('#formPassword').val('');
+  }
 
-  handleKeyChange = (key) => (event) => {
-      this.setState({ [key]: event.target.value });
-    }
+  handleKeyChange = key => (event) => {
+    this.setState({ [key]: event.target.value });
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = {
-      username: this.state.username,
-      password: this.state.password
-    };
     const HOST = location.origin.replace('8081', '8080');
 
     const loginSuccess = {
@@ -43,35 +50,35 @@ export default class LoginForm extends Component {
       dismissAfter: 2000
     };
 
-    // error checking
-    if (formData.username.length < 1 || formData.password.length < 1) {
-      return false;
-    }
-
-    $.ajax({
-      url: `${HOST}/login`,
-      dataType: 'json',
-      type: 'POST',
-      data: formData,
-      xhrFields: { withCredentials: true },
-      success: (result) => {
+    fetch(`${HOST}/login`, {
+      method: 'post',
+      mode: 'cors',
+      credentials: 'include',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    })
+    .then((response) => {
+      if (response.status !== 200) {
+        console.error('Looks like there was a problem with login. Status Code:', response.status);
+        return response.json();
+      }
+      response.json().then((data) => {
         this.props.close();
         this.props.handleLoginSession(result.username);
         loginSuccess.message = `Logged in as ${result.username}`;
+        fetchCards(this.props.receiveCard);
         this.props.notify(loginSuccess);
-      },
-      error: (err) => {
-        this.props.close();
-        loginError.message = `${err.responseJSON.message}`;
-        this.props.notify(loginError);
-      }
-    });
-
-    // reset state after form submission
-    this.setState({
-      username: '',
-      password: ''
-    });
+      });
+    })
+    .catch((err) => {
+      this.props.close();
+      loginError.message = `${err.message}`;
+      this.props.notify(loginError);
+    })
+    this.resetState();
   };
 
   render() {
