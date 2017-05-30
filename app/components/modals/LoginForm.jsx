@@ -5,8 +5,9 @@ import fetchCards from '../../lib/fetch_cards';
 export default class LoginForm extends Component {
   static propTypes = {
     close: PropTypes.func.isRequired,
-    handleLoginSession: PropTypes.func.isRequired,
-    notify: PropTypes.func.isRequired
+    login: PropTypes.func.isRequired,
+    notify: PropTypes.func.isRequired,
+    receiveCard: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -16,7 +17,7 @@ export default class LoginForm extends Component {
       password: ''
     };
   }
-  
+
   resetState = () => {
     this.setState({
       username: '',
@@ -67,8 +68,8 @@ export default class LoginForm extends Component {
       }
       response.json().then((data) => {
         this.props.close();
-        this.props.handleLoginSession(result.username);
-        loginSuccess.message = `Logged in as ${result.username}`;
+        this.props.login(data.username);
+        loginSuccess.message = `Logged in as ${data.username}`;
         fetchCards(this.props.receiveCard);
         this.props.notify(loginSuccess);
       });
@@ -77,46 +78,51 @@ export default class LoginForm extends Component {
       this.props.close();
       loginError.message = `${err.message}`;
       this.props.notify(loginError);
-    })
+    });
     this.resetState();
   };
 
   render() {
     return (
-      <form onSubmit={ this.handleSubmit }>
-        <div className="form-group row pr-3 pl-3">
-          <label
-            htmlFor="formUser"
-            className="col-form-label-sm"
-          >
+      <div>
+        <h3 className="pl-0 d-flex modal-header">
+        Login: <i className="fa fa-times justify-content-right" onClick={ this.props.close } />
+        </h3>
+        <form onSubmit={ this.handleSubmit }>
+          <div className="form-group row pr-3 pl-3">
+            <label
+              htmlFor="formUser"
+              className="col-form-label-sm"
+            >
             User Name:
           </label>
-          <input
-            id="formUser"
-            className="form-control"
-            name="username"
-            placeholder="Your username"
-            type="text"
-            onChange={ this.handleKeyChange('username') }
-          />
-        </div>
-        <div className="form-group row pl-3 pr-3">
-          <label
-            htmlFor="formPassword"
-            className="col-form-label-sm"
-          >
+            <input
+              id="formUser"
+              className="form-control"
+              name="username"
+              placeholder="Your username"
+              type="text"
+              onChange={ this.handleKeyChange('username') }
+            />
+          </div>
+          <div className="form-group row pl-3 pr-3">
+            <label
+              htmlFor="formPassword"
+              className="col-form-label-sm"
+            >
             Password:
           </label>
-          <input
-            id="formPassword"
-            className="form-control"
-            name="password"
-            type="password"
-            onChange={ this.handleKeyChange('password') }
-          />
-        </div>
-        <button className="btn btn-primary pull-right" type="submit">Login</button>
-      </form>
+            <input
+              id="formPassword"
+              className="form-control"
+              name="password"
+              type="password"
+              onChange={ this.handleKeyChange('password') }
+            />
+          </div>
+          <button className="btn btn-primary pull-right" type="submit">Login</button>
+        </form>
+      </div>
     );
   }
 }

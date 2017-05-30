@@ -24,7 +24,7 @@ export default class CardBox extends React.Component {
     const HOST = location.origin.replace('8081', '8080');
     this.props.leaveRoom(gameId);
     this.props.removeCard(gameId);
-    const gameid = { gameId }
+    const gameid = { gameId };
     api.post(`${HOST}/users/remove`, gameid).then(result => console.log('works'));
   };
 
@@ -57,6 +57,7 @@ export default class CardBox extends React.Component {
               moveCard={ this.moveCard }
               index={ i }
               notify={ this.props.notify }
+              showModal={ this.props.showModal }
               { ...card }
             />
         ))}
@@ -80,6 +81,7 @@ CardBox.propTypes = {
   repositionCard: PropTypes.func.isRequired,
   leaveRoom: PropTypes.func.isRequired,
   removeCard: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,
   chatActive: PropTypes.bool.isRequired,
   notify: PropTypes.func.isRequired

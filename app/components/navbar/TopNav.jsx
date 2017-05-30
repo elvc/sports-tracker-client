@@ -21,7 +21,7 @@ export default class TopNav extends Component {
   }
 
   render() {
-    const { username, login, logout, notify, receiveCard } = this.props;
+    const { username, login, logout, notify, receiveCard, showModal } = this.props;
 
     return (
       <nav className="topnav navbar navbar-toggleable-sm navbar-inverse fixed-top bg-inverse">
@@ -56,7 +56,12 @@ export default class TopNav extends Component {
           { username ? (
             <LogoutButton notify={ notify } handleLogoutSession={ logout } user={ username } />
           ) : (
-            <LoginRegButton handleLoginSession={ login } notify={ notify } receiveCard={ receiveCard } />
+            <LoginRegButton
+              handleLoginSession={ login }
+              notify={ notify }
+              receiveCard={ receiveCard }
+              showModal={ showModal }
+            />
           ) }
 
         </div>
@@ -75,6 +80,7 @@ TopNav.propTypes = {
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired,
   receiveCard: PropTypes.func.isRequired
 }
 ;

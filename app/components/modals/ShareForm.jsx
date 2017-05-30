@@ -17,9 +17,7 @@ export default class ShareForm extends Component {
     };
   }
 
-  handleKeyChange = () => {
-    return (event) => { this.setState({ email: event.target.value }); }
-  }
+  handleKeyChange = () => (event) => { this.setState({ email: event.target.value }); }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -79,25 +77,30 @@ export default class ShareForm extends Component {
 
   render() {
     return (
-      <form onSubmit={ this.handleSubmit }>
-        <div className="form-group row pr-3 pl-3">
-          <label
-            htmlFor="formEmail"
-            className="col-form-label-sm"
-          >
+      <div>
+        <h3 className="pl-0 d-flex modal-header">
+        Share with someone: <i className="fa fa-times justify-content-right" onClick={ this.props.close } />
+        </h3>
+        <form onSubmit={ this.handleSubmit }>
+          <div className="form-group row pr-3 pl-3">
+            <label
+              htmlFor="formEmail"
+              className="col-form-label-sm"
+            >
             Email:
           </label>
-          <input
-            id="formEmail"
-            className="form-control"
-            placeholder="user@example.com"
-            name="email"
-            type="email"
-            onChange={ this.handleKeyChange('email') }
-          />
-        </div>
-        <button className="btn btn-primary pull-right" type="submit">Share</button>
-      </form>
+            <input
+              id="formEmail"
+              className="form-control"
+              placeholder="user@example.com"
+              name="email"
+              type="email"
+              onChange={ this.handleKeyChange('email') }
+            />
+          </div>
+          <button className="btn btn-primary pull-right" type="submit">Share</button>
+        </form>
+      </div>
     );
   }
 }
