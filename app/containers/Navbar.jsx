@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {addNotification as notify} from 'reapop';
+import { addNotification as notify } from 'reapop';
 import TopNav from '../components/navbar/TopNav';
 import { login, logout } from '../actions/user';
 

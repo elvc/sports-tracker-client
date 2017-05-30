@@ -13,15 +13,18 @@ export default class ShareForm extends Component {
     };
   }
 
-  handleKeyChange = (key) => {
-    return (event) => { this.setState({ [key]: event.target.value }); }
+  handleKeyChange = () => {
+    return (event) => { this.setState({ email: event.target.value }); }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = {
-      email: this.state.email
+      email: this.state.email,
+      awayTeam: this.props.awayTeam,
+      homeTeam: this.props.homeTeam,
+      date: this.props.date
     };
 
     const HOST = location.origin.replace('8081', '8080');
@@ -46,24 +49,23 @@ export default class ShareForm extends Component {
       return false;
     }
 
-    // $.ajax({
-    //   url: `${HOST}/login`,
-    //   dataType: 'json',
-    //   type: 'POST',
-    //   data: formData,
-    //   xhrFields: { withCredentials: true },
-    //   success: (result) => {
-    //     this.props.close();
-    //     this.props.handleLoginSession(result.email);
-    //     loginSuccess.message = `Logged in as ${result.email}`;
-    //     this.props.notify(loginSuccess);
-    //   },
-    //   error: (err) => {
-    //     this.props.close();
-    //     loginError.message = `${err.responseJSON.message}`;
-    //     this.props.notify(loginError);
-    //   }
-    // });
+    $.ajax({
+      url: `${HOST}/share`,
+      dataType: 'json',
+      type: 'POST',
+      data: formData,
+      xhrFields: { withCredentials: true },
+      success: (result) => {
+        this.props.close();
+        shareSuccess.message = `Email has been sent to: ${result.email}`;
+        this.props.notify(shareSuccess);
+      },
+      error: (err) => {
+        this.props.close();
+        shareError.message = `${err.responseJSON.message}`;
+        this.props.notify(shareError);
+      }
+    });
 
     // reset state after form submission
     this.setState({

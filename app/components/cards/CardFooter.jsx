@@ -89,6 +89,9 @@ export default class CardFooter extends Component {
             <ShareForm
               close={ this.shareCloseModal }
               notify={ this.props.notify }
+              awayTeam={ this.props.awayTeam }
+              homeTeam={ this.props.homeTeam }
+              date={ this.props.date }
             />
           </Modal>
 
