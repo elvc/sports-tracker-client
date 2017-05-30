@@ -37,11 +37,11 @@ class Sidebar extends Component {
     // });
 
     api.get(`${HOST}/leagues/mlb/users/34`).then((response) => {
-      response.response.forEach(card => {
+      response.response.forEach((card) => {
         api.post(`${HOST}/leagues/${card.league}/games/${card.gameId}`, card).then((response) => {
           dispatch(receiveCard(response.response));
         });
-      })
+      });
     });
   }
 
