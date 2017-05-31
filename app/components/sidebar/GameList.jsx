@@ -15,16 +15,16 @@ class GameList extends Component {
     const HOST = location.origin.replace('8081', '8080');
 
     const { receiveMLB, receiveNBA, receiveNHL, receiveNFL, receiveCard } = this.props;
-    api.get(`${HOST}/leagues/nhl`).then((response) => {
+    api.get(`${HOST}/leagues/NHL`).then((response) => {
       receiveNHL(response.response);
     });
-    // api.get(`${HOST}/leagues/nba`).then((response) => {
-    //   receiveNBA(response.response);
-    // });
-    // api.get(`${HOST}/leagues/nfl`).then((response) => {
-    //   receiveNFL(response.response);
-    // });
-    api.get(`${HOST}/leagues/mlb`).then((response) => {
+    api.get(`${HOST}/leagues/NBA`).then((response) => {
+      receiveNBA(response.response);
+    });
+    api.get(`${HOST}/leagues/NFL`).then((response) => {
+      receiveNFL(response.response);
+    });
+    api.get(`${HOST}/leagues/MLB`).then((response) => {
       receiveMLB(response.response);
     });
 

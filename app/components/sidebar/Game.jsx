@@ -14,7 +14,6 @@ const Game = (props) => {
       league: gameProps.league,
       homeTeam: gameProps.homeTeam.Abbreviation,
       awayTeam: gameProps.awayTeam.Abbreviation,
-      location: gameProps.homeTeam.City,
       time: gameProps.time,
       date: gameProps.date
     };
@@ -37,8 +36,7 @@ const Game = (props) => {
 
 Game.propTypes = {
   league: PropTypes.string.isRequired,
-  gameId: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
+  gameId: PropTypes.number.isRequired,
   awayTeam: PropTypes.shape({}).isRequired,
   homeTeam: PropTypes.shape({}).isRequired,
   time: PropTypes.string.isRequired
