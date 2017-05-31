@@ -17,11 +17,11 @@ export default class TopNav extends Component {
       xhrFields: { withCredentials: true },
       success: (result) => {
         this.props.login(result.username);
-        return result.username;
+        return result;
       }
     })
-    .then((username) => {
-      if (username !== undefined) {
+    .then((result) => {
+      if (result.username !== undefined) {
         fetchCards(this.props.receiveCard);
       }
     });
