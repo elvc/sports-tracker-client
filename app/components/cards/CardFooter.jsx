@@ -80,6 +80,10 @@ const CardFooter = (props) => {
   );
 };
 
+CardFooter.defaultProps = {
+  date: ''
+};
+
 CardFooter.propTypes = {
   name: PropTypes.string.isRequired,
   gameId: PropTypes.number.isRequired,
@@ -89,7 +93,7 @@ CardFooter.propTypes = {
   joinRoom: PropTypes.func.isRequired,
   awayTeam: PropTypes.string.isRequired,
   homeTeam: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired
+  date: PropTypes.string
 };
 
 export default CardFooter;
