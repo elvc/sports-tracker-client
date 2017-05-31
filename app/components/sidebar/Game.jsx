@@ -19,6 +19,8 @@ const Game = (props) => {
     };
     api.post(`${HOST}/leagues/${gameProps.league}/games/${gameProps.gameId}`, game).then((response) => {
       dispatch(receiveCard(response.response));
+    }).catch((err) => {
+      console.log(`Error adding card: ${err.message}`);
     });
     $('.sidebar').removeClass('show');
   };
