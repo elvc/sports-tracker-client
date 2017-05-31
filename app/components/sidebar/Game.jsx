@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { receiveCard } from '../../actions';
 import api from '../../lib/api';
 
@@ -25,12 +26,13 @@ const Game = (props) => {
     });
     $('.sidebar').removeClass('show');
   };
-
+  const dateFormatted = moment(props.date).format('MMM Do');
+  const timeString = props.league === 'MLB' ? props.time : `${props.time} ${dateFormatted}`;
   return (
     <div className="game-container">
       <a onClick={ () => add(props) } role="button">
         <li className="d-flex justify-content-center game pt-2 pb-2">
-          {props.awayTeam.Abbreviation} @ {props.homeTeam.Abbreviation} ({props.time})
+          {props.awayTeam.Abbreviation} @ {props.homeTeam.Abbreviation} ({timeString})
         </li>
       </a>
     </div>
@@ -43,6 +45,7 @@ Game.propTypes = {
   awayTeam: PropTypes.shape({}).isRequired,
   homeTeam: PropTypes.shape({}).isRequired,
   time: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
   addCard: PropTypes.func.isRequired
 };
 
