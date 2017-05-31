@@ -20,21 +20,21 @@ const LeagueItem = ({ leagueClick, league, gameData, isActive, addCard }) => {
         </div>
       </li>
       <ul className="sub-menu collapse pl-0 league-heading" id={ league }>
-        {gameData.map((day) => {
+        {gameData.map((day, i) => {
           if (day.length === 0) return null;
           const dateString = moment(day[0].date).format('MMM Do');
           return (
             <ul key={ dateString } className="nav nav-pills mb-0 flex-column">
               <li className="nav-item" data-toggle="collapse" data-target={ `#MLB${day[0].date}` }>
                 <div
-                  className="d-flex justify-content-center date-heading pl-0 pt-3 pb-3 nav-link"
+                  className="d-flex justify-content-center date-heading nav-link"
                   role="button"
                   tabIndex={ 0 }
                 >
                   { dateString }
                 </div>
               </li>
-              <ul className="sub-menu collapse pl-0 date-heading" id={ `MLB${day[0].date}` }>
+              <ul className={ `sub-menu collapse pl-0 date-heading${i === 0 ? ' show' : ''}` } id={ `MLB${day[0].date}` }>
                 { day.map(game => (
                   <Game
                     key={ game.gameId }

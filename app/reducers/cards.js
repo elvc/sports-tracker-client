@@ -25,6 +25,7 @@ function cards(state = defaultState, action) {
     case 'REMOVE_CARD': {
       return state.filter(card => card.gameId !== action.gameId);
     }
+
     case 'RECEIVE_CARD': {
       return state.map((card) => {
         if (card.gameId === action.game.gameId) {
@@ -33,11 +34,15 @@ function cards(state = defaultState, action) {
         return card;
       });
     }
+
     case 'UPDATE_CARDS': {
       return state.map((card) => {
         const found = action.some.find((game => game.gameId === card.gameId));
         if (found) {
-          return found;
+          return {
+            ...found,
+            displayPlayByPlay: card.displayPlayByPlay
+          };
         }
         return card;
       });

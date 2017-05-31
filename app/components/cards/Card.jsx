@@ -5,6 +5,7 @@ import { DragSource, DropTarget } from 'react-dnd';
 import CardMainNBA from './CardMainNBA';
 import CardMainNHL from './CardMainNHL';
 import CardMainMLB from './CardMainMLB';
+import CardMainLoading from './CardMainLoading';
 import PlayByPlay from './PlayByPlay';
 import CardFooter from './CardFooter';
 import cardProps from '../../prop_validations/card';
@@ -63,7 +64,6 @@ export default class Card extends React.Component {
       anchorX: 0,
       anchorY: 0
     };
-
     return connectDragSource(connectDropTarget(connectDragPreview(
       <div className="game-card" style={ { opacity } }>
         { league === 'NBA' && <CardMainNBA
@@ -78,6 +78,7 @@ export default class Card extends React.Component {
           { ...this.props }
         />
         }
+        { this.props.isLoading && <CardMainLoading { ...this.props } /> }
 
         { displayPlayByPlay && <PlayByPlay plays={ plays } /> }
 
@@ -98,17 +99,21 @@ export default class Card extends React.Component {
     , previewOptions)));
   }
 }
-
+Card.defaultProps = {
+  plays: [],
+  gameStarted: false,
+  displayPlayByPlay: false
+};
 
 Card.propTypes = {
   ...cardProps,
-  displayPlayByPlay: PropTypes.bool.isRequired,
+  displayPlayByPlay: PropTypes.bool,
   plays: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired
-  }).isRequired).isRequired,
+  }).isRequired),
   togglePlayByPlay: PropTypes.func.isRequired,
-  gameStarted: PropTypes.bool.isRequired,
+  gameStarted: PropTypes.bool,
   joinRoom: PropTypes.func.isRequired,
   closeCard: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired
