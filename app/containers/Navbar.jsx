@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addNotification as notify } from 'reapop';
 import TopNav from '../components/navbar/TopNav';
-import { showModal, login, logout, receiveCard } from '../actions';
+import { showModal, login, logout, addCard, receiveCard } from '../actions';
 
 const Navbar = props => (
   <TopNav { ...props } />
@@ -14,6 +14,7 @@ const mapDispatchToProps = {
   login,
   logout,
   notify,
+  addCard,
   receiveCard,
   showModal
 };

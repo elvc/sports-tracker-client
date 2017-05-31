@@ -22,7 +22,7 @@ export default class TopNav extends Component {
     })
     .then((result) => {
       if (result.username !== undefined) {
-        fetchCards(this.props.receiveCard);
+        fetchCards(this.props.addCard, this.props.receiveCard);
       }
     });
   }
@@ -88,6 +88,7 @@ TopNav.propTypes = {
   logout: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,
+  addCard: PropTypes.func.isRequired,
   receiveCard: PropTypes.func.isRequired
 }
 ;

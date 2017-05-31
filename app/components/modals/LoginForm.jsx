@@ -7,7 +7,8 @@ export default class LoginForm extends Component {
     close: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     notify: PropTypes.func.isRequired,
-    receiveCard: PropTypes.func.isRequired
+    receiveCard: PropTypes.func.isRequired,
+    addCard: PropTypes.func.isRequired
   }
 
   constructor(props) {
@@ -74,7 +75,7 @@ export default class LoginForm extends Component {
       this.props.close();
       this.props.login(data.username);
       loginSuccess.message = `Logged in as ${data.username}`;
-      fetchCards(this.props.receiveCard);
+      fetchCards(this.props.addCard, this.props.receiveCard);
       this.props.notify(loginSuccess);
     })
     .catch((err) => {

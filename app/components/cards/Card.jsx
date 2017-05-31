@@ -105,7 +105,7 @@ Card.propTypes = {
   plays: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     content: PropTypes.string.isRequired
-  }).isRequired),
+  }).isRequired).isRequired,
   togglePlayByPlay: PropTypes.func.isRequired,
   gameStarted: PropTypes.bool.isRequired,
   joinRoom: PropTypes.func.isRequired,

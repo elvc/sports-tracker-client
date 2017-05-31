@@ -38,7 +38,6 @@ const CardMainMLB = ({ ...props }) => {
 
 
       {/* eslint-disable react/no-array-index-key */}
-      {/* TODO add support for extra innings, styling should work already */}
       <div className="mlb-score">
         <table>
           <thead>
