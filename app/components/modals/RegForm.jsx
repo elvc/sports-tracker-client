@@ -13,7 +13,9 @@ export default class RegForm extends Component {
     this.state = {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      usernameLengthValid: false,
+      passwordLengthValid: false
     };
   }
 
@@ -29,6 +31,35 @@ export default class RegForm extends Component {
 
   handleKeyChange = key => (event) => {
     this.setState({ [key]: event.target.value });
+
+    if (key === 'username') {
+      if (event.target.value.length > 0 && event.target.value.length < 5) {
+        $('.username-input').addClass('has-danger');
+        $('.username-feedback').show();
+        this.state.usernameLengthValid = false;
+      } else {
+        $('.username-input').removeClass('has-danger');
+        $('.username-feedback').hide();
+        this.state.usernameLengthValid = true;
+      }
+    }
+    if (key === 'password') {
+      if (event.target.value.length > 0 && event.target.value.length < 8) {
+        $('.password-input').addClass('has-danger');
+        $('.password-feedback').show();
+        this.state.passwordLengthValid = false;
+      } else {
+        $('.password-input').removeClass('has-danger');
+        $('.password-feedback').hide();
+        this.state.passwordLengthValid = true;
+      }
+    }
+
+    if (this.state.usernameLengthValid && this.state.passwordLengthValid) {
+      $('#reg-submit').prop('disabled', false);
+    } else {
+      $('#reg-submit').prop('disabled', true);
+    }
   }
 
   handleSubmit = (e) => {
@@ -91,13 +122,13 @@ export default class RegForm extends Component {
         Registration: <i className="fa fa-times justify-content-right" onClick={ this.props.close } />
         </h3>
         <form onSubmit={ this.handleSubmit } >
-          <div className="form-group row pr-3 pl-3">
+          <div className="username-input form-group row pr-3 pl-3">
             <label
               htmlFor="formUser"
               className="col-form-label-sm"
             >
-            User Name:
-          </label>
+            User Name: (minimum 5 characters)
+            </label>
             <input
               id="formUser"
               className="form-control"
@@ -105,9 +136,11 @@ export default class RegForm extends Component {
               placeholder="Your username"
               type="text"
               onChange={ this.handleKeyChange('username') }
+              required
             />
+          <div className="username-feedback form-control-feedback hide">The username is too short. Try again</div>
           </div>
-          <div className="form-group row pl-3 pr-3">
+          <div className="email-input form-group row pl-3 pr-3">
             <label
               htmlFor="formEmail"
               className="col-form-label-sm"
@@ -116,19 +149,21 @@ export default class RegForm extends Component {
           </label>
             <input
               id="formEmail"
-              className="form-control"
+              className="form-control form-control-warning"
               name="email"
               placeholder="user@example.com"
               type="email"
               onChange={ this.handleKeyChange('email') }
+              required
+              minLength="5"
             />
           </div>
-          <div className="form-group row pl-3 pr-3">
+          <div className="password-input form-group row pl-3 pr-3">
             <label
               htmlFor="formPassword"
               className="col-form-label-sm"
             >
-            Password:
+            Password: (minimum 8 characters)
           </label>
             <input
               id="formPassword"
@@ -136,9 +171,11 @@ export default class RegForm extends Component {
               name="password"
               type="password"
               onChange={ this.handleKeyChange('password') }
+              required
             />
+          <div className="password-feedback form-control-feedback hide">Password is too short. Try again</div>
           </div>
-          <button className="btn btn-primary pull-right" type="submit">Sign up</button>
+          <button id="reg-submit" className="btn btn-primary pull-right" disabled="disabled" type="submit">Sign up</button>
         </form>
       </div>
     );

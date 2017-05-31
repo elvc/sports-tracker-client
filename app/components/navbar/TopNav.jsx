@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LoginRegButton from '../user/LoginRegButton';
 import LogoutButton from '../user/LogoutButton';
+import fetchCards from '../../lib/fetch_cards';
 
 export default class TopNav extends Component {
 
@@ -16,6 +17,12 @@ export default class TopNav extends Component {
       xhrFields: { withCredentials: true },
       success: (result) => {
         this.props.login(result.username);
+        return result;
+      }
+    })
+    .then((result) => {
+      if (result.username !== undefined) {
+        fetchCards(this.props.receiveCard);
       }
     });
   }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LeagueItem from './LeagueItem';
 import api from '../../lib/api';
-import fetchCards from '../../lib/fetch_cards';
 
 class GameList extends Component {
   constructor(props) {
@@ -13,22 +12,35 @@ class GameList extends Component {
 
   componentDidMount() {
     const HOST = location.origin.replace('8081', '8080');
+    const { receiveMLB, receiveNBA, receiveNHL, receiveNFL, notify } = this.props;
+    const errorNotification = {
+      title: 'Problem with fetching feeds',
+      message: 'Please wait a few minutes and try again',
+      status: 'error',
+      dismissible: true,
+      dismissAfter: 2000
+    };
 
-    const { receiveMLB, receiveNBA, receiveNHL, receiveNFL, receiveCard } = this.props;
     api.get(`${HOST}/leagues/NHL`).then((response) => {
       receiveNHL(response.response);
+    }).catch(() => {
+      notify(errorNotification);
     });
     api.get(`${HOST}/leagues/NBA`).then((response) => {
       receiveNBA(response.response);
+    }).catch(() => {
+      notify(errorNotification);
     });
     api.get(`${HOST}/leagues/NFL`).then((response) => {
       receiveNFL(response.response);
+    }).catch(() => {
+      notify(errorNotification);
     });
     api.get(`${HOST}/leagues/MLB`).then((response) => {
       receiveMLB(response.response);
+    }).catch(() => {
+      notify(errorNotification);
     });
-
-    fetchCards(receiveCard);
 
     const pathArray = window.location.pathname.split('/');
     const gameId = parseInt(pathArray[1], 10);
@@ -39,7 +51,6 @@ class GameList extends Component {
     $('.navbar-toggler-left').on('click', () => {
       $('body').toggleClass('noScroll');
     });
-
   }
 
   // TODO refactor to only take gameId as argument
@@ -55,8 +66,17 @@ class GameList extends Component {
       time: gameProps.time,
       date: gameProps.date
     };
+    const errorNotification = {
+      title: 'Problem fetching game data',
+      message: 'Please wait a few minutes and try again',
+      status: 'error',
+      dismissible: true,
+      dismissAfter: 2000
+    };
     api.post(`${HOST}/leagues/${gameProps.league}/games/${gameProps.gameId}`, game).then((response) => {
       receiveCard(response.response);
+    }).catch(() => {
+      this.props.notify(errorNotification);
     });
     $('.sidebar').removeClass('show');
   };
@@ -98,7 +118,8 @@ GameList.propTypes = {
   receiveNBA: PropTypes.func.isRequired,
   receiveNHL: PropTypes.func.isRequired,
   receiveNFL: PropTypes.func.isRequired,
-  receiveCard: PropTypes.func.isRequired
+  receiveCard: PropTypes.func.isRequired,
+  notify: PropTypes.func.isRequired
 };
 
 export default GameList;
