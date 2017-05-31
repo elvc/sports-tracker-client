@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LeagueItem from './LeagueItem';
+import LeagueItemMLB from './LeagueItemMLB';
 import api from '../../lib/api';
 
 class GameList extends Component {
@@ -95,16 +96,26 @@ class GameList extends Component {
         <h5 className="d-flex justify-content-center mb-0 league-game-heading">Leagues & Games</h5>
         <div className="nav-item league-heading">
           {
-            this.props.leagues.map(league => (
-              <LeagueItem
+            this.props.leagues.map((league) => {
+              if (league.name === 'MLB') {
+                return (<LeagueItemMLB
+                  key={ league.name }
+                  leagueClick={ this.leagueClick.bind(this, league.name) }
+                  league={ league.name }
+                  gameData={ league.data }
+                  isActive={ this.state.activeLeague === league.name }
+                  addCard={ this.props.addCard }
+                />);
+              }
+              return (<LeagueItem
                 key={ league.name }
                 leagueClick={ this.leagueClick.bind(this, league.name) }
                 league={ league.name }
                 gameData={ league.data }
                 isActive={ this.state.activeLeague === league.name }
                 addCard={ this.props.addCard }
-              />
-            ))
+              />);
+            })
           }
         </div>
       </nav>
