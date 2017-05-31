@@ -9,6 +9,7 @@ describe('chat', () => {
       user: {
         name: 'anonymous'
       },
+      modal: { modal: 'NONE' },
       chat: {
         active: 1,
         rooms: [
@@ -128,6 +129,7 @@ describe('cards', () => {
       user: {
         name: 'anonymous'
       },
+      modal: { modal: 'NONE' },
       chat: {
         active: 1,
         rooms: [

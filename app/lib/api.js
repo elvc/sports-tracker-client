@@ -1,36 +1,32 @@
 
 
 export default {
-  post: (url, data) => {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        url: url,
-        dataType: 'json',
-        type: 'POST',
-        data: data,
-        xhrFields: { withCredentials: true },
-        success: (result) => {
-          resolve(result);
-        },
-        error: (error) => {
-          reject(error);
-        }
-      });
-    })
-  },
-    get: (url) => {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        url: url,
-        type: 'GET',
-        xhrFields: { withCredentials: true },
-        success: (result) => {
-          resolve(result);
-        },
-        error: (error) => {
-          reject(error);
-        }
-      });
-    })
-  }
-}
+  post: (url, data) => new Promise((resolve, reject) => {
+    $.ajax({
+      url,
+      dataType: 'json',
+      type: 'POST',
+      data,
+      xhrFields: { withCredentials: true },
+      success: (result) => {
+        resolve(result);
+      },
+      error: (error) => {
+        reject(error);
+      }
+    });
+  }),
+  get: url => new Promise((resolve, reject) => {
+    $.ajax({
+      url,
+      type: 'GET',
+      xhrFields: { withCredentials: true },
+      success: (result) => {
+        resolve(result);
+      },
+      error: (error) => {
+        reject(error);
+      }
+    });
+  })
+};
