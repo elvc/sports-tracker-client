@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import validate from '../../form_validations/validate';
 
 export default class RegForm extends Component {
   static propTypes = {
@@ -31,9 +32,9 @@ export default class RegForm extends Component {
 
   handleKeyChange = key => (event) => {
     this.setState({ [key]: event.target.value });
-
-    if (key === 'username') {
-      if (event.target.value.length > 0 && event.target.value.length < 5) {
+    // validate username and password input
+    if ( key === 'username' ) {
+      if ( event.target.value.length > 0 && event.target.value.length < 5) {
         $('.username-input').addClass('has-danger');
         $('.username-feedback').show();
         this.state.usernameLengthValid = false;
@@ -138,7 +139,7 @@ export default class RegForm extends Component {
               onChange={ this.handleKeyChange('username') }
               required
             />
-          <div className="username-feedback form-control-feedback hide">The username is too short. Try again</div>
+          <div className="username-feedback form-control-feedback hide">The username requires a minimum of 5 characters</div>
           </div>
           <div className="email-input form-group row pl-3 pr-3">
             <label
@@ -173,7 +174,7 @@ export default class RegForm extends Component {
               onChange={ this.handleKeyChange('password') }
               required
             />
-          <div className="password-feedback form-control-feedback hide">Password is too short. Try again</div>
+          <div className="password-feedback form-control-feedback hide">Password requires a minimum of 8 characters</div>
           </div>
           <button id="reg-submit" className="btn btn-primary pull-right" disabled="disabled" type="submit">Sign up</button>
         </form>
