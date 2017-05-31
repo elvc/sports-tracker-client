@@ -63,19 +63,21 @@ export default class LoginForm extends Component {
     })
     .then((response) => {
       if (response.status !== 200) {
-        console.error('Looks like there was a problem with login. Status Code:', response.status);
-        return response.json();
+        response.json().then((data) => {
+          loginError.message = `${data.message}`;
+          this.props.notify(loginError);
+        });
       }
-      response.json().then((data) => {
-        this.props.close();
-        this.props.login(data.username);
-        loginSuccess.message = `Logged in as ${data.username}`;
-        fetchCards(this.props.receiveCard);
-        this.props.notify(loginSuccess);
-      });
+      return response.json();
+    })
+    .then((data) => {
+      this.props.close();
+      this.props.login(data.username);
+      loginSuccess.message = `Logged in as ${data.username}`;
+      fetchCards(this.props.receiveCard);
+      this.props.notify(loginSuccess);
     })
     .catch((err) => {
-      this.props.close();
       loginError.message = `${err.message}`;
       this.props.notify(loginError);
     });

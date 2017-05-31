@@ -64,19 +64,20 @@ export default class RegForm extends Component {
     })
     .then((response) => {
       if (response.status !== 200) {
-        console.error('Looks like there was a problem with registration. Status Code:', response.status);
-        return response.json();
+        response.json().then((data) => {
+          regError.message = `${data.message}`;
+          this.props.notify(regError);
+        });
       }
-      response.json().then((data) => {
-        this.props.close();
-        this.props.login(data.username);
-        regSuccess.message = `Logged in as ${data.username}`;
-        this.props.notify(regSuccess);
-      });
+      return response.json();
     })
-    // handle status code !== 200
+    .then((data) => {
+      this.props.close();
+      this.props.login(data.username);
+      regSuccess.message = `Logged in as ${data.username}`;
+      this.props.notify(regSuccess);
+    })
     .catch((err) => {
-      console.error('A problem with registration. Error:', err);
       regError.message = `${err.message}`;
       this.props.notify(regError);
     });
