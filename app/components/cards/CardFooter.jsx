@@ -62,11 +62,8 @@ const CardFooter = (props) => {
           onClick={ () => {
             joinChat(props.name, props.gameId);
             setTimeout(() => {
-              try {
-                document.getElementById('chat-input').focus();
-              } catch (error) {
-
-              }
+              const input = document.getElementById('chat-input');
+              if (input) input.focus();
             }, 0);
           } }
           role="button"

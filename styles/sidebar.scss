@@ -35,6 +35,10 @@ nav.sidebar {
       display: flex;
       justify-content: center;
     }
+    &.date-heading {
+      padding: 0;
+      text-decoration: underline;
+    }
   }
 
   .league-heading {
