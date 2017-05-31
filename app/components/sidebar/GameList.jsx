@@ -36,13 +36,10 @@ class GameList extends Component {
       this.addCard(pathArray[1]);
     }
 
-    $('.sidebar').on(('shown.bs.collapse'), () => {
-      $('body').addClass('noScroll');
+    $('.navbar-toggler-left').on('click', () => {
+      $('body').toggleClass('noScroll');
     });
 
-    $('.sidebar').on(('hidden.bs.collapse'), () => {
-      $('body').removeClass('noScroll');
-    });
   }
 
   // TODO refactor to only take gameId as argument
