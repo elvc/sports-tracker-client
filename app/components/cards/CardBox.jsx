@@ -5,6 +5,7 @@ import { DragDropContext } from 'react-dnd';
 import MultiBackend, { Preview } from 'react-dnd-multi-backend';
 import dndBackend from '../../lib/dndBackend';
 import Card from './Card';
+import EmptyDashboard from '../EmptyDashboard';
 import cardProps from '../../prop_validations/card';
 import api from '../../lib/api';
 
@@ -45,29 +46,25 @@ export default class CardBox extends React.Component {
     return (
       <main className={ chatActive ? 'dashboard chat-active' : 'dashboard' }>
         <h1>Dashboard</h1>
+        { allCards.length === 0 && <EmptyDashboard showModal={ this.props.showModal } /> }
         <Masonry
           className="game-card-box"
           elementType={ 'div' }
           options={ masonryOptions }
         >
-          { allCards.map((card, i) => {
-            if (card.isLoading) {
-
-            }
-            return (
-              <Card
-                key={ card.gameId }
-                joinRoom={ joinRoom }
-                togglePlayByPlay={ togglePlayByPlay }
-                closeCard={ this.closeCard }
-                moveCard={ this.moveCard }
-                index={ i }
-                notify={ this.props.notify }
-                showModal={ this.props.showModal }
-                { ...card }
-              />
-            );
-          })}
+          { allCards.map((card, i) => (
+            <Card
+              key={ card.gameId }
+              joinRoom={ joinRoom }
+              togglePlayByPlay={ togglePlayByPlay }
+              closeCard={ this.closeCard }
+              moveCard={ this.moveCard }
+              index={ i }
+              notify={ this.props.notify }
+              showModal={ this.props.showModal }
+              { ...card }
+            />
+            ))}
         </Masonry>
         <Preview generator={ this.generatePreview } />
       </main>

@@ -11,8 +11,8 @@ const Dashboard = props => (
 
 const mapStateToProps = state => ({
   allCards: state.cards,
-  socket: state.chat.socket,
-  chatActive: state.chat.active !== 0
+  chatActive: state.chat.active !== 0,
+  username: state.user.name
 });
 const mapDispatchToProps = {
   leaveRoom: socketAction(leaveRoom),
