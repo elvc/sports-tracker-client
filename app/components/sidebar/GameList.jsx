@@ -102,7 +102,7 @@ class GameList extends Component {
                 league={ league.name }
                 gameData={ league.data }
                 isActive={ this.state.activeLeague === league.name }
-                addCard={ this.addCard }
+                addCard={ this.props.addCard }
               />
             ))
           }
@@ -119,7 +119,8 @@ GameList.propTypes = {
   receiveNHL: PropTypes.func.isRequired,
   receiveNFL: PropTypes.func.isRequired,
   receiveCard: PropTypes.func.isRequired,
-  notify: PropTypes.func.isRequired
+  notify: PropTypes.func.isRequired,
+  addCard: PropTypes.func.isRequired
 };
 
 export default GameList;

@@ -1,9 +1,4 @@
-import mlb from '../play_filters/mlb';
-import nhl from '../play_filters/nhl';
-import nba from '../play_filters/nba';
-
-
-export const receiveCard = (data) => ({
+export const receiveCard2 = data => ({
   type: 'ADD_CARD',
   game: {
     gameId: Number(data.gameId),
@@ -27,4 +22,4 @@ export const receiveCard = (data) => ({
     period: data.period || 0,
     periods: data.periods || []
   }
-})
+});

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { receiveCard } from '../../actions/card';
+import { receiveCard } from '../../actions';
 import api from '../../lib/api';
 
 const Game = (props) => {
@@ -17,6 +17,7 @@ const Game = (props) => {
       time: gameProps.time,
       date: gameProps.date
     };
+    props.addCard(game.gameId, game.homeTeam, game.awayTeam);
     api.post(`${HOST}/leagues/${gameProps.league}/games/${gameProps.gameId}`, game).then((response) => {
       dispatch(receiveCard(response.response));
     }).catch((err) => {
@@ -41,7 +42,8 @@ Game.propTypes = {
   gameId: PropTypes.number.isRequired,
   awayTeam: PropTypes.shape({}).isRequired,
   homeTeam: PropTypes.shape({}).isRequired,
-  time: PropTypes.string.isRequired
+  time: PropTypes.string.isRequired,
+  addCard: PropTypes.func.isRequired
 };
 
 export default connect()(Game);

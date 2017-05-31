@@ -1,4 +1,4 @@
-export default (state = 'NONE', action) => {
+export default (state = { modal: 'NONE' }, action) => {
   switch (action.type) {
     case 'SHOW_MODAL':
       return {
