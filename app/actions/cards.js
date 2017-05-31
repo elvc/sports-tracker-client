@@ -19,6 +19,11 @@ export const shareGame = gameId => ({
   gameId
 });
 
+export const notifyGame = gameId => ({
+  type: 'NOTIFY_GAME',
+  gameId
+});
+
 export const addCard = (gameId, homeTeam, awayTeam) => ({
   type: 'ADD_CARD',
   game: {
