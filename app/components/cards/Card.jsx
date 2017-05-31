@@ -92,6 +92,7 @@ export default class Card extends React.Component {
           awayTeam={ this.props.awayTeam }
           homeTeam={ this.props.homeTeam }
           date={ this.props.date }
+          startTime={ this.props.startTime }
         />
       </div>
     , previewOptions)));

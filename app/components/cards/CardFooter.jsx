@@ -14,11 +14,17 @@ const CardFooter = (props) => {
     props.joinRoom(room);
   };
 
-  const { homeTeam, awayTeam, date } = props;
+  const { homeTeam, awayTeam, date, startTime } = props;
   const shareInfo = {
     homeTeam,
     awayTeam,
     date
+  };
+  const notifyInfo = {
+    homeTeam,
+    awayTeam,
+    date,
+    startTime
   };
 
   return (
@@ -44,12 +50,7 @@ const CardFooter = (props) => {
 
 
         { props.gameStarted || <a
-          onClick={ () => {
-            joinChat(props.name, props.gameId);
-            setTimeout(() => {
-              document.getElementById('chat-input').focus();
-            }, 0);
-          } }
+          onClick={ () => props.showModal('NOTIFY', notifyInfo) }
           role="button"
           tabIndex={ 0 }
           className="game-card-tooltip"
@@ -92,7 +93,8 @@ CardFooter.propTypes = {
   joinRoom: PropTypes.func.isRequired,
   awayTeam: PropTypes.string.isRequired,
   homeTeam: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired
+  date: PropTypes.string.isRequired,
+  startTime: PropTypes.string.isRequired
 };
 
 export default CardFooter;

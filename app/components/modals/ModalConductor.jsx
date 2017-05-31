@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RegForm from './RegForm';
 import LoginForm from './LoginForm';
 import ShareForm from './ShareForm';
+import NotifyForm from './NotifyForm';
 
 const ModalConductor = ({ modal, closeModal, notify, login, addCard, receiveCard }) => {
   switch (modal.modal) {
@@ -29,6 +30,14 @@ const ModalConductor = ({ modal, closeModal, notify, login, addCard, receiveCard
     case 'SHARE':
       return (
         <ShareForm
+          close={ closeModal }
+          notify={ notify }
+          { ...modal.info }
+        />
+      );
+    case 'NOTIFY':
+      return (
+        <NotifyForm
           close={ closeModal }
           notify={ notify }
           { ...modal.info }
