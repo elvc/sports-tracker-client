@@ -2,15 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class NotifyForm extends Component {
-  static propTypes = {
-    close: PropTypes.func.isRequired,
-    awayTeam: PropTypes.string.isRequired,
-    homeTeam: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    startTime: PropTypes.string.isRequired,
-    notify: PropTypes.func.isRequired
-  }
 
   constructor(props) {
     super(props);
@@ -107,3 +98,17 @@ export default class NotifyForm extends Component {
     );
   }
 }
+
+NotifyForm.defaultProps = {
+  startTime: ''
+}
+
+NotifyForm.propTypes = {
+  close: PropTypes.func.isRequired,
+  awayTeam: PropTypes.string.isRequired,
+  homeTeam: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  startTime: PropTypes.string,
+  notify: PropTypes.func.isRequired
+};
