@@ -13,7 +13,7 @@ const LeagueItem = ({ leagueClick, notify, failedCardLoad, favoriteGames, isActi
           role="button"
           tabIndex={ 0 }
         >
-          <img className="league-icon mr-2" src={ '/img/staricon.png' } alt="" />
+          <img className="league-icon mr-2 fav-icon" src={ '/img/staricon.png' } alt="" />
           Favorite Teams
         </div>
       </li>

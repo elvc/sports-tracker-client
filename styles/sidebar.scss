@@ -75,6 +75,14 @@ nav.sidebar {
     background-color: $league-game-heading-color;
     padding: 21px;
   }
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  img.league-icon.fav-icon {
+    height: 1.5em;
+  }
 }
 
 nav.sidebar {
