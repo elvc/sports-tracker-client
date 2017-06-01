@@ -5,7 +5,7 @@ export default (addCard, receiveCard) => {
   api.get(`${HOST}/users/get`).then((response) => {
     if (Object.keys(response.response).length) {
       response.response.forEach((card) => {
-        addCard(card.gameId, card.homeTeam, card.awayTeam);
+        addCard(card.gameId, card.homeTeam, card.awayTeam, card.time);
         api.post(`${HOST}/leagues/${card.league}/games/${card.gameId}`, card).then((data) => {
           receiveCard(data.response);
         })

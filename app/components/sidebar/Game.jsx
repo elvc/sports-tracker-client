@@ -18,7 +18,7 @@ const Game = (props) => {
       time: gameProps.time,
       date: gameProps.date
     };
-    props.addCard(game.gameId, game.homeTeam, game.awayTeam);
+    props.addCard(game.gameId, game.homeTeam, game.awayTeam, game.time);
     api.post(`${HOST}/leagues/${gameProps.league}/games/${gameProps.gameId}`, game).then((response) => {
       dispatch(receiveCard(response.response));
     }).catch((err) => {
