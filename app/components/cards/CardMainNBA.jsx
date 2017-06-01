@@ -32,9 +32,9 @@ const CardMainNBA = ({ ...props }) => {
         </div>
       </div>
 
-      <div className="nba-score">
+      {props.gameStarted && <div className="nba-score">
         <span className="nba-score-away">{ props.awayScore }</span><span className="nba-score-home">{ props.homeScore }</span>
-      </div>
+      </div>}
 
       <div className="nba-time">
         { timeString }

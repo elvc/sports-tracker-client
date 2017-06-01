@@ -50,6 +50,7 @@ export default class FavoriteForm extends Component {
       dismissible: true,
       dismissAfter: 2000
     };
+    const team = this.state.team;
 
     fetch(`${HOST}/users/favorite`, {
       method: 'post',
@@ -58,7 +59,7 @@ export default class FavoriteForm extends Component {
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify({
         username: this.props.username,
-        team: this.state.team
+        team
       })
     })
     .then((response) => {
@@ -73,7 +74,7 @@ export default class FavoriteForm extends Component {
     .then((data) => {
       this.props.close();
       this.props.receiveFavorites(data.games);
-      favoriteSuccess.message = `${data.team} has been added to your favorite teams`;
+      favoriteSuccess.message = 'Team added to favorites';
       this.props.notify(favoriteSuccess);
     })
     .catch((err) => {

@@ -38,7 +38,7 @@ const CardMainMLB = ({ ...props }) => {
 
 
       {/* eslint-disable react/no-array-index-key */}
-      <div className="mlb-score">
+      {props.gameStarted && <div className="mlb-score">
         <table>
           <thead>
             <tr>
@@ -79,7 +79,7 @@ const CardMainMLB = ({ ...props }) => {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div>}
       {/* eslint-enable */}
 
       <aside
