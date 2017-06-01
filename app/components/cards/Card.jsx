@@ -53,9 +53,12 @@ export default class Card extends React.Component {
       plays,
       joinRoom,
       gameId,
-      togglePlayByPlay,
-      gameStarted
+      togglePlayByPlay
     } = this.props;
+
+    let gameStarted = false;
+    if (this.props.currentInnings || this.props.quarter || this.props.period) gameStarted = true;
+
     const name = `${this.props.awayTeam}/${this.props.homeTeam}`;
     const opacity = isDragging || isOver ? 0.5 : 1;
     const previewOptions = {

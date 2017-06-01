@@ -18,16 +18,12 @@ const masonryOptions = {
 @DragDropContext(HTML5Backend)
 export default class CardBox extends React.Component {
 
-
   closeCard = (gameId) => {
     const HOST = location.origin.replace('8081', '8080');
     this.props.leaveRoom(gameId);
     this.props.removeCard(gameId);
     const gameid = { gameId };
-    api.post(`${HOST}/users/remove`, gameid).then((result) => { console.log(result); })
-    .catch((error) => {
-      console.log(error);
-    });
+    api.post(`${HOST}/users/remove`, gameid);
   };
 
   moveCard = (dragIndex, hoverIndex) => {
@@ -40,7 +36,7 @@ export default class CardBox extends React.Component {
     return (
       <main className={ chatActive ? 'dashboard chat-active' : 'dashboard' }>
         <h1>Dashboard</h1>
-        { allCards.length === 0 && <EmptyDashboard showModal={ this.props.showModal } /> }
+        { allCards.length === 0 && <EmptyDashboard showModal={ this.props.showModal } username={ this.props.username } /> }
         <Masonry
           className="game-card-box"
           elementType={ 'div' }
@@ -65,6 +61,10 @@ export default class CardBox extends React.Component {
   }
 }
 
+CardBox.defaultProps = {
+  username: ''
+};
+
 CardBox.propTypes = {
   allCards: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.shape({
@@ -85,6 +85,7 @@ CardBox.propTypes = {
   togglePlayByPlay: PropTypes.func.isRequired,
   repositionCard: PropTypes.func.isRequired,
   leaveRoom: PropTypes.func.isRequired,
+  username: PropTypes.string,
   removeCard: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,
   joinRoom: PropTypes.func.isRequired,

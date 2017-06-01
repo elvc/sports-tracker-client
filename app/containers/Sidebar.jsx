@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addNotification as notify } from 'reapop';
-import { receiveCard, addCard, receiveMLB, receiveNBA, receiveNHL, receiveNFL } from '../actions';
+import { receiveCard, addCard, receiveMLB, failedCardLoad, receiveNBA, receiveNHL, receiveNFL, showModal } from '../actions';
 import GameList from '../components/sidebar/GameList';
 
 const Sidebar = props => (
@@ -22,6 +22,8 @@ const mapStateToProps = state => ({
     name: 'MLB',
     data: state.sidebar.gamesMLB
   }],
+  favoriteGames: state.sidebar.favoriteGames,
+  username: state.user.name,
   receivedAt: state.sidebar.receivedAt
 });
 
@@ -32,7 +34,9 @@ const mapDispatchToProps = {
   receiveNFL,
   receiveCard,
   notify,
-  addCard
+  addCard,
+  failedCardLoad,
+  showModal
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

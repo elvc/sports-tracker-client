@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import { addNotification as notify } from 'reapop';
-import { login, closeModal, receiveCard, addCard } from '../actions';
+import { login, closeModal, receiveCard, addCard, receiveFavorites } from '../actions';
 import ModalConductor from '../components/modals/ModalConductor';
 
 class ModalWrapper extends Component {
 
   onModalOpen = () => {
-    document.querySelector('input').focus();
+    let input = document.querySelector('input');
+    if (!input) {
+      input = document.querySelector('select');
+    }
+    input.focus();
   }
 
   render() {
@@ -43,7 +47,8 @@ class ModalWrapper extends Component {
 
 const mapStateToProps = state => ({
   modal: state.modal,
-  email: state.user.email
+  email: state.user.email,
+  username: state.user.name
 });
 
 const mapDispatchToProps = {
@@ -51,7 +56,8 @@ const mapDispatchToProps = {
   closeModal,
   notify,
   addCard,
-  receiveCard
+  receiveCard,
+  receiveFavorites
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalWrapper);

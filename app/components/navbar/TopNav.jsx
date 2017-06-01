@@ -8,6 +8,8 @@ export default class TopNav extends Component {
 
   // check for sessions on page refresh
   componentDidMount() {
+    const { notify, receiveCard, receiveFavorites, addCard, failedCardLoad, login } = this.props;
+
     const HOST = location.origin.replace('8081', '8080');
 
     $.ajax({
@@ -16,13 +18,13 @@ export default class TopNav extends Component {
       type: 'GET',
       xhrFields: { withCredentials: true },
       success: (result) => {
-        this.props.login(result.username, result.email);
+        login(result.username, result.email);
         return result;
       }
     })
     .then((result) => {
       if (result.username !== undefined) {
-        fetchCards(this.props.addCard, this.props.receiveCard);
+        fetchCards(addCard, receiveCard, receiveFavorites, notify, failedCardLoad);
       }
     });
   }
@@ -87,6 +89,7 @@ TopNav.propTypes = {
   login: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
+  receiveFavorites: PropTypes.func.isRequired,
   showModal: PropTypes.func.isRequired,
   addCard: PropTypes.func.isRequired,
   receiveCard: PropTypes.func.isRequired

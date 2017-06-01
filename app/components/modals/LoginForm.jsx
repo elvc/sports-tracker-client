@@ -8,6 +8,7 @@ export default class LoginForm extends Component {
     login: PropTypes.func.isRequired,
     notify: PropTypes.func.isRequired,
     receiveCard: PropTypes.func.isRequired,
+    receiveFavorites: PropTypes.func.isRequired,
     addCard: PropTypes.func.isRequired
   }
 
@@ -33,6 +34,8 @@ export default class LoginForm extends Component {
   }
 
   handleSubmit = (e) => {
+    const { notify, receiveCard, receiveFavorites, addCard, login, close } = this.props;
+
     e.preventDefault();
 
     const HOST = location.origin.replace('8081', '8080');
@@ -66,17 +69,17 @@ export default class LoginForm extends Component {
       if (response.status !== 200) {
         response.json().then((data) => {
           loginError.message = `${data.message}`;
-          this.props.notify(loginError);
+          notify(loginError);
         });
       }
       return response.json();
     })
     .then((data) => {
-      this.props.close();
-      this.props.login(data.username, data.email);
+      close();
+      login(data.username, data.email);
       loginSuccess.message = `Logged in as ${data.username}`;
-      fetchCards(this.props.addCard, this.props.receiveCard);
-      this.props.notify(loginSuccess);
+      fetchCards(addCard, receiveCard, receiveFavorites, notify);
+      notify(loginSuccess);
     })
     .catch((err) => {
       loginError.message = `${err.message}`;

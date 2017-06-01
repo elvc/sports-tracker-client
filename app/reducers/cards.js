@@ -60,6 +60,14 @@ function cards(state = defaultState, action) {
     case 'SHARE_GAME':
       return {};
 
+    case 'FAILED_CARD_LOAD':
+      return state.map((card) => {
+        if (card.gameId === action.gameId) {
+          return { ...card, failedLoad: true };
+        }
+        return card;
+      });
+
     default:
       return state;
   }

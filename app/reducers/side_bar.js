@@ -36,9 +36,25 @@ function sidebar(state = defaultState, action) {
         receivedAt: action.receivedAt
       };
     }
+    case 'RECEIVE_FAVORITES': {
+      const newGames = action.games.filter(game => !state.favoriteGames.find(stateGame => stateGame.gameId === game.gameId));
+      return {
+        ...state,
+        favoriteGames: [
+          ...state.favoriteGames,
+          ...newGames
+        ]
+      };
+    }
     case 'REQUEST_FEEDS': {
       return {
         ...state
+      };
+    }
+    case 'LOGOUT': {
+      return {
+        ...state,
+        favoriteGames: []
       };
     }
     default:
