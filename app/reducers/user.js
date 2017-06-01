@@ -3,7 +3,10 @@ const defaultState = {};
 function user(state = defaultState, action) {
   switch (action.type) {
     case 'LOGIN':
-      return { name: action.username };
+      return {
+        name: action.username,
+        email: action.email
+      };
 
     case 'LOGOUT':
       return {};

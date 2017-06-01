@@ -42,7 +42,8 @@ class ModalWrapper extends Component {
 }
 
 const mapStateToProps = state => ({
-  modal: state.modal
+  modal: state.modal,
+  email: state.user.email
 });
 
 const mapDispatchToProps = {

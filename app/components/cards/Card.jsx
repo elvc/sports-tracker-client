@@ -41,7 +41,6 @@ const cardTarget = {
   connectDragPreview: connect.dragPreview()
 }))
 export default class Card extends React.Component {
-
   render() {
     const {
       isDragging,
@@ -94,6 +93,7 @@ export default class Card extends React.Component {
           homeTeam={ this.props.homeTeam }
           date={ this.props.date }
           startTime={ this.props.startTime }
+          email={ this.props.email }
         />
       </div>
     , previewOptions)));

@@ -7,6 +7,7 @@ export default class NotifyForm extends Component {
     awayTeam: PropTypes.string.isRequired,
     homeTeam: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
     startTime: PropTypes.string.isRequired,
     notify: PropTypes.func.isRequired
   }
@@ -14,7 +15,7 @@ export default class NotifyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ''
+      email: props.email
     };
   }
 
@@ -37,7 +38,7 @@ export default class NotifyForm extends Component {
       title: 'Notification will be sent',
       status: 'success',
       dismissible: true,
-      dismissAfter: 2000
+      dismissAfter: 4000
     };
 
     const notifyError = {
@@ -45,7 +46,7 @@ export default class NotifyForm extends Component {
       message: 'Please try again',
       status: 'error',
       dismissible: true,
-      dismissAfter: 2000
+      dismissAfter: 4000
     };
 
     // error checking
@@ -61,7 +62,7 @@ export default class NotifyForm extends Component {
       xhrFields: { withCredentials: true },
       success: (result) => {
         this.props.close();
-        notifySuccess.message = `Email will be sent to: ${result.email}`;
+        notifySuccess.message = `Email will be sent to: ${result.email} 45 minutes before game starts`;
         this.props.notify(notifySuccess);
       },
       error: (err) => {
@@ -94,7 +95,7 @@ export default class NotifyForm extends Component {
             <input
               id="formEmail"
               className="form-control"
-              placeholder="user@example.com"
+              value={ this.state.email }
               name="email"
               type="email"
               onChange={ this.handleKeyChange('email') }
