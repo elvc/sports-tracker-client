@@ -11,6 +11,7 @@ h1 {
 
 .dashboard {
   width: 100vw;
+  margin-bottom: 40px;
   transition: margin-right 500ms ease;
 
   &.chat-active {
@@ -35,25 +36,29 @@ h1 {
 
 @media (min-width: 768px) {
   .dashboard {
-    margin-left: 25%;
-    width: 75vw;
+    margin-left: 25vw;
+    width: calc(100vw - 220px);
+  }
+}
+
+@media (min-width: 880px) {
+  .dashboard {
+    margin-left: 220px;
   }
 }
 
 @media (min-width: 992px) {
-  .dashboard {
-    width: calc(100vw - 240px);
-    margin-left: 240px;
-    &.chat-active {
-      width: calc(100vw - 500px);
-    }
+  .dashboard.chat-active {
+    width: calc(75vw - 220px);
   }
 }
 
 @media (min-width: 1200px) {
   .dashboard {
     &.chat-active {
-      margin-right: 300px;
+      margin-right: 280px;
+      width: calc(100vw - 500px);
+
     }
   }
 }
