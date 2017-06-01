@@ -57,7 +57,8 @@ export default class Card extends React.Component {
     } = this.props;
 
     let gameStarted = false;
-    if (this.props.currentInnings || this.props.quarter || this.props.period) gameStarted = true;
+    const mlbRunning = this.props.innings && this.props.innings.length;
+    if (mlbRunning || this.props.quarter || this.props.period) gameStarted = true;
 
     const name = `${this.props.awayTeam}/${this.props.homeTeam}`;
     const opacity = isDragging || isOver ? 0.5 : 1;
@@ -70,14 +71,17 @@ export default class Card extends React.Component {
       <div className="game-card" style={ { opacity } }>
         { league === 'NBA' && <CardMainNBA
           { ...this.props }
+          gameStarted={ gameStarted }
         />
         }
         { league === 'MLB' && <CardMainMLB
           { ...this.props }
+          gameStarted={ gameStarted }
         />
         }
         { league === 'NHL' && <CardMainNHL
           { ...this.props }
+          gameStarted={ gameStarted }
         />
         }
         { this.props.isLoading && <CardMainLoading { ...this.props } /> }
