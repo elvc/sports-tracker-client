@@ -35,6 +35,11 @@ export const addCard = (gameId, homeTeam, awayTeam, startTime) => ({
   }
 });
 
+export const failedCardLoad = gameId => ({
+  type: 'FAILED_CARD_LOAD',
+  gameId
+});
+
 export const receiveCard = data => ({
   type: 'RECEIVE_CARD',
   game: {

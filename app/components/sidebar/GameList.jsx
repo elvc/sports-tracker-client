@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LeagueItem from './LeagueItem';
 import LeagueItemMLB from './LeagueItemMLB';
+import FavoriteTeams from './FavoriteTeams';
 import api from '../../lib/api';
 
 class GameList extends Component {
@@ -93,10 +94,21 @@ class GameList extends Component {
   }
 
   render() {
+    const { notify, failedCardLoad } = this.props;
     return (
       <nav className="col-sm-3 bg-faded navbar-collapse collapse sidebar pt-0" id="collapseLeagueItem">
         <h5 className="d-flex justify-content-center mb-0 league-game-heading">Leagues & Games</h5>
         <div className="nav-item league-heading">
+          { this.props.username && <FavoriteTeams
+            key={ -100 }
+            showModal={ this.props.showModal }
+            addCard={ this.props.addCard }
+            favoriteGames={ this.props.favoriteGames }
+            isActive={ this.state.activeLeague === 'Favorite Teams' }
+            leagueClick={ this.leagueClick.bind(this, 'Favorite Teams') }
+            failedCardLoad={ failedCardLoad }
+            notify={ notify }
+          />}
           {
             this.props.leagues.map((league) => {
               if (league.name === 'MLB') {
@@ -107,6 +119,8 @@ class GameList extends Component {
                   gameData={ league.data }
                   isActive={ this.state.activeLeague === league.name }
                   addCard={ this.props.addCard }
+                  failedCardLoad={ failedCardLoad }
+                  notify={ notify }
                 />);
               }
               return (<LeagueItem
@@ -116,6 +130,8 @@ class GameList extends Component {
                 gameData={ league.data }
                 isActive={ this.state.activeLeague === league.name }
                 addCard={ this.props.addCard }
+                failedCardLoad={ failedCardLoad }
+                notify={ notify }
               />);
             })
           }
@@ -125,15 +141,23 @@ class GameList extends Component {
   }
 }
 
+GameList.defaultProps = {
+  username: ''
+};
+
 GameList.propTypes = {
   leagues: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  favoriteGames: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   receiveMLB: PropTypes.func.isRequired,
   receiveNBA: PropTypes.func.isRequired,
   receiveNHL: PropTypes.func.isRequired,
   receiveNFL: PropTypes.func.isRequired,
+  failedCardLoad: PropTypes.func.isRequired,
   receiveCard: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
-  addCard: PropTypes.func.isRequired
+  showModal: PropTypes.func.isRequired,
+  addCard: PropTypes.func.isRequired,
+  username: PropTypes.string
 };
 
 export default GameList;

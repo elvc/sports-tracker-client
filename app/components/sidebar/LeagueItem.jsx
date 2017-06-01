@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Game from './Game';
 
-const LeagueItem = ({ leagueClick, league, gameData, isActive, addCard }) => {
+const LeagueItem = ({ leagueClick, notify, failedCardLoad, league, gameData, isActive, addCard }) => {
   const activeLeagueClass = `d-flex justify-content-center league-heading pl-0 pt-3 pb-3 nav-link ${isActive ? 'active' : ''}`;
   const gameSchedule = gameData.reduce(
     (acc, cur) => acc.concat(cur),
@@ -26,7 +26,9 @@ const LeagueItem = ({ leagueClick, league, gameData, isActive, addCard }) => {
           <Game
             key={ game.gameId }
             league={ league }
+            failedCardLoad={ failedCardLoad }
             addCard={ addCard }
+            notify={ notify }
             { ...game }
           />
         ))}
@@ -41,6 +43,8 @@ const LeagueItem = ({ leagueClick, league, gameData, isActive, addCard }) => {
 LeagueItem.propTypes = {
   gameData: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.shape({}))).isRequired,
   leagueClick: PropTypes.func.isRequired,
+  notify: PropTypes.func.isRequired,
+  failedCardLoad: PropTypes.func.isRequired,
   addCard: PropTypes.func.isRequired,
   league: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired

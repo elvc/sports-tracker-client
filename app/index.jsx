@@ -176,6 +176,7 @@ const initialState = {
     gamesNFL: [],
     gamesMLB: [],
     gamesNBA: [],
+    favoriteGames: [],
     receivedAt: Date.now()
   },
   modal: {

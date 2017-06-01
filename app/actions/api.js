@@ -25,3 +25,8 @@ export const receiveNFL = games => ({
   gamesNFL: games || [],
   receivedAt: Date.now()
 });
+
+export const receiveFavorites = games => ({
+  type: 'RECEIVE_FAVORITES',
+  games
+});

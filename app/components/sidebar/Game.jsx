@@ -22,15 +22,23 @@ const Game = (props) => {
     api.post(`${HOST}/leagues/${gameProps.league}/games/${gameProps.gameId}`, game).then((response) => {
       dispatch(receiveCard(response.response));
     }).catch((err) => {
-      console.log(`Error adding card: ${err.message}`);
+      props.notify({
+        title: 'Problem fetching data',
+        status: 'error',
+        dismissible: true,
+        message: err.responseJSON.message,
+        dismissAfter: 2000
+      });
+      props.failedCardLoad(gameProps.gameId);
     });
     $('.sidebar').removeClass('show');
   };
   const dateFormatted = moment(props.date).format('MMM Do');
-  const timeString = props.league === 'MLB' ? props.time : `${props.time} ${dateFormatted}`;
+  // const timeString = props.league === 'MLB' ? props.time : `${props.time} ${dateFormatted}`;
+  const timeString = `${props.time} ${dateFormatted}`;
   return (
     <div className="game-container">
-      <a onClick={ () => add(props) } role="button">
+      <a onClick={ () => add(props) } role="button" tabIndex={ 0 }>
         <li className="d-flex justify-content-center game pt-2 pb-2">
           {props.awayTeam.Abbreviation} @ {props.homeTeam.Abbreviation} ({timeString})
         </li>
@@ -42,8 +50,12 @@ const Game = (props) => {
 Game.propTypes = {
   league: PropTypes.string.isRequired,
   gameId: PropTypes.number.isRequired,
-  awayTeam: PropTypes.shape({}).isRequired,
-  homeTeam: PropTypes.shape({}).isRequired,
+  awayTeam: PropTypes.shape({
+    Abbreviation: PropTypes.string.isRequired
+  }).isRequired,
+  homeTeam: PropTypes.shape({
+    Abbreviation: PropTypes.string.isRequired
+  }).isRequired,
   time: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   addCard: PropTypes.func.isRequired
