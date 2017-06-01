@@ -17,158 +17,158 @@ const initialState = {
     emojiPicker: false
   },
   cards: [
-    {
-      gameId: 1,
-      league: 'NBA',
-      homeTeam: 'SAS',
-      awayTeam: 'GSW',
-      homeScore: 91,
-      awayScore: 120,
-      quarter: '4',
-      timeRemaining: '10:09',
-      displayPlayByPlay: true,
-      scoreLoading: false,
-      startTime: '4:00PM',
-      date: '2017-05-30',
-      gameOver: true,
-      plays: [
-        { id: 1, content: 'Steph scores a 3', sport: 'NBA', time: '10:11' },
-        { id: 2, content: 'Steph scores a 3', sport: 'NBA', time: '10:34' },
-        { id: 3, content: 'Steph scores a FG', sport: 'NBA', time: '11:18' },
-        { id: 4, content: 'Someone else scores?', sport: 'NBA', time: '0:11' }
-      ],
-      gameStarted: true
-    },
-    {
-      gameId: 2,
-      league: 'MLB',
-      homeTeam: 'PIT',
-      awayTeam: 'TOR',
-      homeScore: 5,
-      awayScore: 6,
-      displayPlayByPlay: false,
-      scoreLoading: false,
-      currentInning: '4',
-      startTime: '4:00PM',
-      date: '2017-05-30',
-      currentInningHalf: 'top',
-      innings: [
-        {
-          inning: 1,
-          awayScore: 2,
-          homeScore: 0
-        },
-        {
-          inning: 2,
-          awayScore: 1,
-          homeScore: 0
-        },
-        {
-          inning: 3,
-          awayScore: 2,
-          homeScore: 1
-        },
-        {
-          inning: 4,
-          awayScore: 0,
-          homeScore: 5
-        },
-        {
-          inning: 5,
-          awayScore: 0,
-          homeScore: 5
-        },
-        {
-          inning: 6,
-          awayScore: 0,
-          homeScore: 5
-        },
-        {
-          inning: 7,
-          awayScore: 0,
-          homeScore: 5
-        },
-        {
-          inning: 8,
-          awayScore: 0,
-          homeScore: 5
-        },
-        {
-          inning: 9,
-          awayScore: 0,
-          homeScore: 5
-        },
-        {
-          inning: 10,
-          awayScore: 0,
-          homeScore: 5
-        },
-        {
-          inning: 11,
-          awayScore: 0,
-          homeScore: 5
-        },
-        {
-          inning: 12,
-          awayScore: 0,
-          homeScore: 5
-        }
-      ],
-      plays: [
-        { id: 1, content: 'Batter singled', sport: 'MLB' },
-        { id: 2, content: 'Batter singled', sport: 'MLB' },
-        { id: 3, content: 'Batter singled', sport: 'MLB' },
-        { id: 4, content: 'Batter doubled', sport: 'MLB' },
-        { id: 5, content: 'Batter singled', sport: 'MLB' },
-        { id: 6, content: 'Batter singled', sport: 'MLB' },
-        { id: 7, content: 'Batter singled', sport: 'MLB' },
-        { id: 8, content: 'Batter grounded out', sport: 'MLB' },
-        { id: 9, content: 'Batter singled', sport: 'MLB' },
-        { id: 10, content: 'Batter singled', sport: 'MLB' },
-        { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored-play-mlb' },
-        { id: 12, content: 'Batter singled', sport: 'MLB' },
-        { id: 13, content: 'Batter singled', sport: 'MLB' },
-        { id: 14, content: 'Batter singled', sport: 'MLB' },
-        { id: 15, content: 'Batter singled', sport: 'MLB' },
-        { id: 16, content: 'Batter singled', sport: 'MLB' }
-      ],
-      gameStarted: true,
-      gameCompleted: false
-    },
-    {
-      gameId: 3,
-      league: 'NHL',
-      homeTeam: 'CGY',
-      awayTeam: 'VAN',
-      homeScore: 9,
-      awayScore: 5,
-      period: '3',
-      startTime: '4:00PM',
-      date: '2017-05-30',
-      timeRemaining: '1:07',
-      periods: [
-        {
-          period: '1',
-          awayScore: 3,
-          homeScore: 2
-        },
-        {
-          period: '2',
-          awayScore: 4,
-          homeScore: 1
-        },
-        {
-          period: '1',
-          awayScore: 2,
-          homeScore: 2
-        }
-      ],
-      scoreLoading: false,
-      displayPlayByPlay: false,
-      gameStarted: false,
-      gameOver: false,
-      plays: []
-    }
+    // {
+    //   gameId: 1,
+    //   league: 'NBA',
+    //   homeTeam: 'SAS',
+    //   awayTeam: 'GSW',
+    //   homeScore: 91,
+    //   awayScore: 120,
+    //   quarter: '4',
+    //   timeRemaining: '10:09',
+    //   displayPlayByPlay: true,
+    //   scoreLoading: false,
+    //   startTime: '4:00PM',
+    //   date: '2017-05-30',
+    //   gameOver: true,
+    //   plays: [
+    //     { id: 1, content: 'Steph scores a 3', sport: 'NBA', time: '10:11' },
+    //     { id: 2, content: 'Steph scores a 3', sport: 'NBA', time: '10:34' },
+    //     { id: 3, content: 'Steph scores a FG', sport: 'NBA', time: '11:18' },
+    //     { id: 4, content: 'Someone else scores?', sport: 'NBA', time: '0:11' }
+    //   ],
+    //   gameStarted: true
+    // },
+    // {
+    //   gameId: 2,
+    //   league: 'MLB',
+    //   homeTeam: 'PIT',
+    //   awayTeam: 'TOR',
+    //   homeScore: 5,
+    //   awayScore: 6,
+    //   displayPlayByPlay: false,
+    //   scoreLoading: false,
+    //   currentInning: '4',
+    //   startTime: '4:00PM',
+    //   date: '2017-05-30',
+    //   currentInningHalf: 'top',
+    //   innings: [
+    //     {
+    //       inning: 1,
+    //       awayScore: 2,
+    //       homeScore: 0
+    //     },
+    //     {
+    //       inning: 2,
+    //       awayScore: 1,
+    //       homeScore: 0
+    //     },
+    //     {
+    //       inning: 3,
+    //       awayScore: 2,
+    //       homeScore: 1
+    //     },
+    //     {
+    //       inning: 4,
+    //       awayScore: 0,
+    //       homeScore: 5
+    //     },
+    //     {
+    //       inning: 5,
+    //       awayScore: 0,
+    //       homeScore: 5
+    //     },
+    //     {
+    //       inning: 6,
+    //       awayScore: 0,
+    //       homeScore: 5
+    //     },
+    //     {
+    //       inning: 7,
+    //       awayScore: 0,
+    //       homeScore: 5
+    //     },
+    //     {
+    //       inning: 8,
+    //       awayScore: 0,
+    //       homeScore: 5
+    //     },
+    //     {
+    //       inning: 9,
+    //       awayScore: 0,
+    //       homeScore: 5
+    //     },
+    //     {
+    //       inning: 10,
+    //       awayScore: 0,
+    //       homeScore: 5
+    //     },
+    //     {
+    //       inning: 11,
+    //       awayScore: 0,
+    //       homeScore: 5
+    //     },
+    //     {
+    //       inning: 12,
+    //       awayScore: 0,
+    //       homeScore: 5
+    //     }
+    //   ],
+    //   plays: [
+    //     { id: 1, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 2, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 3, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 4, content: 'Batter doubled', sport: 'MLB' },
+    //     { id: 5, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 6, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 7, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 8, content: 'Batter grounded out', sport: 'MLB' },
+    //     { id: 9, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 10, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 11, content: 'Batter sacrifice flied. Other batter scored.', sport: 'MLB', style: 'scored-play-mlb' },
+    //     { id: 12, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 13, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 14, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 15, content: 'Batter singled', sport: 'MLB' },
+    //     { id: 16, content: 'Batter singled', sport: 'MLB' }
+    //   ],
+    //   gameStarted: true,
+    //   gameCompleted: false
+    // },
+    // {
+    //   gameId: 3,
+    //   league: 'NHL',
+    //   homeTeam: 'CGY',
+    //   awayTeam: 'VAN',
+    //   homeScore: 9,
+    //   awayScore: 5,
+    //   period: '3',
+    //   startTime: '4:00PM',
+    //   date: '2017-05-30',
+    //   timeRemaining: '1:07',
+    //   periods: [
+    //     {
+    //       period: '1',
+    //       awayScore: 3,
+    //       homeScore: 2
+    //     },
+    //     {
+    //       period: '2',
+    //       awayScore: 4,
+    //       homeScore: 1
+    //     },
+    //     {
+    //       period: '1',
+    //       awayScore: 2,
+    //       homeScore: 2
+    //     }
+    //   ],
+    //   scoreLoading: false,
+    //   displayPlayByPlay: false,
+    //   gameStarted: false,
+    //   gameOver: false,
+    //   plays: []
+    // }
   ],
   user: { },
   sidebar: {

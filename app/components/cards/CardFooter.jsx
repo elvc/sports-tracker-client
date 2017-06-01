@@ -15,7 +15,6 @@ const CardFooter = (props) => {
   };
 
   const { homeTeam, awayTeam, date, startTime } = props;
-
   const shareInfo = {
     homeTeam,
     awayTeam,
@@ -83,8 +82,7 @@ const CardFooter = (props) => {
 };
 
 CardFooter.defaultProps = {
-  date: '',
-  email: ''
+  date: ''
 };
 
 CardFooter.propTypes = {
@@ -97,8 +95,7 @@ CardFooter.propTypes = {
   awayTeam: PropTypes.string.isRequired,
   homeTeam: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  email: PropTypes.string,
-  startTime: PropTypes.string.isRequired
+  startTime: PropTypes.string
 };
 
 export default CardFooter;

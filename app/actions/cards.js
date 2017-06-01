@@ -24,12 +24,13 @@ export const notifyGame = gameId => ({
   gameId
 });
 
-export const addCard = (gameId, homeTeam, awayTeam) => ({
+export const addCard = (gameId, homeTeam, awayTeam, startTime) => ({
   type: 'ADD_CARD',
   game: {
     gameId,
     homeTeam,
     awayTeam,
+    startTime,
     isLoading: true
   }
 });

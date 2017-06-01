@@ -61,8 +61,10 @@ class GameList extends Component {
     const game = {
       gameId: gameProps.gameId,
       league: gameProps.league,
-      homeTeam: gameProps.homeTeam.Abbreviation,
-      awayTeam: gameProps.awayTeam.Abbreviation,
+      homeTeam: gameProps.homeTeam,
+      homeTeamId: gameProps.homeTeamId,
+      awayTeam: gameProps.awayTeam,
+      awayTeamId: gameProps.awayTeamId,
       location: gameProps.homeTeam.City,
       time: gameProps.time,
       date: gameProps.date
