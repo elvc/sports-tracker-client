@@ -16,7 +16,7 @@ export default class TopNav extends Component {
       type: 'GET',
       xhrFields: { withCredentials: true },
       success: (result) => {
-        this.props.login(result.username);
+        this.props.login(result.username, result.email);
         return result;
       }
     })

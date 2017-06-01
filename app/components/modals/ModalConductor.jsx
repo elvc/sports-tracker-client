@@ -5,7 +5,7 @@ import LoginForm from './LoginForm';
 import ShareForm from './ShareForm';
 import NotifyForm from './NotifyForm';
 
-const ModalConductor = ({ modal, closeModal, notify, login, addCard, receiveCard }) => {
+const ModalConductor = ({ modal, closeModal, notify, login, addCard, receiveCard, email }) => {
   switch (modal.modal) {
     case 'NONE':
       return null;
@@ -40,6 +40,7 @@ const ModalConductor = ({ modal, closeModal, notify, login, addCard, receiveCard
         <NotifyForm
           close={ closeModal }
           notify={ notify }
+          email={ email }
           { ...modal.info }
         />
       );
@@ -48,12 +49,17 @@ const ModalConductor = ({ modal, closeModal, notify, login, addCard, receiveCard
   }
 };
 
+ModalConductor.defaultProps = {
+  email: ''
+}
+
 ModalConductor.propTypes = {
   closeModal: PropTypes.func.isRequired,
   notify: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   addCard: PropTypes.func.isRequired,
   receiveCard: PropTypes.func.isRequired,
+  email: PropTypes.string,
   modal: PropTypes.shape({
     modal: PropTypes.string.isRequired,
     info: PropTypes.shape({})

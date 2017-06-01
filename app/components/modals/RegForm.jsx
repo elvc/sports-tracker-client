@@ -130,7 +130,7 @@ export default class RegForm extends Component {
     })
     .then((data) => {
       this.props.close();
-      this.props.login(data.username);
+      this.props.login(data.username, data.email);
       regSuccess.message = `Logged in as ${data.username}`;
       this.props.notify(regSuccess);
     })

@@ -73,7 +73,7 @@ export default class LoginForm extends Component {
     })
     .then((data) => {
       this.props.close();
-      this.props.login(data.username);
+      this.props.login(data.username, data.email);
       loginSuccess.message = `Logged in as ${data.username}`;
       fetchCards(this.props.addCard, this.props.receiveCard);
       this.props.notify(loginSuccess);
