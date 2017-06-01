@@ -6,7 +6,7 @@ import ShareForm from './ShareForm';
 import NotifyForm from './NotifyForm';
 import FavoriteForm from './FavoriteForm';
 
-const ModalConductor = ({ modal, closeModal, receiveFavorites, notify, login, addCard, receiveCard, email, username }) => {
+const ModalConductor = ({ modal, closeModal, failedCardLoad, receiveFavorites, notify, login, addCard, receiveCard, email, username }) => {
   switch (modal.modal) {
     case 'NONE':
       return null;
@@ -18,6 +18,7 @@ const ModalConductor = ({ modal, closeModal, receiveFavorites, notify, login, ad
           login={ login }
           addCard={ addCard }
           receiveFavorites={ receiveFavorites }
+          failedCardLoad={ failedCardLoad }
           receiveCard={ receiveCard }
         />
       );
@@ -72,6 +73,7 @@ ModalConductor.propTypes = {
   addCard: PropTypes.func.isRequired,
   receiveCard: PropTypes.func.isRequired,
   receiveFavorites: PropTypes.func.isRequired,
+  failedCardLoad: PropTypes.func.isRequired,
   username: PropTypes.string,
   email: PropTypes.string,
   modal: PropTypes.shape({

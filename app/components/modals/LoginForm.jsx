@@ -34,7 +34,7 @@ export default class LoginForm extends Component {
   }
 
   handleSubmit = (e) => {
-    const { notify, receiveCard, receiveFavorites, addCard, login, close } = this.props;
+    const { notify, receiveCard, receiveFavorites, addCard, login, close, failedCardLoad } = this.props;
 
     e.preventDefault();
 
@@ -78,7 +78,7 @@ export default class LoginForm extends Component {
       close();
       login(data.username, data.email);
       loginSuccess.message = `Logged in as ${data.username}`;
-      fetchCards(addCard, receiveCard, receiveFavorites, notify);
+      fetchCards(addCard, receiveCard, receiveFavorites, notify, failedCardLoad);
       notify(loginSuccess);
     })
     .catch((err) => {
