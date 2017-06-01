@@ -35,9 +35,11 @@ nav.sidebar {
       display: flex;
       justify-content: center;
     }
+
     &.date-heading {
-      padding: 0;
-      text-decoration: underline;
+      &.date-heading {
+        text-decoration: underline;
+      }
     }
   }
 
